@@ -1,0 +1,49 @@
+{
+  "players": [
+    {
+      "sleeperId": "qb1",
+      "name": "Quarterback One",
+      "position": "QB",
+      "age": 25,
+      "nflTeam": "DET",
+      "status": "Active",
+      "injuryStatus": "",
+      "depthOrder": 1,
+      "rosterStatus": "Starter",
+      "expectedPpg": 20,
+      "projectedTotal": 340,
+      "dynastyValue": 7000,
+      "riskScore": 0
+    },
+    {
+      "sleeperId": "rb1",
+      "name": "Running Back One",
+      "position": "RB",
+      "age": 23,
+      "nflTeam": "DET",
+      "status": "Active",
+      "injuryStatus": "",
+      "depthOrder": 1,
+      "rosterStatus": "Starter",
+      "expectedPpg": 15,
+      "projectedTotal": 255,
+      "dynastyValue": 6000,
+      "riskScore": 0
+    },
+    {
+      "sleeperId": "wr1",
+      "name": "Wide Receiver One",
+      "position": "WR",
+      "age": 24,
+      "nflTeam": "DET",
+      "status": "Active",
+      "injuryStatus": "",
+      "depthOrder": 1,
+      "rosterStatus": "Bench",
+      "expectedPpg": 13,
+      "projectedTotal": 221,
+      "dynastyValue": 5000,
+      "riskScore": 0
+    }
+  ]
+}

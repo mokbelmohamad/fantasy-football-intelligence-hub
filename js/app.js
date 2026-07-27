@@ -1,6 +1,7 @@
 "use strict";
 
 import { analyze } from "./analyze.js";
+import { reportError, userMessage } from "./errors.js";
 import { state } from "./state.js";
 import { idbDelete, idbGet } from "./storage.js";
 import {
@@ -58,3 +59,18 @@ document.addEventListener("click",e=>{
   const embedded=$("#embedded-analysis").textContent.trim();
   if(embedded){try{state.analysis=prepareAnalysisForRender(JSON.parse(embedded));$("#leagueId").value=state.analysis.leagueId;populateTeamSelectors();renderAll();showDashboardShell();log(`Loaded embedded report generated ${new Date(state.analysis.generatedAt).toLocaleString()}.`,100)}catch(e){console.error(e)}}
 })();
+
+
+window.addEventListener("unhandledrejection", (event) => {
+  const error = reportError(event.reason, { source: "Unhandled promise" });
+  log(userMessage(error));
+});
+
+window.addEventListener("error", (event) => {
+  if (!event.error) {
+    return;
+  }
+
+  const error = reportError(event.error, { source: "Browser runtime" });
+  log(userMessage(error));
+});

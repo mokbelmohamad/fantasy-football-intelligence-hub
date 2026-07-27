@@ -1,13 +1,13 @@
 {
   "name": "fantasy-football-intelligence-hub",
-  "version": "2.1.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "collect": "node scripts/collect-data.mjs",
-    "normalize": "node scripts/normalize-data.mjs",
-    "trends": "node scripts/calculate-trends.mjs",
-    "validate": "node scripts/validate-data.mjs"
+    "test": "node --test js/tests/*.test.js",
+    "update:data": "node scripts/update-data.mjs",
+    "validate": "node scripts/validate-project.mjs",
+    "check": "npm test && npm run validate"
   },
   "engines": {
     "node": ">=22"

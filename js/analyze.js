@@ -1,4 +1,5 @@
-import { API, APP_VERSION } from "./config.js";
+
+import { APP_VERSION } from "./config.js";
 import { state } from "./state.js";
 import { idbSet } from "./storage.js";
 import {
@@ -14,16 +15,18 @@ import {
 } from "./utils.js";
 import {
   collectProjectionPlayers,
-  fetchJson,
-  fetchText,
   field,
   getHistory,
   getLeagueBundle,
   getMatchups,
+  getNflState,
+  loadDynastyProcessData,
   loadPlayerDirectory,
+  loadRosterAuditPicks,
+  loadRosterAuditProjections,
+  loadRosterAuditValues,
   loadSleeperProjections,
-  parseCSV,
-} from "./api.js";
+} from "./api/index.js";
 import {
   aggregatePlayerProduction,
   assignPlayerPositionTiers,
@@ -48,6 +51,11 @@ import {
   renderAll,
   showDashboardShell,
 } from "./render.js";
+import {
+  normalizeError,
+  reportError,
+  userMessage,
+} from "./errors.js";
 
 export async function analyze(force=false){
   const leagueId=$("#leagueId").value.trim();
@@ -55,7 +63,7 @@ export async function analyze(force=false){
   const sourceStatuses=[];setSources([]);$("#analyzeBtn").disabled=true;$("#refreshBtn").disabled=true;
   try{
     log("Loading league settings, rosters and managers…",4);
-    const [nflState,bundle]=await Promise.all([fetchJson(`${API.sleeper}/state/nfl`),getLeagueBundle(leagueId)]);
+    const [nflState,bundle]=await Promise.all([getNflState(),getLeagueBundle(leagueId)]);
     sourceStatuses.push({name:"Sleeper league",status:"ok",detail:`${bundle.rosters.length} teams`});setSources(sourceStatuses);
     const formatKey=detectFormat(bundle.league,$("#formatOverride").value),historyDepth=num($("#historyDepth").value,3);
     log("Loading linked prior seasons…",10);
@@ -72,23 +80,23 @@ export async function analyze(force=false){
     const playerDirectory=await loadPlayerDirectory(force,sourceStatuses);setSources(sourceStatuses);
 
     log("Loading projections and dynasty values…",38);
-    const external=await Promise.allSettled([
-      fetchJson(`${API.raValues}?format_key=${encodeURIComponent(formatKey)}`,45000),
-      fetchJson(API.raProjections,45000),
-      fetchJson(API.raPicks,45000),
-      fetchText(API.dpIds,45000),
-      fetchText(API.dpValues,45000),
-      loadSleeperProjections(currentSeason,sourceStatuses)
-    ]);
-    const raValues=external[0].status==="fulfilled"?external[0].value:{};
-    const raProjRaw=external[1].status==="fulfilled"?external[1].value:{};
-    const raPicks=external[2].status==="fulfilled"?external[2].value:{};
-    const dpIds=external[3].status==="fulfilled"?parseCSV(external[3].value):[];
-    const dpValues=external[4].status==="fulfilled"?parseCSV(external[4].value):[];
-    const sleeperProj=external[5].status==="fulfilled"?external[5].value:new Map();
-    sourceStatuses.push({name:"RosterAudit values",status:external[0].status==="fulfilled"?"ok":"warn",detail:external[0].status==="fulfilled"?"live":"unavailable"});
-    sourceStatuses.push({name:"RosterAudit projections",status:external[1].status==="fulfilled"?"ok":"warn",detail:external[1].status==="fulfilled"?"live":"fallback used"});
-    sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfilled"&&external[4].status==="fulfilled"?"ok":"warn",detail:"secondary values"});
+
+const external=await Promise.allSettled([
+  loadRosterAuditValues(formatKey),
+  loadRosterAuditProjections(),
+  loadRosterAuditPicks(),
+  loadDynastyProcessData(),
+  loadSleeperProjections(currentSeason,sourceStatuses)
+]);
+const raValues=external[0].status==="fulfilled"?external[0].value.data:{};
+const raProjRaw=external[1].status==="fulfilled"?external[1].value.data:{};
+const raPicks=external[2].status==="fulfilled"?external[2].value.data:{};
+const dpIds=external[3].status==="fulfilled"?external[3].value.ids:[];
+const dpValues=external[3].status==="fulfilled"?external[3].value.values:[];
+const sleeperProj=external[4].status==="fulfilled"?external[4].value:new Map();
+sourceStatuses.push({name:"RosterAudit values",status:external[0].status==="fulfilled"?"ok":"warn",detail:external[0].status==="fulfilled"?external[0].value.source:"unavailable"});
+sourceStatuses.push({name:"RosterAudit projections",status:external[1].status==="fulfilled"?"ok":"warn",detail:external[1].status==="fulfilled"?external[1].value.source:"fallback used"});
+sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfilled"?"ok":"warn",detail:external[3].status==="fulfilled"?external[3].value.source:"unavailable"});
     setSources(sourceStatuses);
 
     const users=new Map(bundle.users.map(u=>[String(u.user_id),u]));
@@ -228,8 +236,14 @@ export async function analyze(force=false){
     state.analysis=prepareAnalysisForRender(analysis);await idbSet(`analysis:${leagueId}`,state.analysis);
     populateTeamSelectors();renderAll();showDashboardShell();
     log(`Complete: ${bundle.league.name}\n${teams.length} teams · ${playerRows.length} rostered players · ${maxWeek} current-season weeks · ${history.length} linked seasons`,100);
-  }catch(e){
-    console.error(e);log(`Analysis failed:\n${e.message}\n\nTry Force Refresh in Chrome or Edge. Some third-party sources may temporarily block browser requests.`,0);
-    sourceStatuses.push({name:"Run",status:"bad",detail:e.message});setSources(sourceStatuses);
-  }finally{$("#analyzeBtn").disabled=false;$("#refreshBtn").disabled=false}
+
+}catch(e){
+  const normalized=normalizeError(e,{source:"League analysis"});
+  reportError(normalized);
+  log(`Analysis failed:
+${userMessage(normalized)}
+
+Try Force Refresh or load a saved report.`,0);
+  sourceStatuses.push({name:"Run",status:"bad",detail:normalized.message});setSources(sourceStatuses);
+}finally{$("#analyzeBtn").disabled=false;$("#refreshBtn").disabled=false}
 }

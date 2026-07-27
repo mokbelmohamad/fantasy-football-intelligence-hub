@@ -1,15 +1,25 @@
-# JavaScript module structure
+# Fantasy Football Intelligence Hub architecture
 
-- `app.js` — application startup and event listeners
-- `analyze.js` — league-analysis orchestration
-- `api.js` — network requests, projections, CSV parsing, and Sleeper loading
-- `config.js` — version and endpoint configuration
-- `league.js` — lineup, league-format, ranking, risk, and pick calculations
-- `render.js` — page rendering, tables, charts, exports, and navigation
-- `state.js` — shared application state
-- `storage.js` — IndexedDB cache helpers
-- `tiers.js` — player-tier and team-insight models
-- `utils.js` — DOM, formatting, numeric, CSV, and download helpers
+## Added in this package
 
-The HTML entry point now loads `js/app.js` with `type="module"`.
-Run the project through Live Server or another HTTP server; ES modules should not be opened directly through `file://`.
+1. Node calculation tests and fixtures
+2. Centralized error handling in `js/errors.js`
+3. Provider-specific files under `js/api/`
+4. Individual page renderers under `js/views/`
+5. Local JSON snapshots under `data/`
+6. Scheduled data refresh in `.github/workflows/update-data.yml`
+
+## Commands
+
+```bash
+npm test
+npm run validate
+npm run update:data
+npm run check
+```
+
+The browser uses local snapshots when they contain usable data and falls back
+to live sources when snapshots are empty or unavailable.
+
+`js/render.js` remains the view orchestrator. Each page now has its own module.
+`js/analyze.js` loads data through provider-specific API modules.
