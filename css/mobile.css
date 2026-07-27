@@ -1,0 +1,106 @@
+@media (max-width: 1150px) {
+  header {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .setup-grid,
+  .advanced-grid,
+  .grid-3,
+  .capital-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .player-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .tier-page-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tier-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tier-methodology-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  main {
+    padding: 0 10px 36px;
+  }
+
+  .kpis,
+  .setup-grid,
+  .advanced-grid,
+  .grid-3,
+  .player-filters,
+  .capital-grid,
+  .movement-grid,
+  .tier-page-controls,
+  .tier-summary,
+  .tier-player-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    align-items: flex-start;
+  }
+
+  .select-update {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .select-update select {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media print {
+  .setup,
+  .tabs,
+  .buttons,
+  .player-filters,
+  footer {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .view {
+    display: block !important;
+  }
+
+  .panel {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  th {
+    position: static;
+  }
+
+  .table-wrap {
+    max-height: none;
+    overflow: visible;
+  }
+}
