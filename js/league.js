@@ -1,0 +1,209 @@
+import { clamp, num, nullable } from "./utils.js";
+
+export function detectFormat(league,override){
+  if(override!=="auto")return override;
+  const slots=league.roster_positions||[];
+  const sf=slots.includes("SUPER_FLEX")||slots.filter(x=>x==="QB").length>1;
+  const rec=num(league.scoring_settings?.rec,0);
+  const ppr=rec>=.75?"ppr":"half";
+  const tep=num(league.scoring_settings?.bonus_rec_te,0)>0||num(league.scoring_settings?.rec_te,0)>rec;
+  if(sf&&tep&&ppr==="ppr")return "sf_ppr_tep";
+  return `${sf?"sf":"1qb"}_${ppr}`;
+}
+
+export function starterSlots(league){
+  const ignore=new Set(["BN","IR","TAXI"]);
+  const slots=(league.roster_positions||[]).filter(x=>!ignore.has(x));
+  return slots.length?slots:["QB","RB","RB","WR","WR","WR","TE","FLEX","FLEX","FLEX"];
+}
+
+export function eligible(slot,pos){
+  if(slot===pos)return true;
+  if(["FLEX","WRT","REC_FLEX"].includes(slot))return ["RB","WR","TE"].includes(pos);
+  if(["WRRB_FLEX","RB_WR_FLEX"].includes(slot))return ["RB","WR"].includes(pos);
+  if(slot==="WR_TE_FLEX")return ["WR","TE"].includes(pos);
+  if(slot==="SUPER_FLEX")return ["QB","RB","WR","TE"].includes(pos);
+  if(slot==="IDP_FLEX")return ["DL","LB","DB","DE","DT","CB","S"].includes(pos);
+  if(slot==="DL")return ["DL","DE","DT"].includes(pos);
+  if(slot==="DB")return ["DB","CB","S"].includes(pos);
+  return false;
+}
+
+export function scoringFormatLabel(key){return ({
+  "1qb_ppr":"1QB PPR","1qb_half":"1QB Half PPR","sf_ppr":"Superflex PPR",
+  "sf_half":"Superflex Half PPR","sf_ppr_tep":"Superflex PPR TEP"
+})[key]||key}
+
+export function aggregatePlayerProduction(matchups){
+  const m=new Map();
+  for(const [weekText,entries] of Object.entries(matchups)){
+    const week=Number(weekText);
+    for(const entry of entries||[]){
+      const starters=new Set((entry.starters||[]).map(String).filter(x=>x!=="0"));
+      const points=entry.players_points||{};
+      const playerList=new Set([...(entry.players||[]).map(String),...Object.keys(points)]);
+      for(const pid of playerList){
+        if(!m.has(pid))m.set(pid,{total:0,weeks:0,scoringWeeks:0,starts:0,starterPoints:0,weekly:[]});
+        const r=m.get(pid),p=num(points[pid],0);r.total+=p;r.weeks++;if(p!==0)r.scoringWeeks++;if(starters.has(pid)){r.starts++;r.starterPoints+=p}r.weekly.push({week,points:p});
+      }
+    }
+  }
+  return m;
+}
+
+export function teamName(user,rosterId){return user?.metadata?.team_name||user?.display_name||user?.username||`Roster ${rosterId}`}
+
+export function rosterPoints(settings,prefix="fpts"){return num(settings?.[prefix])+num(settings?.[`${prefix}_decimal`])/100}
+
+export function riskFor(p){
+  let score=0,reasons=[];const age=nullable(p.age),pos=p.position;
+  if(age!==null){
+    let a=0;
+    if(pos==="RB")a=age>=29?50:age>=28?40:age>=27?30:age>=26?20:age>=24?10:0;
+    else if(pos==="WR")a=age>=31?50:age>=30?40:age>=29?30:age>=28?20:age>=26?10:0;
+    else if(pos==="TE")a=age>=32?45:age>=31?40:age>=30?30:age>=29?20:age>=27?10:0;
+    else if(pos==="QB")a=age>=37?40:age>=34?25:age>=30?10:0;
+    score+=a;if(a>=30)reasons.push(`age curve (${age})`);else if(a>=10)reasons.push(`some age exposure (${age})`);
+  }
+  const inj=String(p.injuryStatus||"").toLowerCase();
+  if(inj){const x=/ir|pup|out/.test(inj)?25:/doubt/.test(inj)?18:/question/.test(inj)?10:6;score+=x;reasons.push(`injury: ${p.injuryStatus}`)}
+  if(p.status&&String(p.status).toLowerCase()!=="active"){score+=20;reasons.push(`status: ${p.status}`)}
+  if(!p.nflTeam||p.nflTeam==="FA"){score+=20;reasons.push("not on NFL team")}
+  if(num(p.depthOrder)>=3){score+=15;reasons.push(`depth order ${p.depthOrder}`)}else if(num(p.depthOrder)===2){score+=7;reasons.push("secondary role")}
+  const games=nullable(p.projectedGames);
+  if(games!==null){if(games<10){score+=25;reasons.push(`only ${games} projected games`)}else if(games<14){score+=15;reasons.push(`only ${games} projected games`)}else if(games<16){score+=5;reasons.push(`${games} projected games`)}}
+  if(num(p.expectedPpg)>=12&&num(p.dynastyValue)<1000){score+=12;reasons.push("production/value fragility")}
+  score=Math.min(100,score);return {score,tier:score>=60?"Very High":score>=40?"High":score>=20?"Moderate":"Low",reasons};
+}
+
+export function minCostLineup(slots,players){
+  const candidates=players.filter(p=>p.rosterStatus!=="Taxi"&&num(p.expectedPpg)>0);
+  const nSlots=slots.length,nPlayers=candidates.length,N=2+nSlots+nPlayers,S=0,T=N-1,graph=Array.from({length:N},()=>[]);
+  function add(u,v,cap,cost,meta=null){const a={to:v,rev:graph[v].length,cap,cost,meta},b={to:u,rev:graph[u].length,cap:0,cost:-cost,meta:null};graph[u].push(a);graph[v].push(b)}
+  slots.forEach((slot,i)=>add(S,1+i,1,0));
+  candidates.forEach((p,j)=>add(1+nSlots+j,T,1,0));
+  slots.forEach((slot,i)=>candidates.forEach((p,j)=>{if(eligible(slot,p.position))add(1+i,1+nSlots+j,1,-Math.round(num(p.expectedPpg)*1000),{slotIndex:i,playerIndex:j})}));
+  let flow=0;
+  while(flow<nSlots){
+    const dist=Array(N).fill(Infinity),inQ=Array(N).fill(false),pv=Array(N),pe=Array(N),q=[S];dist[S]=0;inQ[S]=true;
+    while(q.length){const u=q.shift();inQ[u]=false;graph[u].forEach((e,idx)=>{if(e.cap>0&&dist[e.to]>dist[u]+e.cost){dist[e.to]=dist[u]+e.cost;pv[e.to]=u;pe[e.to]=idx;if(!inQ[e.to]){q.push(e.to);inQ[e.to]=true}}})}
+    if(!Number.isFinite(dist[T]))break;
+    for(let v=T;v!==S;v=pv[v]){const e=graph[pv[v]][pe[v]];e.cap--;graph[v][e.rev].cap++}flow++;
+  }
+  const assigned=[];for(let i=0;i<nSlots;i++){for(const e of graph[1+i])if(e.meta&&e.cap===0)assigned.push({slot:slots[i],player:candidates[e.meta.playerIndex]})}
+  const used=new Set(assigned.map(x=>x.player.sleeperId));return {assigned,bench:players.filter(p=>!used.has(p.sleeperId)&&p.rosterStatus!=="Taxi")};
+}
+
+export function percentile(values,value,high=true){
+  const clean=values.map(Number).filter(Number.isFinite).sort((a,b)=>a-b);if(clean.length<=1)return 50;
+  const v=high?value:-value,arr=high?clean:clean.map(x=>-x).sort((a,b)=>a-b);
+  const below=arr.filter(x=>x<v).length,equal=arr.filter(x=>x===v).length;
+  return ((below+(equal-1)/2)/(arr.length-1))*100;
+}
+
+export function classCurrent(rank,n){
+  const q=rank/n;if(q<=.25)return "Championship Favorite";if(q<=.45)return "Strong Contender";if(q<=.65)return "Fringe Contender";if(q<=.82)return "Middle Tier";return "Rebuild / Non-Contender";
+}
+
+export function classFranchise(rank,n){
+  const q=rank/n;if(q<=.25)return "Elite Long-Term";if(q<=.5)return "Strong & Sustainable";if(q<=.75)return "Mixed / Retool";return "Rebuild Required";
+}
+
+export function classCss(c){if(c.includes("Favorite")||c.includes("Elite"))return "class-favorite";if(c.includes("Strong"))return "class-strong";if(c.includes("Fringe")||c.includes("Middle")||c.includes("Mixed"))return "class-fringe";return "class-rebuild"}
+
+export function buildPickOwnership(bundle,futureYears,teamMap,raPickData){
+  const year0=Number(bundle.league.season)+1;
+  const rounds=clamp(num(bundle.league.settings?.draft_rounds,4),1,8);
+  const ownership=[];const raw=new Map();
+  for(let y=year0;y<year0+futureYears;y++){
+    for(const rid of teamMap.keys()){
+      for(let r=1;r<=rounds;r++){
+        raw.set(`${y}|${rid}|${r}`,{
+          ownerRosterId:rid,
+          previousOwnerRosterId:rid,
+          traded:false
+        });
+      }
+    }
+  }
+  for(const p of bundle.tradedPicks||[]){
+    const y=num(p.season),origin=num(p.roster_id),round=num(p.round);
+    if(y>=year0&&y<year0+futureYears){
+      raw.set(`${y}|${origin}|${round}`,{
+        ownerRosterId:num(p.owner_id),
+        previousOwnerRosterId:num(p.previous_owner_id,p.owner_id),
+        traded:num(p.owner_id)!==origin
+      });
+    }
+  }
+  const fallback={1:4000,2:1800,3:800,4:350,5:150,6:80,7:40,8:20};
+  for(const [key,route] of raw){
+    const [season,origin,round]=key.split("|").map(Number);
+    ownership.push({
+      season,round,
+      originRosterId:origin,
+      ownerRosterId:route.ownerRosterId,
+      previousOwnerRosterId:route.previousOwnerRosterId,
+      originTeam:teamMap.get(origin),
+      ownerTeam:teamMap.get(route.ownerRosterId),
+      previousOwnerTeam:teamMap.get(route.previousOwnerRosterId),
+      acquired:route.ownerRosterId!==origin,
+      traded:route.traded,
+      value:fallback[round]||10
+    });
+  }
+  return ownership.sort((a,b)=>a.season-b.season||a.round-b.round||a.originTeam.localeCompare(b.originTeam));
+}
+
+export function tierFromPercentile(pct){
+  if(pct>=90)return "Tier 1";
+  if(pct>=75)return "Tier 2";
+  if(pct>=50)return "Tier 3";
+  return "Tier 4";
+}
+
+export function tierClass(tier){return `tier-${String(tier||"4").replace(/\D/g,"")||4}`}
+
+export function teamTierLabel(pct){
+  if(pct>=80)return "Top Tier";
+  if(pct>=60)return "Above Average";
+  if(pct>=40)return "Middle Tier";
+  if(pct>=20)return "Below Average";
+  return "Bottom Tier";
+}
+
+export function ordinal(n){
+  const v=n%100;return `${n}${["th","st","nd","rd"][(v-20)%10]||["th","st","nd","rd"][v]||"th"}`;
+}
+
+export function assignPlayerPositionTiers(players){
+  const groups=new Map();
+  for(const p of players){
+    const pos=p.position||"Other";
+    if(!groups.has(pos))groups.set(pos,[]);
+    groups.get(pos).push(p);
+  }
+  for(const group of groups.values()){
+    group.sort((a,b)=>num(b.expectedPpg)-num(a.expectedPpg)||num(b.dynastyValue)-num(a.dynastyValue));
+    const total=group.length;
+    group.forEach((p,i)=>{
+      const pct=total<=1?100:100*(1-i/(total-1));
+      p.positionRank=i+1;
+      p.positionPoolSize=total;
+      p.positionPercentile=pct;
+      p.positionTier=tierFromPercentile(pct);
+    });
+  }
+}
+
+export function syncTeamPlayerReferences(analysis){
+  const playerMap=new Map((analysis.players||[]).map(p=>[String(p.sleeperId),p]));
+  for(const team of analysis.teams||[]){
+    team.players=(analysis.players||[]).filter(p=>p.rosterId===team.rosterId);
+    for(const entry of team.lineup||[]){
+      const current=playerMap.get(String(entry.player?.sleeperId));
+      if(current)entry.player=current;
+    }
+    team.bench=(team.bench||[]).map(p=>playerMap.get(String(p.sleeperId))||p);
+  }
+}
