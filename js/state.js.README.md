@@ -1,0 +1,26 @@
+# `js/state.js`
+
+## Purpose
+
+Single shared in-memory state object.
+
+## Responsibilities
+- Store the active analysis.
+- Store table sort direction.
+- Store selected team and filter state.
+
+## Dependencies
+- None.
+
+## Used by
+- app.js
+- render.js
+- view modules
+- analyze.js
+
+## Maintenance notes
+- State is intentionally lightweight and is not a persistence layer.
+
+## Version baseline
+
+Documented for Fantasy Football Intelligence Hub Version 2.0. This documentation update does not change `APP_VERSION` or create a new application release.

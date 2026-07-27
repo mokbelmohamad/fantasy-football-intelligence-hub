@@ -1,0 +1,56 @@
+
+digraph FFIH {
+  graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.55", ranksep="0.8",
+         fontname="Arial", label="Fantasy Football Intelligence Hub v2.0 - Published Static Architecture",
+         labelloc="t", fontsize=22];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=10,
+        color="#0B5ED7", fillcolor="#EAF2FF", margin="0.14,0.09"];
+  edge [fontname="Arial", fontsize=9, color="#4D5B6A", arrowsize=0.7];
+
+  user [label="User Browser\nDesktop or Mobile", fillcolor="#E8F7EE", color="#16874A"];
+  pages [label="GitHub Pages\nHTTPS Static Hosting", fillcolor="#F2EEFF", color="#6842C2"];
+  html [label="index.html + CSS\nApplication Shell"];
+  app [label="js/app.js\nStartup + Events"];
+  analyze [label="js/analyze.js\nAnalysis Orchestrator"];
+  render [label="js/render.js\nView Orchestrator"];
+  views [label="js/views/*\nDashboard, Teams, Lineups,\nTrade, Players, Tiers, Picks"];
+  core [label="Core Analytics\nleague.js + tiers.js"];
+  support [label="Shared Runtime\nstate.js, storage.js,\nutils.js, errors.js"];
+  api [label="Provider Layer\njs/api/*"];
+  local [label="Same-Origin Snapshots\ndata/*.json", fillcolor="#FFF7E6", color="#C47A00"];
+  sleeper [label="Sleeper APIs", fillcolor="#FFF0F0", color="#B43A3A"];
+  ra [label="RosterAudit APIs", fillcolor="#FFF0F0", color="#B43A3A"];
+  dp [label="DynastyProcess CSV", fillcolor="#FFF0F0", color="#B43A3A"];
+  idb [label="IndexedDB\nPlayer cache + saved analyses", fillcolor="#F1F7F9", color="#34727D"];
+  exports [label="User Exports\nJSON, CSV, HTML, Print/PDF", fillcolor="#F1F7F9", color="#34727D"];
+  action [label="GitHub Actions\nScheduled + Manual", fillcolor="#F2EEFF", color="#6842C2"];
+  script [label="scripts/update-data.mjs\nFetch + Normalize + Write"];
+  test [label="Node Test + Validation\nnpm test / npm run validate", fillcolor="#E8F7EE", color="#16874A"];
+  repo [label="GitHub Repository\nSource of Truth", fillcolor="#F2EEFF", color="#6842C2"];
+
+  user -> pages [label="loads"];
+  pages -> html;
+  html -> app;
+  app -> analyze;
+  app -> render;
+  analyze -> api;
+  analyze -> core;
+  analyze -> support;
+  render -> views;
+  render -> support;
+  core -> support;
+  api -> local [label="prefer usable snapshot"];
+  api -> sleeper [label="live fallback"];
+  api -> ra [label="live fallback"];
+  api -> dp [label="live fallback"];
+  analyze -> idb [label="read/write"];
+  render -> exports [label="generate"];
+  repo -> pages [label="deploy main/root"];
+  action -> test;
+  action -> script;
+  script -> sleeper;
+  script -> ra;
+  script -> dp;
+  script -> local [label="refresh"];
+  action -> repo [label="commit data changes"];
+}
