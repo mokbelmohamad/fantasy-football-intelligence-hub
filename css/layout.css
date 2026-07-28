@@ -410,3 +410,324 @@ footer {
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
+/* Version 2.2 global application header */
+/* Version 2.2 official two-row application header */
+.global-header {
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  padding: 0 18px;
+  overflow: visible;
+  border-bottom: 1px solid rgba(255,255,255,.16);
+  background: linear-gradient(112deg, #050505 0%, #151515 55%, #003f6b 100%);
+  box-shadow: 0 8px 24px rgba(0,0,0,.24);
+}
+
+.app-header {
+  display: block;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.header-main-row {
+  display: grid;
+  min-height: 132px;
+  grid-template-columns: 230px minmax(0,1fr) 205px;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-brand {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+}
+
+.header-logo {
+  width: 100%;
+  max-width: 225px;
+  height: 68px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.header-context {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(170px,220px) minmax(360px,1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-focus-field { min-width: 0; }
+.header-focus-field label {
+  display: block;
+  margin-bottom: 5px;
+  color: rgba(255,255,255,.72);
+  font-size: .67rem;
+  font-weight: 850;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.header-focus-field select {
+  width: 100%;
+  min-width: 0;
+  border-color: rgba(255,255,255,.34);
+  background: rgba(255,255,255,.98);
+}
+
+.header-league-context {
+  display: flex;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 12px;
+  background: rgba(255,255,255,.055);
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.header-league-copy { min-width: 0; }
+.header-league-name,
+.header-league-id,
+.header-league-settings,
+.header-league-history,
+.header-league-updated {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.header-league-name { color:#fff; font-size:1rem; font-weight:900; }
+.header-league-id { margin-top:2px; color:rgba(255,255,255,.64); font-size:.69rem; }
+.header-league-settings,
+.header-league-history { margin-top:2px; color:rgba(255,255,255,.83); font-size:.76rem; }
+.header-league-updated { margin-top:3px; color:rgba(255,255,255,.58); font-size:.67rem; }
+.header-change-league {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.11);
+  color: #fff;
+  white-space: nowrap;
+}
+
+.header-release-stack {
+  display: grid;
+  justify-items: end;
+  color: white;
+  text-align: right;
+}
+.header-created-label { color:rgba(255,255,255,.62); font-size:.65rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; }
+.header-created-name { margin-top:1px; font-size:.92rem; font-weight:900; }
+.header-release-date { margin-top:2px; color:rgba(255,255,255,.68); font-size:.68rem; }
+.header-status-version-row { display:flex; margin-top:7px; align-items:center; justify-content:flex-end; gap:7px; }
+.header-data-status,
+.header-version-badge {
+  display:inline-flex;
+  min-height:28px;
+  padding:5px 9px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;
+  background:rgba(0,0,0,.26);
+  color:#fff;
+  font-size:.68rem;
+  font-weight:850;
+  white-space:nowrap;
+  align-items:center;
+  justify-content:center;
+}
+.header-data-status::before { width:7px; height:7px; margin-right:6px; border-radius:50%; background:var(--green); content:""; }
+.header-data-status.warn::before { background:var(--yellow); }
+
+.header-more-menu { position:relative; margin:0; padding:0; border:0; }
+.header-more-menu > summary {
+  display:inline-flex;
+  min-height:38px;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.34);
+  border-radius:9px;
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  font-size:.78rem;
+  font-weight:850;
+  cursor:pointer;
+  list-style:none;
+  align-items:center;
+}
+.header-more-menu > summary::-webkit-details-marker { display:none; }
+.header-menu-panel {
+  position:absolute;
+  z-index:120;
+  top:calc(100% + 10px);
+  right:0;
+  display:grid;
+  width:260px;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:var(--panel);
+  box-shadow:0 18px 44px rgba(0,0,0,.3);
+  gap:7px;
+}
+.header-menu-panel button { width:100%; text-align:left; }
+
+/* Version 2.2.0 browser-style report tab strip. All report pages remain visible in one row. */
+.header-page-tabs {
+  position: relative;
+  z-index: 50;
+  display:grid;
+  grid-template-columns:repeat(8,minmax(0,1fr));
+  width:100%;
+  min-width:0;
+  padding:6px 10px 0;
+  overflow:visible;
+  border-top:1px solid rgba(255,255,255,.14);
+  align-items:end;
+  gap:4px;
+}
+.header-page-tab {
+  position:relative;
+  display:flex;
+  min-width:0;
+  min-height:38px;
+  margin-top:5px;
+  padding:8px 6px 7px;
+  border:1px solid rgba(255,255,255,.1);
+  border-bottom:0;
+  border-radius:9px 9px 0 0;
+  background:rgba(255,255,255,.045);
+  color:rgba(255,255,255,.76);
+  font-size:clamp(.58rem,.72vw,.78rem);
+  font-weight:850;
+  line-height:1.08;
+  text-align:center;
+  white-space:nowrap;
+  align-items:center;
+  justify-content:center;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+.header-page-tab:hover {
+  border-color:rgba(255,255,255,.2);
+  background:rgba(255,255,255,.1);
+  color:#fff;
+}
+.header-page-tab.active {
+  min-height:43px;
+  margin-top:0;
+  border-color:rgba(255,255,255,.26);
+  background:var(--bg,#f5f6f8);
+  color:var(--ink,#14171a);
+  box-shadow:0 -4px 12px rgba(0,0,0,.2);
+  transform:translateY(1px);
+  z-index:3;
+}
+.header-page-tab.active::after {
+  position:absolute;
+  right:-1px;
+  bottom:-15px;
+  left:-1px;
+  height:16px;
+  border-right:1px solid var(--line);
+  border-left:1px solid var(--line);
+  background:var(--bg,#f5f6f8);
+  content:"";
+  pointer-events:none;
+}
+
+/* Active reports begin directly beneath the tab strip so the selected tab visually joins the page canvas. */
+body.app-active .global-header {
+  overflow: visible;
+  border-bottom: 0;
+}
+
+body.app-active main {
+  margin-top: 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  background: var(--bg, #f5f6f8);
+}
+
+.header-menu-context,.header-menu-team { display:none; }
+
+/* Version 2.2.0 header visibility and alignment correction */
+.header-context {
+  align-items: stretch;
+}
+
+.header-focus-field,
+.header-league-context,
+.header-more-menu > summary {
+  min-height: 108px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 12px;
+  background: rgba(255,255,255,.07);
+}
+
+.header-focus-field {
+  display: flex;
+  min-width: 0;
+  padding: 10px 12px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header-focus-field label {
+  margin-bottom: 6px;
+}
+
+.header-focus-field select {
+  min-height: 38px;
+}
+
+.header-league-context {
+  height: 108px;
+  padding: 10px 14px;
+}
+
+.header-league-copy {
+  display: grid;
+  min-width: 0;
+  align-content: center;
+  gap: 2px;
+}
+
+.header-league-name { font-size: 1rem; line-height: 1.2; }
+.header-league-id,
+.header-league-settings,
+.header-league-history,
+.header-league-updated { line-height: 1.18; }
+
+.header-more-menu {
+  display: flex;
+  align-items: stretch;
+}
+
+.header-more-menu > summary {
+  width: 76px;
+  height: 108px;
+  padding: 10px 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-page-tabs:not(.hidden) {
+  display: flex;
+}
+
+/* Version 2.2.0: guarantee report tabs render as the second header row once a report is active. */
+body.app-active #headerPageTabs {
+  display: grid !important;
+  visibility: visible;
+  width: 100%;
+  min-height: 43px;
+  opacity: 1;
+}
+
+body:not(.app-active) #headerPageTabs {
+  display: none !important;
+}

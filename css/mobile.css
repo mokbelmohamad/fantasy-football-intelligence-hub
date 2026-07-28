@@ -173,3 +173,186 @@
 @media (max-width: 480px) {
   .team-insight-data { grid-template-columns: 1fr; }
 }
+
+/* Version 2.2 responsive global header */
+@media (max-width: 1180px) {
+  .header-context {
+    grid-template-columns: 150px minmax(180px,1fr) minmax(150px,200px) auto auto;
+  }
+  .header-data-status { display: none; }
+  .header-league-settings { font-size: .7rem; }
+}
+
+@media (max-width: 900px) {
+  .global-header { padding: 0 12px; }
+  .app-header { min-height: 74px; gap: 10px; }
+  .header-brand { flex-basis: 170px; }
+  .header-logo { height: 54px; max-width: 170px; }
+  .header-context {
+    grid-template-columns: minmax(130px,180px) minmax(150px,1fr) auto auto;
+  }
+  .header-focus-field { display: none; }
+  .header-league-settings { display: none; }
+  .header-league-context { padding: 4px 9px; }
+}
+
+@media (max-width: 650px) {
+  .global-header { padding: 0 8px; }
+  .app-header { min-height: 66px; }
+  .header-brand { flex-basis: 86px; }
+  .header-logo {
+    width: 86px;
+    height: 46px;
+    object-fit: cover;
+    object-position: left center;
+  }
+  .header-context {
+    grid-template-columns: minmax(118px,1fr) auto;
+    gap: 8px;
+  }
+  .header-page-field label { display: none; }
+  .header-league-context,
+  .header-version-badge { display: none; }
+  .header-more-menu > summary {
+    min-height: 40px;
+    width: 42px;
+    padding: 8px;
+    overflow: hidden;
+    color: transparent;
+    justify-content: center;
+  }
+  .header-more-menu > summary::after {
+    color: white;
+    font-size: 1.25rem;
+    content: "⋮";
+  }
+  .header-menu-panel {
+    position: fixed;
+    top: 68px;
+    right: 8px;
+    width: min(300px,calc(100vw - 16px));
+  }
+  .landing-version { font-size: .68rem; }
+}
+
+@media print {
+  .global-header { position: static; box-shadow: none; }
+  .header-page-field,.header-focus-field,.header-data-status,.header-more-menu { display:none!important; }
+}
+
+@media (max-width: 900px) {
+  .header-menu-context,
+  .header-menu-team {
+    display: grid;
+    padding: 8px;
+    border-bottom: 1px solid var(--line);
+    gap: 3px;
+  }
+  .header-menu-context span {
+    color: var(--muted);
+    font-size: .72rem;
+  }
+  .header-menu-team label {
+    color: var(--muted);
+    font-size: .68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+  .header-menu-team select { width: 100%; }
+}
+
+/* Version 2.2 refined official header */
+@media (max-width: 1180px) {
+  .header-main-row { grid-template-columns: 190px minmax(0,1fr) 180px; gap:12px; }
+  .header-logo { max-width:185px; height:60px; }
+  .header-context { grid-template-columns:minmax(145px,180px) minmax(300px,1fr) auto; gap:10px; }
+  .header-release-date { font-size:.63rem; }
+}
+
+@media (max-width: 930px) {
+  .global-header { padding:0 12px; }
+  .header-main-row {
+    grid-template-columns:150px minmax(0,1fr) 165px;
+    min-height:90px;
+  }
+  .header-logo { max-width:145px; height:54px; }
+  .header-context { grid-template-columns:145px minmax(230px,1fr) auto; }
+  .header-league-history { display:none; }
+  .header-change-league { padding:7px 9px; font-size:.72rem; }
+  .header-created-name { font-size:.82rem; }
+}
+
+@media (max-width: 760px) {
+  .header-main-row {
+    grid-template-columns:120px minmax(0,1fr) 145px;
+    align-items:start;
+    padding:10px 0;
+  }
+  .header-logo { max-width:116px; height:48px; }
+  .header-context {
+    display:grid;
+    grid-template-columns:minmax(135px,170px) auto;
+    align-items:end;
+  }
+  .header-league-context {
+    grid-column:1 / -1;
+    order:3;
+    margin-top:4px;
+    padding:8px 10px;
+  }
+  .header-league-settings { font-size:.7rem; }
+  .header-release-stack { padding-top:3px; }
+  .header-created-label { font-size:.58rem; }
+  .header-created-name { font-size:.76rem; }
+  .header-release-date { font-size:.58rem; }
+  .header-data-status { display:none; }
+  .header-page-tab { padding:9px 13px 8px; font-size:.72rem; }
+}
+
+@media (max-width: 560px) {
+  .global-header { position:static; padding:0 8px; }
+  .header-main-row {
+    grid-template-columns:88px minmax(0,1fr) 112px;
+    gap:8px;
+  }
+  .header-logo { width:86px; height:43px; object-fit:cover; object-position:left center; }
+  .header-context { grid-template-columns:minmax(120px,1fr) auto; gap:7px; }
+  .header-focus-field label { font-size:.58rem; }
+  .header-focus-field select { min-height:38px; font-size:.75rem; }
+  .header-more-menu > summary { width:40px; padding:8px; overflow:hidden; color:transparent; justify-content:center; }
+  .header-more-menu > summary::after { color:white; font-size:1.15rem; content:"⋮"; }
+  .header-menu-panel { position:fixed; top:62px; right:8px; width:min(300px,calc(100vw - 16px)); }
+  .header-league-context { align-items:flex-start; gap:8px; }
+  .header-league-name { font-size:.84rem; }
+  .header-league-id,.header-league-settings,.header-league-updated { font-size:.61rem; }
+  .header-change-league { min-height:34px; padding:6px 8px; font-size:.66rem; }
+  .header-release-stack { line-height:1.15; }
+  .header-created-label,.header-release-date { font-size:.52rem; }
+  .header-created-name { font-size:.68rem; }
+  .header-version-badge { min-height:24px; padding:4px 7px; font-size:.6rem; }
+  .header-status-version-row { margin-top:4px; }
+  .header-page-tabs { margin:0 -8px; padding:0 8px; }
+  .header-page-tab { min-height:38px; padding:8px 11px 7px; font-size:.68rem; }
+}
+
+/* Version 2.2.0 aligned control correction */
+@media (max-width: 760px) {
+  .header-focus-field,
+  .header-league-context,
+  .header-more-menu > summary {
+    min-height: 70px;
+  }
+  .header-league-context,
+  .header-more-menu > summary { height: 70px; }
+}
+
+@media (max-width: 560px) {
+  .header-focus-field,
+  .header-league-context,
+  .header-more-menu > summary {
+    min-height: 64px;
+  }
+  .header-league-context,
+  .header-more-menu > summary { height: 64px; }
+  .header-more-menu > summary { width: 44px; }
+}

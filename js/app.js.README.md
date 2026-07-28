@@ -1,3 +1,7 @@
+
+## Version 2.2 header behavior
+
+`app.js` binds the browser-style report tabs, immediate Focus Team changes, the central Change League action, global overflow actions, and browser history navigation. Report refresh, live-data analysis, export navigation, and saved-report actions remain available from the header menu.
 # `js/app.js`
 
 ## Purpose
@@ -29,3 +33,7 @@ Browser entry point. Registers UI event handlers, export actions, table sorting,
 ## Version baseline
 
 Documented for Fantasy Football Intelligence Hub Version 2.0. This documentation update does not change `APP_VERSION` or create a new application release.
+
+
+### Version 2.2 header tabs
+All eight report page options are displayed simultaneously in one equal-width row along the bottom of the global header. The active page is rendered as a taller, raised browser-style tab whose background extends into the report content area.

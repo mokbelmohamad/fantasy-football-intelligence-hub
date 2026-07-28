@@ -1,3 +1,7 @@
+
+## Version 2.2 state
+
+The shared state now includes `activeView` so the selected report page can remain synchronized with the grouped header selector and browser navigation.
 # `js/state.js`
 
 ## Purpose

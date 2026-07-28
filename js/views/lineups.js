@@ -19,7 +19,7 @@ export function renderLineups(){
   $("#lineups").innerHTML=`
     <div class="panel team-control-panel">
       <div class="section-title">
-        <div><h2>Optimal Lineups</h2><div class="small">Use the top-banner team selector to update the focus team across all tabs.</div></div>
+        <div><h2>Optimal Lineups</h2><div class="small">Use the header Focus Team selector to update the focus team across all tabs.</div></div>
         
       </div>
     </div>

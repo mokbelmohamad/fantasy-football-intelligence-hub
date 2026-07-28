@@ -31,6 +31,17 @@ import {
 import { renderPicks } from "./views/picks.js";
 import { renderMethodology } from "./views/methodology.js";
 
+const VALID_VIEWS = new Set([
+  "dashboard",
+  "teams",
+  "lineups",
+  "trade",
+  "picks",
+  "players",
+  "tiers",
+  "methodology",
+]);
+
 export {
   drawRankChart,
   renderDashboard,
@@ -63,24 +74,118 @@ export function populateTeamSelectors() {
     state.selectedTeam = first;
   }
 
-  const globalSelect = $("#globalTeamSelect");
-  if (globalSelect) {
-    globalSelect.innerHTML = teamSelectOptions(state.selectedTeam);
-    globalSelect.value = state.selectedTeam;
+  [$("#globalTeamSelect"), $("#mobileTeamSelect")].filter(Boolean).forEach((select) => {
+    select.innerHTML = teamSelectOptions(state.selectedTeam);
+    select.value = state.selectedTeam;
+  });
+}
+
+function viewFromLocation() {
+  const hash = window.location.hash.replace(/^#/, "");
+  if (VALID_VIEWS.has(hash)) {
+    return hash;
+  }
+
+  const saved = window.localStorage.getItem("ffih-active-view");
+  return VALID_VIEWS.has(saved) ? saved : "dashboard";
+}
+
+export function switchTab(name, options = {}) {
+  const next = VALID_VIEWS.has(name) ? name : "dashboard";
+
+  $$(".view").forEach((view) => {
+    view.classList.toggle("active", view.id === next);
+  });
+
+  $$(".header-page-tab").forEach((tab) => {
+    const active = tab.dataset.view === next;
+    tab.classList.toggle("active", active);
+    tab.setAttribute("aria-current", active ? "page" : "false");
+  });
+
+  state.activeView = next;
+  window.localStorage.setItem("ffih-active-view", next);
+
+  if (!options.fromHistory && window.location.hash !== `#${next}`) {
+    const method = options.replaceHistory ? "replaceState" : "pushState";
+    window.history[method]({ view: next }, "", `#${next}`);
+  }
+
+  const menu = $("#headerMoreMenu");
+  if (menu) {
+    menu.open = false;
+  }
+
+  if (next === "dashboard") {
+    requestAnimationFrame(drawRankChart);
   }
 }
 
-export function switchTab(name) {
-  $$(".tab").forEach((button) => {
-    button.classList.toggle("active", button.dataset.view === name);
-  });
+function resolveLeagueName(analysis) {
+  const historyName = Array.isArray(analysis.history)
+    ? [...analysis.history].reverse().find((item) => item?.name)?.name
+    : "";
+  return analysis.leagueName || analysis.league?.name || historyName || "Unnamed League";
+}
 
-  $$(".view").forEach((view) => {
-    view.classList.toggle("active", view.id === name);
-  });
+function leagueSettingsSummary(analysis) {
+  const starters = Array.isArray(analysis.starterSlots)
+    ? analysis.starterSlots.length
+    : analysis.starterCount;
+  const teamCount = analysis.totalRosters || analysis.teams?.length || 0;
+  return [
+    teamCount ? `${teamCount} teams` : "Team count unavailable",
+    analysis.formatLabel || "Format unavailable",
+    starters ? `Start ${starters}` : "Starter count unavailable",
+  ].filter(Boolean).join(" · ");
+}
 
-  if (name === "dashboard") {
-    requestAnimationFrame(drawRankChart);
+export function updateHeaderContext() {
+  if (!state.analysis) {
+    return;
+  }
+
+  const historySeasons = (state.analysis.history || [])
+    .map((item) => Number(item.season))
+    .filter(Number.isFinite)
+    .sort((a, b) => a - b);
+  const historyStart = historySeasons[0] || Number(state.analysis.season);
+  const historyEnd = historySeasons.at(-1) || Number(state.analysis.season);
+  const seasonCount = historySeasons.length || (state.analysis.season ? 1 : 0);
+  const historyLabel = historyStart && historyEnd
+    ? `Active ${historyStart}–${historyEnd} · ${seasonCount} season${seasonCount === 1 ? "" : "s"}`
+    : "Years active unavailable";
+  const leagueName = resolveLeagueName(state.analysis);
+
+  $("#activeLeagueName").textContent = `League: ${leagueName}`;
+  $("#activeLeagueId").textContent = `Sleeper ID: ${state.analysis.leagueId || "Unavailable"}`;
+  $("#activeLeagueSettings").textContent = leagueSettingsSummary(state.analysis);
+  $("#activeLeagueHistory").textContent = historyLabel;
+  $("#activeLeagueUpdated").textContent = (
+    `Analysis updated ${new Date(state.analysis.generatedAt).toLocaleString()}`
+  );
+
+  const sourceStatuses = state.analysis.sourceStatuses || [];
+  const failed = sourceStatuses.filter((item) => item.status === "error" || item.ok === false).length;
+  const statusNode = $("#headerDataStatus");
+  statusNode.textContent = failed ? `${failed} source warning${failed === 1 ? "" : "s"}` : "Data ready";
+  statusNode.classList.toggle("warn", failed > 0);
+  const mobileLeagueName = $("#mobileLeagueName");
+  const mobileLeagueSettings = $("#mobileLeagueSettings");
+  const mobileLeagueUpdated = $("#mobileLeagueUpdated");
+  const mobileDataStatus = $("#mobileDataStatus");
+
+  if (mobileLeagueName) {
+    mobileLeagueName.textContent = `League: ${leagueName}`;
+  }
+  if (mobileLeagueSettings) {
+    mobileLeagueSettings.textContent = leagueSettingsSummary(state.analysis);
+  }
+  if (mobileLeagueUpdated) {
+    mobileLeagueUpdated.textContent = `Analysis updated ${new Date(state.analysis.generatedAt).toLocaleString()}`;
+  }
+  if (mobileDataStatus) {
+    mobileDataStatus.textContent = `${statusNode.textContent} · Version 2.2`;
   }
 }
 
@@ -91,29 +196,27 @@ export function showDashboardShell() {
 
   prepareAnalysisForRender(state.analysis);
   populateTeamSelectors();
+  updateHeaderContext();
 
   $("#landingPage").classList.add("hidden");
   $("#appShell").classList.remove("hidden");
   $("#headerAppControls").classList.remove("hidden");
-  $("#tabs").classList.remove("hidden");
+  $("#headerPageTabs").classList.remove("hidden");
   $("#exportPanel").classList.remove("hidden");
-  $("#activeLeagueName").textContent = state.analysis.leagueName || "League Dashboard";
-  $("#activeLeagueMeta").textContent = (
-    `ID ${state.analysis.leagueId} | ${state.analysis.formatLabel} | `
-    + `${state.analysis.totalRosters} teams | Updated `
-    + new Date(state.analysis.generatedAt).toLocaleString()
-  );
+  document.body.classList.add("app-active");
 
-  switchTab("dashboard");
+  switchTab(viewFromLocation(), { replaceHistory: !window.location.hash });
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 export function showLanding() {
   $("#appShell").classList.add("hidden");
   $("#headerAppControls").classList.add("hidden");
-  $("#tabs").classList.add("hidden");
+  $("#headerPageTabs").classList.add("hidden");
   $("#exportPanel").classList.add("hidden");
   $("#landingPage").classList.remove("hidden");
+  document.body.classList.remove("app-active");
+  window.history.replaceState({}, "", window.location.pathname + window.location.search);
   window.scrollTo({ top: 0, behavior: "smooth" });
   setTimeout(() => $("#leagueId").focus(), 150);
 }
@@ -124,11 +227,9 @@ export function setSelectedTeam(teamName) {
   }
 
   state.selectedTeam = teamName;
-  const globalSelect = $("#globalTeamSelect");
-
-  if (globalSelect) {
-    globalSelect.value = teamName;
-  }
+  [$("#globalTeamSelect"), $("#mobileTeamSelect")].filter(Boolean).forEach((select) => {
+    select.value = teamName;
+  });
 
   renderDashboard();
   renderTeams();
@@ -150,6 +251,7 @@ export function renderAll() {
   renderPicks();
   renderMethodology();
   setSources(state.analysis.sourceStatuses || []);
+  updateHeaderContext();
 }
 
 export function csvFrom(rows, columns) {
