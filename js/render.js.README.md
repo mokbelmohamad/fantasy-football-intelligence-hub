@@ -35,4 +35,6 @@ The league panel now uses a labeled “League: [name]” heading and displays Sl
 
 
 ### Version 2.2 header tabs
-All eight report page options are displayed simultaneously in one equal-width row along the bottom of the global header. The active page is rendered as a taller, raised browser-style tab whose background extends into the report content area.
+All eight report page options are displayed simultaneously in one equal-width row along the bottom of the global header. The active page is rendered as a fixed-size blue tab with bold white text that does not overlap the report content.
+
+- Header league settings use `deriveStarterCount` and omit starter metadata when it cannot be resolved instead of showing an unavailable placeholder.

@@ -36,4 +36,4 @@ Documented for Fantasy Football Intelligence Hub Version 2.0. This documentation
 
 
 ### Version 2.2 header tabs
-All eight report page options are displayed simultaneously in one equal-width row along the bottom of the global header. The active page is rendered as a taller, raised browser-style tab whose background extends into the report content area.
+All eight report page options are displayed simultaneously in one equal-width row along the bottom of the global header. The active page is rendered as a fixed-size blue tab with bold white text that does not overlap the report content.

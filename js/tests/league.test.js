@@ -137,3 +137,17 @@ test("buildHistoricalTeamSummaries excludes incomplete seasons from average fini
   assert.equal(summary.games,0);
   assert.equal(summary.historicalPpgRank,null);
 });
+
+test("deriveStarterCount uses stored and roster-position fallbacks", async () => {
+  const { deriveStarterCount } = await import("../league.js");
+  assert.equal(deriveStarterCount({ starterCount: 10 }), 10);
+  assert.equal(deriveStarterCount({ detectedSetup: { starterCount: 9 } }), 9);
+  assert.equal(deriveStarterCount({ rosterSlots: ["QB","RB","RB","WR","WR","WR","TE","FLEX","FLEX","FLEX"] }), 10);
+  assert.equal(deriveStarterCount({ league: { roster_positions: ["QB","RB","WR","TE","SUPER_FLEX","DL","LB","DB","BN","IR","TAXI"] } }), 8);
+  assert.equal(deriveStarterCount({ teams: [
+    { lineup: Array(10).fill("player") },
+    { lineup: Array(10).fill("player") },
+    { lineup: Array(9).fill("player") },
+  ] }), 10);
+  assert.equal(deriveStarterCount({}), null);
+});

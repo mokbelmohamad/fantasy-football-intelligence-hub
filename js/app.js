@@ -20,7 +20,7 @@ import {
   showDashboardShell,
   showLanding,
   switchTab,
-} from "./render.js";
+} from "./render.js?v=2.2.1-header-string-2";
 
 const bind = (selector, eventName, handler) => {
   const element = $(selector);

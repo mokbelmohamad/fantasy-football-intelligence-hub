@@ -26,3 +26,5 @@ Core league rules and analytical calculations.
 ## Version baseline
 
 Updated for Fantasy Football Intelligence Hub Version 2.1. Adds linked-season franchise summaries, standings, historical PPG, average finish, and cumulative records.
+
+- `deriveStarterCount(source)` resolves a valid starter count from stored analysis fields, detected setup, or Sleeper roster-position arrays while excluding bench, IR, reserve, and taxi slots.

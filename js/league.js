@@ -11,6 +11,45 @@ export function detectFormat(league,override){
   return `${sf?"sf":"1qb"}_${ppr}`;
 }
 
+
+export function deriveStarterCount(source){
+  const directCandidates=[
+    source?.starterCount,
+    source?.detectedSetup?.starterCount,
+  ];
+  for(const candidate of directCandidates){
+    const value=Number(candidate);
+    if(Number.isFinite(value)&&value>0)return value;
+  }
+
+  const slotCandidates=[
+    source?.starterSlots,
+    source?.rosterSlots,
+    source?.roster_positions,
+    source?.rosterPositions,
+    source?.league?.roster_positions,
+    source?.settings?.roster_positions,
+  ];
+  const slots=slotCandidates.find(Array.isArray);
+  if(slots){
+    const excluded=new Set(["BN","BENCH","IR","RESERVE","TAXI"]);
+    const count=slots.filter(slot=>!excluded.has(String(slot).toUpperCase())).length;
+    if(count>0)return count;
+  }
+
+  const lineupLengths=(source?.teams||[])
+    .map(team=>Array.isArray(team?.lineup)?team.lineup.length:0)
+    .filter(length=>length>0);
+  if(lineupLengths.length){
+    const counts=new Map();
+    for(const length of lineupLengths)counts.set(length,(counts.get(length)||0)+1);
+    return [...counts.entries()]
+      .sort((a,b)=>b[1]-a[1]||b[0]-a[0])[0][0];
+  }
+
+  return null;
+}
+
 export function starterSlots(league){
   const ignore=new Set(["BN","IR","TAXI"]);
   const slots=(league.roster_positions||[]).filter(x=>!ignore.has(x));
