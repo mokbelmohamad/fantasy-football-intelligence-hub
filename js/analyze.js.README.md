@@ -31,4 +31,4 @@ End-to-end league analysis orchestrator.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.0. This documentation update does not change `APP_VERSION` or create a new application release.
+Updated for Fantasy Football Intelligence Hub Version 2.1. Attaches linked-season historical summaries to each team analysis record.

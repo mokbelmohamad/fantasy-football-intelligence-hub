@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  buildHistoricalTeamSummaries,
   buildPickOwnership,
   detectFuturePickHorizon,
   describeDetectedLeague,
@@ -97,4 +98,42 @@ test("describeDetectedLeague summarizes format, history, starters and IDP", () =
   assert.equal(summary.idp,true);
   assert.equal(summary.historyStart,2024);
   assert.equal(summary.historyEnd,2026);
+});
+
+
+test("buildHistoricalTeamSummaries aggregates linked seasons by owner",()=>{
+  const history=[
+    {league:{status:"in_season",season:"2026"},rosters:[
+      {roster_id:1,owner_id:"a",settings:{wins:2,losses:1,ties:0,fpts:330,fpts_decimal:50}},
+      {roster_id:2,owner_id:"b",settings:{wins:1,losses:2,ties:0,fpts:300}}
+    ]},
+    {league:{status:"complete",season:"2025"},rosters:[
+      {roster_id:4,owner_id:"a",settings:{wins:10,losses:4,ties:0,fpts:1820}},
+      {roster_id:7,owner_id:"b",settings:{wins:8,losses:6,ties:0,fpts:1700}}
+    ]}
+  ];
+  const summaries=buildHistoricalTeamSummaries(history,history[0].rosters);
+  const a=summaries.get(1),b=summaries.get(2);
+  assert.equal(a.seasonsMatched,2);
+  assert.equal(a.completedSeasons,1);
+  assert.equal(a.games,17);
+  assert.equal(a.wins,12);
+  assert.equal(a.losses,5);
+  assert.equal(a.averageFinish,1);
+  assert.equal(a.currentStanding,1);
+  assert.equal(a.currentRecord,"2-1");
+  assert.equal(a.historicalPpgRank,1);
+  assert.equal(b.historicalPpgRank,2);
+  assert.ok(a.averagePpg>b.averagePpg);
+});
+
+test("buildHistoricalTeamSummaries excludes incomplete seasons from average finish",()=>{
+  const history=[{league:{status:"in_season",season:"2026"},rosters:[
+    {roster_id:1,owner_id:"a",settings:{wins:0,losses:0,fpts:0}},
+    {roster_id:2,owner_id:"b",settings:{wins:0,losses:0,fpts:0}}
+  ]}];
+  const summary=buildHistoricalTeamSummaries(history,history[0].rosters).get(1);
+  assert.equal(summary.averageFinish,null);
+  assert.equal(summary.games,0);
+  assert.equal(summary.historicalPpgRank,null);
 });

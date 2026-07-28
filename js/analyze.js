@@ -30,6 +30,7 @@ import {
 import {
   aggregatePlayerProduction,
   assignPlayerPositionTiers,
+  buildHistoricalTeamSummaries,
   buildPickOwnership,
   classCurrent,
   classFranchise,
@@ -247,6 +248,21 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
     }
     teams.sort((a,b)=>b.contenderScore-a.contenderScore).forEach((t,i)=>t.currentRank=i+1);
     [...teams].sort((a,b)=>b.franchiseScore-a.franchiseScore).forEach((t,i)=>t.franchiseRank=i+1);
+    for(const pos of ["QB","RB","WR","TE","FLEX"]){
+      [...teams].sort((a,b)=>num(b.positionScores?.[pos])-num(a.positionScores?.[pos])).forEach((t,i)=>{
+        t.positionRanks=t.positionRanks||{};
+        t.positionRanks[pos]=i+1;
+      });
+    }
+    for(const t of teams){
+      const rankedPositions=["QB","RB","WR","TE","FLEX"].map(pos=>({pos,rank:t.positionRanks?.[pos]||teams.length,score:num(t.positionScores?.[pos])}));
+      rankedPositions.sort((a,b)=>a.rank-b.rank||b.score-a.score);
+      t.biggestStrength=rankedPositions[0]?.pos||"Balanced";
+      rankedPositions.sort((a,b)=>b.rank-a.rank||a.score-b.score);
+      t.biggestWeakness=rankedPositions[0]?.pos||"None";
+    }
+    const historicalSummaries=buildHistoricalTeamSummaries(history,bundle.rosters);
+    for(const t of teams)Object.assign(t,{historical:historicalSummaries.get(t.rosterId)||null});
     for(const t of teams){t.currentClass=classCurrent(t.currentRank,teams.length);t.franchiseClass=classFranchise(t.franchiseRank,teams.length)}
     assignPlayerPositionTiers(playerRows);
     for(const t of teams)t.insights=buildTeamInsights(t,teams);

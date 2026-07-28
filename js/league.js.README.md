@@ -25,4 +25,4 @@ Core league rules and analytical calculations.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.0. This documentation update does not change `APP_VERSION` or create a new application release.
+Updated for Fantasy Football Intelligence Hub Version 2.1. Adds linked-season franchise summaries, standings, historical PPG, average finish, and cumulative records.

@@ -71,6 +71,67 @@ export function describeDetectedLeague(league, formatKey, history, pickHorizon){
   };
 }
 
+
+export function seasonStandings(bundle){
+  const rosters=[...(bundle?.rosters||[])];
+  return rosters.sort((a,b)=>{
+    const as=a.settings||{},bs=b.settings||{};
+    return num(bs.wins)-num(as.wins)||num(bs.ties)-num(as.ties)||rosterPoints(bs,"fpts")-rosterPoints(as,"fpts")||num(a.roster_id)-num(b.roster_id);
+  }).map((roster,index)=>({rosterId:num(roster.roster_id),finish:index+1}));
+}
+
+export function buildHistoricalTeamSummaries(history,currentRosters){
+  const current=(currentRosters||history?.[0]?.rosters||[]);
+  const summaries=new Map();
+  const ownerByRoster=new Map(current.map(r=>[num(r.roster_id),String(r.owner_id||"")]));
+  for(const roster of current){
+    summaries.set(num(roster.roster_id),{
+      seasonsMatched:0,completedSeasons:0,games:0,wins:0,losses:0,ties:0,points:0,
+      averagePpg:0,averageFinish:null,historicalPpgRank:null,historicalLeagueAverage:0,
+      finishes:[],currentStanding:null,currentRecord:"0-0"
+    });
+  }
+
+  for(const [seasonIndex,bundle] of (history||[]).entries()){
+    const standings=seasonStandings(bundle);
+    const finishByRoster=new Map(standings.map(x=>[x.rosterId,x.finish]));
+    const byOwner=new Map((bundle.rosters||[]).map(r=>[String(r.owner_id||""),r]));
+    const byRoster=new Map((bundle.rosters||[]).map(r=>[num(r.roster_id),r]));
+    for(const currentRoster of current){
+      const currentRid=num(currentRoster.roster_id),ownerId=ownerByRoster.get(currentRid);
+      const matched=(ownerId&&byOwner.get(ownerId))||byRoster.get(currentRid);
+      if(!matched)continue;
+      const out=summaries.get(currentRid),settings=matched.settings||{};
+      const wins=num(settings.wins),losses=num(settings.losses),ties=num(settings.ties),games=wins+losses+ties;
+      const points=rosterPoints(settings,"fpts");
+      out.seasonsMatched++;
+      if(games>0){out.games+=games;out.wins+=wins;out.losses+=losses;out.ties+=ties;out.points+=points;}
+      if(seasonIndex===0){
+        out.currentStanding=finishByRoster.get(num(matched.roster_id))||null;
+        out.currentRecord=`${wins}-${losses}${ties?`-${ties}`:""}`;
+      }
+      if(bundle?.league?.status==="complete"){
+        const finish=finishByRoster.get(num(matched.roster_id));
+        if(finish){out.finishes.push(finish);out.completedSeasons++;}
+      }
+    }
+  }
+
+  const values=[];
+  for(const [rid,out] of summaries){
+    out.averagePpg=out.games?out.points/out.games:0;
+    out.averageFinish=out.finishes.length?meanNumbers(out.finishes):null;
+    if(out.games)values.push({rid,value:out.averagePpg});
+  }
+  const leagueAverage=values.length?meanNumbers(values.map(x=>x.value)):0;
+  values.sort((a,b)=>b.value-a.value||a.rid-b.rid);
+  values.forEach((entry,index)=>{summaries.get(entry.rid).historicalPpgRank=index+1;});
+  for(const out of summaries.values())out.historicalLeagueAverage=leagueAverage;
+  return summaries;
+}
+
+function meanNumbers(values){return values.length?values.reduce((a,b)=>a+num(b),0)/values.length:0;}
+
 export function aggregatePlayerProduction(matchups){
   const m=new Map();
   for(const [weekText,entries] of Object.entries(matchups)){
