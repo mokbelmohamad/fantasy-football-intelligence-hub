@@ -1,3 +1,4 @@
+- Version 2.2 replaces the separate report-tab banner with a polished two-row global header. Focus Team selection is positioned beside the logo; league name, Sleeper ID, settings, linked-season range, analysis timestamp, and Change League action occupy the center; creator, release, data-status, and version information are stacked at the right; and browser-style report tabs run along the bottom.
 # Fantasy Football Intelligence Hub architecture
 
 ## Added in this package
@@ -25,3 +26,5 @@ to live sources when snapshots are empty or unavailable.
 `js/analyze.js` loads data through provider-specific API modules.
 
 - Dashboard v2.1 renders a championship outlook followed by analytical Team Strengths and Areas to Improve reviews, with structured supporting metrics beneath each narrative finding.
+
+The league panel now uses a labeled “League: [name]” heading and displays Sleeper ID, team count, detected settings, active-year range, season count, and the latest analysis timestamp in a single aligned panel.

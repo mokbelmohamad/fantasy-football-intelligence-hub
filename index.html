@@ -11,31 +11,63 @@
 <link rel="stylesheet" href="./css/mobile.css">
 </head>
 <body>
-<header>
-  <div class="header-inner branded-header">
-    <div class="header-logo-area">
-      <img
-        class="brand-logo brand-logo-banner"
-        src="./assets/images/logo.png"
-        alt="Fantasy Football Intelligence Hub"
-      >
-    </div>
+<header id="globalHeader" class="global-header">
+  <div class="header-inner app-header">
+    <div class="header-main-row">
+      <a class="header-brand" href="#dashboard" aria-label="Fantasy Football Intelligence Hub dashboard">
+        <img class="brand-logo header-logo" src="./assets/images/logo.png" alt="Fantasy Football Intelligence Hub">
+      </a>
 
-    <div id="headerAppControls" class="header-app-controls hidden">
-      <div class="header-focus-field">
-        <label for="globalTeamSelect">Focus Team</label>
-        <select id="globalTeamSelect"></select>
+      <div id="headerAppControls" class="header-context hidden">
+        <div class="header-focus-field">
+          <label for="globalTeamSelect">Focus Team</label>
+          <select id="globalTeamSelect"></select>
+        </div>
+
+        <div class="header-league-context" id="headerLeagueContext">
+          <div class="header-league-copy">
+            <div id="activeLeagueName" class="header-league-name">League: Loading...</div>
+            <div id="activeLeagueId" class="header-league-id"></div>
+            <div id="activeLeagueSettings" class="header-league-settings"></div>
+            <div id="activeLeagueHistory" class="header-league-history"></div>
+            <div id="activeLeagueUpdated" class="header-league-updated"></div>
+          </div>
+          <button id="changeLeagueBtn" class="header-change-league" type="button">Change League</button>
+        </div>
+
+        <details id="headerMoreMenu" class="header-more-menu">
+          <summary aria-label="Open application menu">More</summary>
+          <div class="header-menu-panel">
+            <button id="appRefreshBtn">Reanalyze League</button>
+            <button id="appLiveRefreshBtn">Analyze with Live Player Data</button>
+            <button id="headerExportBtn">Export Report</button>
+            <button id="headerOpenSavedBtn">Open Previous Report</button>
+            <button id="headerDeleteSavedBtn" class="ghost">Delete Previous Report</button>
+          </div>
+        </details>
       </div>
-      <button id="globalUpdateBtn">Update Team</button>
-      <button id="changeLeagueBtn" class="header-change-league">Change League</button>
+
+      <div class="header-release-stack" aria-label="Application release information">
+        <div class="header-created-label">Created by</div>
+        <div class="header-created-name">Mohamad Mokbel</div>
+        <div class="header-release-date">Released July 28, 2026</div>
+        <div class="header-status-version-row">
+          <div id="headerDataStatus" class="header-data-status" aria-live="polite">Data ready</div>
+          <div class="header-version-badge" title="Application version">v2.2</div>
+        </div>
+      </div>
     </div>
 
-    <div class="header-version-panel">
-      <div class="header-version-label">Version Control</div>
-      <div class="header-version-number">Version 2.1</div>
-      <div class="header-created-date">Created July 26, 2026</div>
-      <div class="header-created-by">Created by Mohamad Mokbel</div>
-    </div>
+    <nav id="headerPageTabs" class="header-page-tabs hidden" aria-label="Report pages">
+      <button type="button" class="header-page-tab active" data-view="dashboard">Dashboard</button>
+      <button type="button" class="header-page-tab" data-view="teams">Team Insights</button>
+      <button type="button" class="header-page-tab" data-view="lineups">Optimal Lineups</button>
+      <button type="button" class="header-page-tab" data-view="trade">Trade Finder</button>
+      <button type="button" class="header-page-tab" data-view="picks">Draft Capital</button>
+      <button type="button" class="header-page-tab" data-view="players">Player Master</button>
+      <button type="button" class="header-page-tab" data-view="tiers">Player Tiers</button>
+      <button type="button" class="header-page-tab" data-view="methodology">Methodology</button>
+    </nav>
   </div>
 </header>
 
@@ -150,30 +182,6 @@
 </section>
 
 <div id="appShell" class="hidden">
-<section class="top-banner" id="topBanner">
-  <div class="top-banner-grid">
-    <div>
-      <div id="activeLeagueName" class="top-banner-title">League Dashboard</div>
-      <div id="activeLeagueMeta" class="top-banner-meta"></div>
-    </div>
-
-    <nav id="tabs" class="top-banner-tabs hidden">
-      <button class="tab active" data-view="dashboard">Dashboard</button>
-      <button class="tab" data-view="teams">Team Insights</button>
-      <button class="tab" data-view="lineups">Optimal Lineups</button>
-      <button class="tab" data-view="trade">Trade Finder</button>
-      <button class="tab" data-view="players">Player Master</button>
-      <button class="tab" data-view="tiers">Player Tiers</button>
-      <button class="tab" data-view="picks">Draft Capital</button>
-      <button class="tab" data-view="methodology">Methodology</button>
-    </nav>
-
-    <div class="top-banner-actions">
-      <button id="appRefreshBtn">Refresh Data</button>
-    </div>
-  </div>
-</section>
-
 <section id="dashboard" class="view active"></section>
 <section id="teams" class="view"></section>
 <section id="lineups" class="view"></section>

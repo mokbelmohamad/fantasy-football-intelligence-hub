@@ -8,7 +8,7 @@ export function renderTeams(){
   const t=a.teams.find(x=>x.team===state.selectedTeam)||a.teams[0];
   $("#teams").innerHTML=`<div class="panel">
     <div class="section-title">
-      <div><h2>Team-by-Team Insights</h2><div class="small">Use the top-banner team selector to change the focus team across all tabs.</div></div>
+      <div><h2>Team-by-Team Insights</h2><div class="small">Use the header Focus Team selector to change the focus team across all tabs.</div></div>
       
     </div>
     <div id="teamInsightBody"></div>

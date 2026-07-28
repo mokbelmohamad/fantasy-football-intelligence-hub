@@ -22,15 +22,42 @@ import {
   switchTab,
 } from "./render.js";
 
-$("#analyzeBtn").onclick=()=>analyze(false);
-$("#refreshBtn").onclick=()=>analyze(true);
-$("#globalUpdateBtn").onclick=()=>setSelectedTeam($("#globalTeamSelect").value);
-$("#appRefreshBtn").onclick=()=>analyze(true);
-$("#changeLeagueBtn").onclick=showLanding;
+const bind = (selector, eventName, handler) => {
+  const element = $(selector);
+  if (element) element.addEventListener(eventName, handler);
+};
+
+bind("#analyzeBtn", "click", () => analyze(false));
+bind("#refreshBtn", "click", () => analyze(true));
+bind("#globalTeamSelect", "change", (event) => setSelectedTeam(event.currentTarget.value));
+bind("#mobileTeamSelect", "change", (event) => setSelectedTeam(event.currentTarget.value));
+
+document.querySelectorAll(".header-page-tab").forEach((tab) => {
+  tab.addEventListener("click", (event) => {
+    event.preventDefault();
+    switchTab(event.currentTarget.dataset.view);
+  });
+});
+
+bind("#appRefreshBtn", "click", () => analyze(false));
+bind("#appLiveRefreshBtn", "click", () => analyze(true));
+bind("#changeLeagueBtn", "click", showLanding);
+bind("#headerExportBtn", "click", () => {
+  const menu = $("#headerMoreMenu");
+  if (menu) menu.open = false;
+  const exportPanel = $("#exportPanel");
+  if (exportPanel) exportPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+bind("#headerOpenSavedBtn", "click", () => $("#loadSavedBtn")?.click());
+bind("#headerDeleteSavedBtn", "click", () => $("#clearBtn")?.click());
+window.addEventListener("popstate",()=>{
+  if(!state.analysis)return;
+  const view=window.location.hash.replace(/^#/,"")||"dashboard";
+  switchTab(view,{fromHistory:true});
+});
 $("#leagueId").addEventListener("keydown",e=>{if(e.key==="Enter")analyze(false)});
 $("#loadSavedBtn").onclick=async()=>{const id=$("#leagueId").value.trim(),a=await idbGet(`analysis:${id}`);if(!a){log("No previous report was found for this league ID.");return}state.analysis=prepareAnalysisForRender(a);populateTeamSelectors();renderAll();showDashboardShell();log(`Opened previous report generated ${new Date(a.generatedAt).toLocaleString()}.`,100)};
 $("#clearBtn").onclick=async()=>{const id=$("#leagueId").value.trim();await idbDelete(`analysis:${id}`);state.analysis=null;$$(".view").forEach(v=>v.innerHTML="");showLanding();log("Previous report deleted from this browser.",0)};
-$("#tabs").onclick=e=>{const b=e.target.closest(".tab");if(b)switchTab(b.dataset.view)};
 $("#jsonExport").onclick=()=>download(`sleeper_${state.analysis.leagueId}_analysis.json`,JSON.stringify(state.analysis,null,2),"application/json");
 $("#rankingCsv").onclick=()=>{
   const c=[{key:"currentRank",label:"Rank"},{key:"team",label:"Team"},{key:"currentClass",label:"Classification"},{key:"lineupPpg",label:"Expected PPG"},{key:"depth",label:"Depth"},{key:"totalValue",label:"Dynasty Value"},{key:"risk",label:"Risk"},{key:"futureFirsts",label:"Future Firsts"},{key:"contenderScore",label:"Contender Score"},{key:"franchiseRank",label:"Franchise Rank"}];

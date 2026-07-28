@@ -19,7 +19,7 @@ export function renderTrade(){
   const a=state.analysis;if(!a)return;
   $("#trade").innerHTML=`<div class="panel">
     <div class="section-title">
-      <div><h2>League Trade Finder</h2><div class="small">Use the top-banner team selector to refresh the focus roster throughout the application.</div></div>
+      <div><h2>League Trade Finder</h2><div class="small">Use the header Focus Team selector to refresh the focus roster throughout the application.</div></div>
       
     </div>
     <div id="tradeBody"></div>

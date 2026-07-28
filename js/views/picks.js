@@ -58,7 +58,7 @@ export function renderPicks(){
   $("#picks").innerHTML=`
     <div class="panel team-control-panel">
       <div class="section-title">
-        <div><h2>Draft Capital</h2><div class="small">Use the top-banner team selector to highlight the focus team across cards, the ownership matrix and pick movement.</div></div>
+        <div><h2>Draft Capital</h2><div class="small">Use the header Focus Team selector to highlight the focus team across cards, the ownership matrix and pick movement.</div></div>
         
       </div>
     </div>

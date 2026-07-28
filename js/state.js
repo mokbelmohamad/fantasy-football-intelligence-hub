@@ -3,4 +3,5 @@ export const state = {
   sort: {},
   playerFilter: {},
   selectedTeam: "",
+  activeView: "dashboard",
 };
