@@ -1,3 +1,5 @@
+- Version 2.2.1 changes the active report-tab state to color-only styling so selected tabs no longer grow or overlap report content.
+- Version 2.2.1 also derives the header starter count from analysis lineup slots or Sleeper roster positions and removes the `Starter count unavailable` fallback.
 - Version 2.2 replaces the separate report-tab banner with a polished two-row global header. Focus Team selection is positioned beside the logo; league name, Sleeper ID, settings, linked-season range, analysis timestamp, and Change League action occupy the center; creator, release, data-status, and version information are stacked at the right; and browser-style report tabs run along the bottom.
 # Fantasy Football Intelligence Hub architecture
 

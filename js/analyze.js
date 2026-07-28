@@ -53,7 +53,7 @@ import {
   populateTeamSelectors,
   renderAll,
   showDashboardShell,
-} from "./render.js";
+} from "./render.js?v=2.2.1-header-string-2";
 import {
   normalizeError,
   reportError,
@@ -271,7 +271,7 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
     const analysis={
       appVersion:APP_VERSION,generatedAt:new Date().toISOString(),leagueId,leagueName:bundle.league.name,season:currentSeason,
       leagueStatus:bundle.league.status,currentWeek:maxWeek,totalRosters:bundle.rosters.length,formatKey,formatLabel:scoringFormatLabel(formatKey),
-      rosterSlots:slots,unsupportedSlots,weights:weightInputs,useCurrentProduction:useCurrent,detectedSetup,pickHorizon,teams,players:playerRows,
+      starterCount:slots.length,starterSlots:slots,rosterSlots:slots,unsupportedSlots,weights:weightInputs,useCurrentProduction:useCurrent,detectedSetup,pickHorizon,teams,players:playerRows,
       picks:pickOwnership,sourceStatuses,history:history.map(h=>({leagueId:h.league.league_id,season:h.league.season,name:h.league.name,status:h.league.status})),
       methodology:{
         projection:"Legal lineups are solved using projected season totals divided by 17, which adjusts for projected missed games.",

@@ -573,7 +573,7 @@ footer {
 }
 .header-menu-panel button { width:100%; text-align:left; }
 
-/* Version 2.2.0 browser-style report tab strip. All report pages remain visible in one row. */
+/* Version 2.2.1 report tab strip. Active state changes color only and never changes layout. */
 .header-page-tabs {
   position: relative;
   z-index: 50;
@@ -616,29 +616,18 @@ footer {
   color:#fff;
 }
 .header-page-tab.active {
-  min-height:43px;
-  margin-top:0;
-  border-color:rgba(255,255,255,.26);
-  background:var(--bg,#f5f6f8);
-  color:var(--ink,#14171a);
-  box-shadow:0 -4px 12px rgba(0,0,0,.2);
-  transform:translateY(1px);
-  z-index:3;
-}
-.header-page-tab.active::after {
-  position:absolute;
-  right:-1px;
-  bottom:-15px;
-  left:-1px;
-  height:16px;
-  border-right:1px solid var(--line);
-  border-left:1px solid var(--line);
-  background:var(--bg,#f5f6f8);
-  content:"";
-  pointer-events:none;
+  min-height:38px;
+  margin-top:5px;
+  border-color:var(--blue);
+  background:var(--blue);
+  color:#fff;
+  font-weight:900;
+  box-shadow:none;
+  transform:none;
+  z-index:auto;
 }
 
-/* Active reports begin directly beneath the tab strip so the selected tab visually joins the page canvas. */
+/* Active reports begin below the fixed-height tab strip without overlap. */
 body.app-active .global-header {
   overflow: visible;
   border-bottom: 0;

@@ -23,11 +23,11 @@ test("global header replaces standalone report tabs", async () => {
   assert.doesNotMatch(html, /id="topBanner"/);
 });
 
-test("version 2.2 is consistent in runtime configuration", async () => {
+test("version 2.2.1 is consistent in runtime configuration", async () => {
   const config = await read("js/config.js");
   const packageJson = JSON.parse(await read("package.json"));
-  assert.match(config, /APP_VERSION = "2\.2\.0"/);
-  assert.equal(packageJson.version, "2.2.0");
+  assert.match(config, /APP_VERSION = "2\.2\.1"/);
+  assert.equal(packageJson.version, "2.2.1");
 });
 
 
@@ -72,8 +72,9 @@ test("all report page options use one equal-width browser-style row", async () =
   const tabs = [...html.matchAll(/class="header-page-tab(?: active)?"/g)];
   assert.equal(tabs.length, 8);
   assert.match(layout, /grid-template-columns:repeat\(8,minmax\(0,1fr\)\)/);
-  assert.match(layout, /\.header-page-tab\.active[\s\S]*min-height:43px/);
-  assert.match(layout, /\.header-page-tab\.active::after/);
+  assert.match(layout, /\.header-page-tab\.active[\s\S]*min-height:38px/);
+  assert.match(layout, /\.header-page-tab\.active[\s\S]*margin-top:5px/);
+  assert.doesNotMatch(layout, /\.header-page-tab\.active::after/);
 });
 
 
@@ -85,9 +86,35 @@ test("page tabs bind click navigation even when optional mobile controls are abs
   assert.match(app, /bind\("#mobileTeamSelect"/);
 });
 
-test("active report tab visually bridges into the report canvas", async () => {
+test("active report tab changes color without changing layout", async () => {
   const layout = await readFile(new URL("../../css/layout.css", import.meta.url), "utf8");
-  assert.match(layout, /body\.app-active main[\s\S]*margin-top:\s*0/);
-  assert.match(layout, /header-page-tab\.active::after[\s\S]*bottom:-15px/);
-  assert.match(layout, /pointer-events:none/);
+  assert.match(layout, /\.header-page-tab\.active[\s\S]*background:var\(--blue\)/);
+  assert.match(layout, /\.header-page-tab\.active[\s\S]*color:#fff/);
+  assert.match(layout, /\.header-page-tab\.active[\s\S]*font-weight:900/);
+  assert.match(layout, /\.header-page-tab\.active[\s\S]*transform:none/);
+  assert.match(layout, /\.header-page-tab\.active[\s\S]*box-shadow:none/);
+  assert.doesNotMatch(layout, /\.header-page-tab\.active::after/);
+});
+
+test("league settings summary derives starter count and omits unavailable fallback", async () => {
+  const render = await read("js/render.js");
+  const league = await read("js/league.js");
+  assert.match(render, /deriveStarterCount\(analysis\)/);
+  assert.match(render, /starters \? `Start \$\{starters\}` : null/);
+  assert.match(render, /cleanFormatLabel\(analysis\.formatLabel\)/);
+  assert.match(render, /starter\\s\*count/);
+  assert.doesNotMatch(render, /"Starter count unavailable"/);
+  assert.match(league, /export function deriveStarterCount/);
+  assert.match(league, /\"BN\",\"BENCH\",\"IR\",\"RESERVE\",\"TAXI\"/);
+});
+
+test("header summary prefers canonical formatKey and appends derived starter count", async () => {
+  const { leagueSettingsSummary } = await import("../render.js?header-summary-test");
+  const summary = leagueSettingsSummary({
+    totalRosters: 12,
+    formatKey: "1qb_ppr",
+    formatLabel: "1QB PPR · Starter count unavailable",
+    starterCount: 10,
+  });
+  assert.equal(summary, "12 teams · 1QB PPR · Start 10");
 });

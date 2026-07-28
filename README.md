@@ -1,4 +1,8 @@
  The league panel now uses a labeled “League: [name]” heading and displays Sleeper ID, team count, detected settings, active-year range, season count, and the latest analysis timestamp in a single aligned panel.
+## Version 2.2.1 patch
+
+Version 2.2.1 corrects the active report-tab presentation. Active tabs now retain the exact same dimensions, padding, position, and spacing as inactive tabs. The selected tab is indicated only by the Fantasy Football Intelligence Hub blue background and bold white text, preventing the tab row from overlapping report content. The patch also corrects header starter-count metadata by deriving the count from saved lineup slots, detected league setup, or Sleeper roster positions. When the count cannot be determined, the header omits the field instead of displaying an unavailable message.
+
 ## Version 2.2 release
 
 Version 2.2 consolidates application navigation and league context into one polished two-row header. The Focus Team selector sits beside the logo, complete league information is centered with a dedicated Change League action, and creator, release, data-status, and version information are stacked at the far right. Report pages are presented as browser-style tabs along the bottom edge of the header. Page selection is preserved across refreshes and participates in browser Back and Forward navigation.
@@ -28,4 +32,4 @@ Version 2.1 simplifies league analysis with automatic setup detection and a pace
 
 
 ### Version 2.2 header tabs
-All eight report page options are displayed simultaneously in one equal-width row along the bottom of the global header. The active page is rendered as a taller, raised browser-style tab whose background extends into the report content area.
+All eight report page options are displayed simultaneously in one equal-width row along the bottom of the global header. The active page retains the same dimensions as every other tab and is identified by a blue background with bold white text.

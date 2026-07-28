@@ -1,4 +1,5 @@
 import { state } from "./state.js";
+import { deriveStarterCount, scoringFormatLabel } from "./league.js";
 import {
   $,
   $$,
@@ -128,15 +129,27 @@ function resolveLeagueName(analysis) {
   return analysis.leagueName || analysis.league?.name || historyName || "Unnamed League";
 }
 
-function leagueSettingsSummary(analysis) {
-  const starters = Array.isArray(analysis.starterSlots)
-    ? analysis.starterSlots.length
-    : analysis.starterCount;
+function cleanFormatLabel(value) {
+  const cleaned = String(value || "")
+    .replace(/\s*[·|,-]?\s*starter\s*count\s*(?:is\s*)?unavailable\s*/gi, " ")
+    .replace(/\s*[·|,-]?\s*start\s*(?:count\s*)?unavailable\s*/gi, " ")
+    .replace(/\s*·\s*·\s*/g, " · ")
+    .replace(/^\s*·\s*|\s*·\s*$/g, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+  return cleaned || "Format unavailable";
+}
+
+export function leagueSettingsSummary(analysis) {
+  const starters = deriveStarterCount(analysis);
   const teamCount = analysis.totalRosters || analysis.teams?.length || 0;
+  const canonicalFormat = analysis.formatKey
+    ? scoringFormatLabel(analysis.formatKey)
+    : cleanFormatLabel(analysis.formatLabel);
   return [
     teamCount ? `${teamCount} teams` : "Team count unavailable",
-    analysis.formatLabel || "Format unavailable",
-    starters ? `Start ${starters}` : "Starter count unavailable",
+    canonicalFormat,
+    starters ? `Start ${starters}` : null,
   ].filter(Boolean).join(" · ");
 }
 
