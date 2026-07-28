@@ -795,3 +795,58 @@ td.num {
   font-weight: 800;
   text-transform: uppercase;
 }
+.landing-primary-grid {
+  max-width: 760px;
+}
+
+.landing-primary-actions button {
+  min-width: 190px;
+  min-height: 46px;
+  font-size: 1rem;
+}
+
+.field-help,
+.weight-scope {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.weight-scope {
+  max-width: 920px;
+}
+
+.weight-field {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel2);
+}
+
+.weight-field input {
+  width: 100%;
+}
+
+.override-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.detected-setup {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #eef5fb;
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.detected-setup .small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-weight: 500;
+}

@@ -34,6 +34,43 @@ export function scoringFormatLabel(key){return ({
   "sf_half":"Superflex Half PPR","sf_ppr_tep":"Superflex PPR TEP"
 })[key]||key}
 
+export function detectFuturePickHorizon(bundle, override="auto"){
+  const currentSeason=num(bundle?.league?.season,new Date().getFullYear());
+  if(override!=="auto"){
+    const years=clamp(num(override,3),1,8);
+    return {years,startSeason:currentSeason+1,endSeason:currentSeason+years,source:"override"};
+  }
+  const seasons=[
+    ...(bundle?.tradedPicks||[]).map(p=>num(p.season)),
+    ...(bundle?.drafts||[]).map(d=>num(d.season)),
+  ].filter(y=>y>currentSeason);
+  const observedEnd=seasons.length?Math.max(...seasons):currentSeason+3;
+  const endSeason=Math.max(currentSeason+2,Math.min(currentSeason+8,observedEnd));
+  return {
+    years:endSeason-currentSeason,
+    startSeason:currentSeason+1,
+    endSeason,
+    source:seasons.length?"league data":"default horizon",
+  };
+}
+
+export function describeDetectedLeague(league, formatKey, history, pickHorizon){
+  const teams=num(league?.total_rosters)||num(league?.settings?.num_teams);
+  const starters=starterSlots(league);
+  const idp=starters.some(slot=>["DL","LB","DB","DE","DT","CB","S","IDP_FLEX"].includes(slot));
+  const seasons=(history||[]).map(item=>num(item?.league?.season)).filter(Boolean).sort((a,b)=>a-b);
+  return {
+    teams,
+    formatLabel:scoringFormatLabel(formatKey),
+    starterCount:starters.length,
+    idp,
+    historyStart:seasons[0]||num(league?.season),
+    historyEnd:seasons.at(-1)||num(league?.season),
+    pickStart:pickHorizon?.startSeason,
+    pickEnd:pickHorizon?.endSeason,
+  };
+}
+
 export function aggregatePlayerProduction(matchups){
   const m=new Map();
   for(const [weekText,entries] of Object.entries(matchups)){

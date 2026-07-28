@@ -104,3 +104,16 @@
     overflow: visible;
   }
 }
+@media (max-width: 760px) {
+  .weight-grid,
+  .override-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-primary-actions,
+  .landing-primary-actions button,
+  .secondary-option-actions,
+  .secondary-option-actions button {
+    width: 100%;
+  }
+}
