@@ -34,6 +34,8 @@ import {
   classCurrent,
   classFranchise,
   detectFormat,
+  detectFuturePickHorizon,
+  describeDetectedLeague,
   minCostLineup,
   percentile,
   riskFor,
@@ -57,26 +59,56 @@ import {
   userMessage,
 } from "./errors.js";
 
+const sleep=(ms)=>new Promise(resolve=>setTimeout(resolve,ms));
+
+async function completeMinimumLoading(startedAt, minimumMs){
+  const remaining=minimumMs-(Date.now()-startedAt);
+  if(remaining<=0)return;
+  const steps=[
+    ["Evaluating projections and dynasty values…",84],
+    ["Building optimal lineups…",88],
+    ["Generating team insights…",92],
+    ["Finalizing your report…",95],
+  ];
+  const stepDelay=Math.max(250,Math.floor(remaining/steps.length));
+  for(const [message,progress] of steps){
+    log(message,progress);
+    await sleep(Math.min(stepDelay,Math.max(0,minimumMs-(Date.now()-startedAt))));
+  }
+  const finalWait=minimumMs-(Date.now()-startedAt);
+  if(finalWait>0)await sleep(finalWait);
+}
+
 export async function analyze(force=false){
   const leagueId=$("#leagueId").value.trim();
   if(!/^\d{10,25}$/.test(leagueId)){log("Enter a valid numeric Sleeper league ID.");return}
+  const startedAt=Date.now(),minimumLoadingMs=7000+Math.floor(Math.random()*3001);
   const sourceStatuses=[];setSources([]);$("#analyzeBtn").disabled=true;$("#refreshBtn").disabled=true;
+  $("#detectedSetup").classList.add("hidden");
   try{
-    log("Loading league settings, rosters and managers…",4);
+    log("Preparing league analysis…",2);
     const [nflState,bundle]=await Promise.all([getNflState(),getLeagueBundle(leagueId)]);
+    log("Loading league settings…",7);
     sourceStatuses.push({name:"Sleeper league",status:"ok",detail:`${bundle.rosters.length} teams`});setSources(sourceStatuses);
-    const formatKey=detectFormat(bundle.league,$("#formatOverride").value),historyDepth=num($("#historyDepth").value,3);
-    log("Loading linked prior seasons…",10);
+    const formatKey=detectFormat(bundle.league,$("#formatOverride").value);
+    const historyOverride=$("#historyDepth").value;
+    const historyDepth=historyOverride==="auto"?20:num(historyOverride,3);
+    log("Detecting league format and history…",12);
     const history=await getHistory(bundle,historyDepth);
+    const pickHorizon=detectFuturePickHorizon(bundle,$("#futureYears").value);
+    const detectedSetup=describeDetectedLeague(bundle.league,formatKey,history,pickHorizon);
+    const setupNode=$("#detectedSetup");
+    setupNode.innerHTML=`Detected: ${detectedSetup.teams} teams · ${detectedSetup.formatLabel} · Start ${detectedSetup.starterCount}${detectedSetup.idp?" · IDP":""}<span class="small">History: ${detectedSetup.historyStart}–${detectedSetup.historyEnd} · Future picks: ${detectedSetup.pickStart}–${detectedSetup.pickEnd}</span>`;
+    setupNode.classList.remove("hidden");
     const currentSeason=Number(bundle.league.season);
     let maxWeek=0;
     if(bundle.league.status==="complete")maxWeek=18;
     else if(Number(nflState.season)===currentSeason&&["regular","post"].includes(nflState.season_type))maxWeek=clamp(num(nflState.leg||nflState.week),0,18);
-    log(`Loading ${maxWeek} weeks of current-season matchups…`,16);
+    log(`Loading rosters and ${maxWeek} weeks of current-season data…`,20);
     const matchups=await getMatchups(leagueId,maxWeek);
     sourceStatuses.push({name:"Sleeper matchups",status:Object.keys(matchups).length?"ok":"warn",detail:`${Object.keys(matchups).length} weeks`});setSources(sourceStatuses);
 
-    log("Loading player identity map…",25);
+    log("Loading rosters and player data…",30);
     const playerDirectory=await loadPlayerDirectory(force,sourceStatuses);setSources(sourceStatuses);
 
     log("Loading projections and dynasty values…",38);
@@ -169,7 +201,7 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
 
     log("Solving legal optimal lineups and draft-pick ownership…",68);
     const slots=starterSlots(bundle.league);
-    const pickOwnership=buildPickOwnership(bundle,num($("#futureYears").value,3),teamMap,raPicks);
+    const pickOwnership=buildPickOwnership(bundle,pickHorizon.years,teamMap,raPicks);
     const prior=history[1]||null;
     const priorByRoster=new Map((prior?.rosters||[]).map(r=>[num(r.roster_id),r]));
     const teams=[];
@@ -223,7 +255,7 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
     const analysis={
       appVersion:APP_VERSION,generatedAt:new Date().toISOString(),leagueId,leagueName:bundle.league.name,season:currentSeason,
       leagueStatus:bundle.league.status,currentWeek:maxWeek,totalRosters:bundle.rosters.length,formatKey,formatLabel:scoringFormatLabel(formatKey),
-      rosterSlots:slots,unsupportedSlots,weights:weightInputs,useCurrentProduction:useCurrent,teams,players:playerRows,
+      rosterSlots:slots,unsupportedSlots,weights:weightInputs,useCurrentProduction:useCurrent,detectedSetup,pickHorizon,teams,players:playerRows,
       picks:pickOwnership,sourceStatuses,history:history.map(h=>({leagueId:h.league.league_id,season:h.league.season,name:h.league.name,status:h.league.status})),
       methodology:{
         projection:"Legal lineups are solved using projected season totals divided by 17, which adjusts for projected missed games.",
@@ -234,6 +266,7 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
       }
     };
     state.analysis=prepareAnalysisForRender(analysis);await idbSet(`analysis:${leagueId}`,state.analysis);
+    await completeMinimumLoading(startedAt,minimumLoadingMs);
     populateTeamSelectors();renderAll();showDashboardShell();
     log(`Complete: ${bundle.league.name}\n${teams.length} teams · ${playerRows.length} rostered players · ${maxWeek} current-season weeks · ${history.length} linked seasons`,100);
 
@@ -243,7 +276,7 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
   log(`Analysis failed:
 ${userMessage(normalized)}
 
-Try Force Refresh or load a saved report.`,0);
+Try Analyze with Live Player Data or open a previous report.`,0);
   sourceStatuses.push({name:"Run",status:"bad",detail:normalized.message});setSources(sourceStatuses);
 }finally{$("#analyzeBtn").disabled=false;$("#refreshBtn").disabled=false}
 }

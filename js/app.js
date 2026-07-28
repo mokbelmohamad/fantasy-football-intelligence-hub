@@ -28,8 +28,8 @@ $("#globalUpdateBtn").onclick=()=>setSelectedTeam($("#globalTeamSelect").value);
 $("#appRefreshBtn").onclick=()=>analyze(true);
 $("#changeLeagueBtn").onclick=showLanding;
 $("#leagueId").addEventListener("keydown",e=>{if(e.key==="Enter")analyze(false)});
-$("#loadSavedBtn").onclick=async()=>{const id=$("#leagueId").value.trim(),a=await idbGet(`analysis:${id}`);if(!a){log("No saved report was found for this league ID.");return}state.analysis=prepareAnalysisForRender(a);populateTeamSelectors();renderAll();showDashboardShell();log(`Loaded saved report generated ${new Date(a.generatedAt).toLocaleString()}.`,100)};
-$("#clearBtn").onclick=async()=>{const id=$("#leagueId").value.trim();await idbDelete(`analysis:${id}`);state.analysis=null;$$(".view").forEach(v=>v.innerHTML="");showLanding();log("Cached report cleared.",0)};
+$("#loadSavedBtn").onclick=async()=>{const id=$("#leagueId").value.trim(),a=await idbGet(`analysis:${id}`);if(!a){log("No previous report was found for this league ID.");return}state.analysis=prepareAnalysisForRender(a);populateTeamSelectors();renderAll();showDashboardShell();log(`Opened previous report generated ${new Date(a.generatedAt).toLocaleString()}.`,100)};
+$("#clearBtn").onclick=async()=>{const id=$("#leagueId").value.trim();await idbDelete(`analysis:${id}`);state.analysis=null;$$(".view").forEach(v=>v.innerHTML="");showLanding();log("Previous report deleted from this browser.",0)};
 $("#tabs").onclick=e=>{const b=e.target.closest(".tab");if(b)switchTab(b.dataset.view)};
 $("#jsonExport").onclick=()=>download(`sleeper_${state.analysis.leagueId}_analysis.json`,JSON.stringify(state.analysis,null,2),"application/json");
 $("#rankingCsv").onclick=()=>{

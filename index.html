@@ -46,59 +46,102 @@
     <h2>Select a Sleeper league</h2>
     <p>Enter a public Sleeper league ID to generate a branded league dashboard, team insights, optimal lineups, trade targets, player values and draft-capital analysis.</p>
   </div>
-  <div class="setup-grid">
+  <div class="setup-grid landing-primary-grid">
     <div>
       <label for="leagueId">Sleeper League ID</label>
       <input id="leagueId" inputmode="numeric" pattern="[0-9]*" value="1314372287713021952" placeholder="Enter a public Sleeper league ID">
-    </div>
-    <div>
-      <label for="formatOverride">Dynasty format</label>
-      <select id="formatOverride">
-        <option value="auto">Auto-detect</option>
-        <option value="1qb_ppr">1QB PPR</option>
-        <option value="1qb_half">1QB Half PPR</option>
-        <option value="sf_ppr">Superflex PPR</option>
-        <option value="sf_half">Superflex Half PPR</option>
-        <option value="sf_ppr_tep">Superflex PPR TEP</option>
-      </select>
-    </div>
-    <div>
-      <label for="historyDepth">Prior seasons</label>
-      <select id="historyDepth">
-        <option value="1">1 season</option>
-        <option value="3" selected>Up to 3</option>
-        <option value="5">Up to 5</option>
-      </select>
-    </div>
-    <div>
-      <label for="futureYears">Future pick years</label>
-      <select id="futureYears">
-        <option value="2">2 years</option>
-        <option value="3" selected>3 years</option>
-        <option value="4">4 years</option>
-      </select>
+      <p class="field-help">League format, scoring, linked history and future draft-pick years are detected automatically.</p>
     </div>
   </div>
 
-  <div class="buttons">
+  <div class="buttons landing-primary-actions">
     <button id="analyzeBtn">Analyze League</button>
-    <button id="refreshBtn" class="good">Force Refresh</button>
-    <button id="loadSavedBtn" class="secondary">Load Saved Report</button>
-    <button id="clearBtn" class="ghost">Clear Cached Report</button>
   </div>
 
-  <details>
-    <summary>Advanced scoring weights</summary>
-    <div class="advanced-grid">
-      <div><label>Projection</label><input id="wProjection" type="number" min="0" max="100" value="40"></div>
-      <div><label>Depth</label><input id="wDepth" type="number" min="0" max="100" value="15"></div>
-      <div><label>Production</label><input id="wHistory" type="number" min="0" max="100" value="15"></div>
-      <div><label>Dynasty value</label><input id="wDynasty" type="number" min="0" max="100" value="15"></div>
-      <div><label>Risk</label><input id="wRisk" type="number" min="0" max="100" value="10"></div>
-      <div><label>Draft capital</label><input id="wPicks" type="number" min="0" max="100" value="5"></div>
+  <details class="secondary-options">
+    <summary>More options</summary>
+    <div class="buttons secondary-option-actions">
+      <button id="refreshBtn" class="good">Analyze with Live Player Data</button>
+      <button id="loadSavedBtn" class="secondary">Open Previous Report</button>
+      <button id="clearBtn" class="ghost">Delete Previous Report</button>
     </div>
-    <p class="small">Weights are normalized automatically. Unsupported IDP market values are excluded and flagged.</p>
+    <p class="small">Use live player data when you need to bypass locally stored player information. Previous reports are stored only in this browser.</p>
   </details>
+
+  <details class="ranking-weights">
+    <summary>Contender Ranking Weights</summary>
+    <p class="weight-scope">These percentages control the team Contender Score, contender ranking and contender classification. They do not change player projections, optimal lineups, player tiers, dynasty values or positional rankings. Weights normalize automatically and do not need to total exactly 100%.</p>
+    <div class="advanced-grid weight-grid">
+      <div class="weight-field">
+        <label for="wProjection">Starting Lineup Projection</label>
+        <input id="wProjection" type="number" min="0" max="100" value="40">
+        <p class="field-help">Uses expected PPG from the optimal legal lineup. Increase it to favor teams with stronger projected starters.</p>
+      </div>
+      <div class="weight-field">
+        <label for="wDepth">Bench Depth</label>
+        <input id="wDepth" type="number" min="0" max="100" value="15">
+        <p class="field-help">Uses the strongest eligible bench options with a depth adjustment. Increase it to reward replacement strength.</p>
+      </div>
+      <div class="weight-field">
+        <label for="wHistory">Production</label>
+        <input id="wHistory" type="number" min="0" max="100" value="15">
+        <p class="field-help">Uses available points, max points and record signals. Increase it to favor demonstrated fantasy production.</p>
+      </div>
+      <div class="weight-field">
+        <label for="wDynasty">Dynasty Value</label>
+        <input id="wDynasty" type="number" min="0" max="100" value="15">
+        <p class="field-help">Uses combined RosterAudit and DynastyProcess market values. Increase it to reward long-term asset value.</p>
+      </div>
+      <div class="weight-field">
+        <label for="wRisk">Low-Risk Score</label>
+        <input id="wRisk" type="number" min="0" max="100" value="10">
+        <p class="field-help">Uses age, injury/status, projected games, depth role, team assignment and value fragility. Increase it to favor safer starters.</p>
+      </div>
+      <div class="weight-field">
+        <label for="wPicks">Draft Capital</label>
+        <input id="wPicks" type="number" min="0" max="100" value="5">
+        <p class="field-help">Uses future draft-pick ownership and value. Increase it to reward long-term flexibility more heavily.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="advanced-overrides">
+    <summary>Advanced detection overrides</summary>
+    <p class="small">Leave these values on Auto unless Sleeper data is incomplete or the league uses an unusual configuration.</p>
+    <div class="advanced-grid override-grid">
+      <div>
+        <label for="formatOverride">Dynasty format</label>
+        <select id="formatOverride">
+          <option value="auto">Auto-detect</option>
+          <option value="1qb_ppr">1QB PPR</option>
+          <option value="1qb_half">1QB Half PPR</option>
+          <option value="sf_ppr">Superflex PPR</option>
+          <option value="sf_half">Superflex Half PPR</option>
+          <option value="sf_ppr_tep">Superflex PPR TEP</option>
+        </select>
+      </div>
+      <div>
+        <label for="historyDepth">Linked history</label>
+        <select id="historyDepth">
+          <option value="auto" selected>Auto-detect all</option>
+          <option value="1">Current + 1 prior</option>
+          <option value="3">Current + up to 3 prior</option>
+          <option value="5">Current + up to 5 prior</option>
+        </select>
+      </div>
+      <div>
+        <label for="futureYears">Future pick years</label>
+        <select id="futureYears">
+          <option value="auto" selected>Auto-detect</option>
+          <option value="2">2 years</option>
+          <option value="3">3 years</option>
+          <option value="4">4 years</option>
+        </select>
+      </div>
+    </div>
+  </details>
+
+  <div id="detectedSetup" class="detected-setup hidden" aria-live="polite"></div>
 
   <div class="progress"><div id="progressBar"></div></div>
   <div id="status" class="status">Enter a league ID and click Analyze League.</div>
@@ -149,7 +192,7 @@
     <button id="snapshotExport" class="secondary">Download Report HTML</button>
     <button id="printBtn" class="ghost">Print / Save PDF</button>
   </div>
-  <p class="small">The saved report can be reopened without rerunning the analysis. Use Force Refresh for the newest rosters, production, projections and values.</p>
+  <p class="small">A previous report can be reopened from the landing-page options. Use Refresh Data here to rerun the analysis with live player data.</p>
 </section>
 </div>
 </main>

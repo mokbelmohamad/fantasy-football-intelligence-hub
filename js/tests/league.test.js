@@ -2,6 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   buildPickOwnership,
+  detectFuturePickHorizon,
+  describeDetectedLeague,
   eligible,
   minCostLineup,
   percentile,
@@ -60,4 +62,39 @@ test("buildPickOwnership applies traded ownership", () => {
   const traded = picks.find((pick) => pick.originRosterId === 1 && pick.round === 1);
   assert.equal(traded.ownerRosterId, 2);
   assert.equal(traded.acquired, true);
+});
+
+
+test("detectFuturePickHorizon uses observed league pick seasons", () => {
+  const horizon = detectFuturePickHorizon({
+    league: {season:"2026"},
+    tradedPicks: [{season:"2029"}],
+    drafts: [{season:"2027"}],
+  });
+  assert.deepEqual(horizon, {
+    years:3,
+    startSeason:2027,
+    endSeason:2029,
+    source:"league data",
+  });
+});
+
+test("describeDetectedLeague summarizes format, history, starters and IDP", () => {
+  const league = {
+    season:"2026",
+    total_rosters:12,
+    roster_positions:["QB","RB","WR","TE","SUPER_FLEX","LB","BN"],
+  };
+  const history = [
+    {league:{season:"2026"}},
+    {league:{season:"2025"}},
+    {league:{season:"2024"}},
+  ];
+  const summary = describeDetectedLeague(league,"sf_ppr",history,{startSeason:2027,endSeason:2029});
+  assert.equal(summary.teams,12);
+  assert.equal(summary.formatLabel,"Superflex PPR");
+  assert.equal(summary.starterCount,6);
+  assert.equal(summary.idp,true);
+  assert.equal(summary.historyStart,2024);
+  assert.equal(summary.historyEnd,2026);
 });
