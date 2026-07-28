@@ -23,3 +23,5 @@ to live sources when snapshots are empty or unavailable.
 
 `js/render.js` remains the view orchestrator. Each page now has its own module.
 `js/analyze.js` loads data through provider-specific API modules.
+
+- Dashboard v2.1 renders a championship outlook followed by analytical Team Strengths and Areas to Improve reviews, with structured supporting metrics beneath each narrative finding.

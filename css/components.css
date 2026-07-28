@@ -850,3 +850,115 @@ td.num {
   color: var(--muted);
   font-weight: 500;
 }
+
+
+/* Version 2.1 dashboard summary sections */
+.dashboard-summary-section {
+  margin-bottom: 18px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.dashboard-summary-heading {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.dashboard-summary-heading h2 { margin: 0 0 3px; color: var(--black); }
+.dashboard-kpi-grid { display: grid; gap: 12px; }
+.current-season-grid { grid-template-columns: repeat(5,minmax(0,1fr)); }
+.overall-performance-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+.kpi-note { margin-top: 6px; color: var(--muted); font-size: .76rem; line-height: 1.35; }
+.compact-value { font-size: 1.15rem !important; }
+.featured-kpi { border-top-color: var(--blue); background: color-mix(in srgb,var(--blue) 5%,var(--panel)); }
+.season-status { display: inline-flex; padding: 5px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel2); font-size: .78rem; font-weight: 800; white-space: nowrap; }
+.summary-note { margin-top: 12px; padding: 10px 12px; border-left: 4px solid var(--blue); border-radius: 7px; background: var(--panel2); color: var(--muted); font-size: .84rem; }
+
+/* Version 2.1 full-width power rankings and championship review */
+.power-rankings-panel,
+.championship-review-panel { margin-top: 18px; }
+.power-rankings-panel .table-wrap { max-height: none; }
+.power-rankings-panel table { min-width: 1680px; }
+.table-subtext { margin-top: 2px; color: var(--muted); font-size: .72rem; font-weight: 500; }
+.power-ranking-cards { display: none; }
+
+.championship-outlook {
+  padding: 18px;
+  border: 1px solid color-mix(in srgb,var(--blue) 35%,var(--line));
+  border-left: 5px solid var(--blue);
+  border-radius: 12px;
+  background: color-mix(in srgb,var(--blue) 5%,var(--panel));
+}
+.outlook-label { color: var(--blue); font-size: .74rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.championship-outlook h3 { margin: 5px 0 8px; font-size: 1.18rem; }
+.championship-outlook p { margin: 0; color: var(--text); line-height: 1.65; }
+.outlook-metrics { display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); gap: 9px; margin-top: 14px; }
+.outlook-metrics > div,
+.position-review-data > div { padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.outlook-metrics span,
+.position-review-data span { display: block; color: var(--muted); font-size: .69rem; line-height: 1.25; }
+.outlook-metrics strong,
+.position-review-data strong { display: block; margin-top: 3px; font-size: .86rem; line-height: 1.3; }
+
+.position-review-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin-top: 16px; }
+.position-review-card { padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel2); }
+.position-review-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.position-review-heading h3 { margin: 0 0 5px; }
+.position-status { display: inline-flex; padding: 3px 8px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); color: var(--muted); font-size: .7rem; font-weight: 800; }
+.position-action { max-width: 145px; color: var(--blue); font-size: .78rem; font-weight: 800; text-align: right; }
+.position-review-text { margin: 12px 0; color: var(--text); line-height: 1.58; }
+.position-review-data { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; }
+
+/* Version 2.1 team strength, weakness, and position review sections */
+.team-insight-review-wrap {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+.team-insight-review {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel2);
+  padding: 16px;
+}
+.team-insight-review.strength { border-top: 3px solid var(--good); }
+.team-insight-review.weakness { border-top: 3px solid var(--warn); }
+.team-insight-review-heading h3 { margin: 0 0 5px; }
+.team-insight-review-heading p,
+.position-review-section-heading p { margin: 0; color: var(--muted); line-height: 1.5; font-size: .84rem; }
+.team-insight-review-grid { display: grid; gap: 10px; margin-top: 12px; }
+.team-insight-card {
+  display: grid;
+  grid-template-columns: 28px minmax(0,1fr);
+  gap: 10px;
+  align-items: start;
+  padding: 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--panel);
+}
+.team-insight-number {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--panel2);
+  font-weight: 800;
+  font-size: .78rem;
+}
+.team-insight-card h4 { margin: 0 0 5px; font-size: .94rem; }
+.team-insight-card p { margin: 0; color: var(--text); line-height: 1.5; font-size: .82rem; }
+.position-review-section-heading { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); }
+.position-review-section-heading h3 { margin: 0 0 5px; }
+
+.team-insight-content { min-width: 0; width: 100%; }
+.team-insight-data { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 8px; margin-top: 12px; }
+.team-insight-data > div { padding: 9px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.team-insight-data span { display: block; color: var(--muted); font-size: .69rem; line-height: 1.25; }
+.team-insight-data strong { display: block; margin-top: 3px; font-size: .84rem; line-height: 1.3; overflow-wrap: anywhere; }

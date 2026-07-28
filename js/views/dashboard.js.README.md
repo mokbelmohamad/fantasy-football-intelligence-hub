@@ -2,24 +2,23 @@
 
 ## Purpose
 
-League dashboard page renderer.
+Renders the league dashboard and focus-team analytical summaries.
 
-## Responsibilities
-- Render rankings, KPIs, focus-team recommendations, and chart canvas.
-- Draw projected lineup PPG chart.
+## Version 2.1 responsibilities
+
+- Render separate Current Season and Overall Performance summary sections.
+- Display Contender Rank, Expected PPG, gaps to the leader and league average, actual current standing/record, historical average PPG and rank, average finish, cumulative record, and win percentage.
+- Render League Power Rankings across the full content width.
+- Retain Class, EPPG, Depth, PF, Dynasty Value, Risk, Future 1sts, Contender Index, and Dynasty Rank; add gap to #1, QB/RB/WR/TE/FLEX ranks, biggest strength, and biggest weakness.
+- Replace the desktop ranking table with expandable team cards on mobile.
+- Render Championship Outlook with an expanded plain-language explanation, supporting metrics, and explicit hold/no-move outcomes.
+- Render dedicated Team Strengths and Areas to Improve reviews beneath the championship outlook.
+- Render narrative-first position reviews with structured data for QB, RB, WR, TE, FLEX, Bench Depth, and Draft Capital.
 
 ## Dependencies
-- `state.js`
-- `utils.js`
-- `league.js`
-- `views/shared.js`
 
-## Used by
-- render.js
-
-## Maintenance notes
-- Canvas redraw is triggered after render and on resize.
+Uses `state.js`, utilities, league classification/rank helpers, and the shared sortable-table renderer.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.0. This documentation update does not change `APP_VERSION` or create a new application release.
+Updated for Fantasy Football Intelligence Hub Version 2.1 / `APP_VERSION` 2.1.0.

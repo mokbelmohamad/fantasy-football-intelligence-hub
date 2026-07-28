@@ -117,3 +117,59 @@
     width: 100%;
   }
 }
+
+
+@media (max-width: 1100px) {
+  .current-season-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .overall-performance-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 680px) {
+  .dashboard-summary-section { padding: 14px; }
+  .dashboard-summary-heading { flex-direction: column; }
+  .current-season-grid,.overall-performance-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 430px) {
+  .current-season-grid,.overall-performance-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 980px) {
+  .outlook-metrics { grid-template-columns: repeat(3,minmax(0,1fr)); }
+  .position-review-data { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width: 760px) {
+  .power-ranking-table { display: none; }
+  .power-ranking-cards { display: grid; gap: 10px; }
+  .power-ranking-card { border: 1px solid var(--line); border-radius: 10px; background: var(--panel2); overflow: hidden; }
+  .power-ranking-card summary { display: grid; grid-template-columns: 42px 1fr 58px; align-items: center; gap: 8px; padding: 12px; cursor: pointer; list-style: none; }
+  .power-ranking-card summary::-webkit-details-marker { display: none; }
+  .power-card-rank { font-size: 1.05rem; font-weight: 900; }
+  .power-card-team strong,.power-card-score strong { display: block; }
+  .power-card-team span,.power-card-score span { color: var(--muted); font-size: .68rem; }
+  .power-card-score { text-align: right; }
+  .power-card-body { padding: 0 12px 12px; }
+  .power-card-primary { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
+  .power-card-primary > div { padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+  .power-card-primary span { display: block; color: var(--muted); font-size: .68rem; }
+  .power-card-positions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+  .power-card-positions span { padding: 5px 7px; border: 1px solid var(--line); border-radius: 999px; background: var(--panel); font-size: .72rem; }
+  .power-card-strengths { display: grid; gap: 4px; margin-top: 9px; color: var(--muted); font-size: .76rem; }
+  .position-review-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .outlook-metrics,.position-review-data { grid-template-columns: 1fr 1fr; }
+  .position-review-heading { flex-direction: column; }
+  .position-action { max-width: none; text-align: left; }
+}
+
+@media (max-width: 860px) {
+  .team-insight-review-wrap { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 760px) {
+  .team-insight-data { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 480px) {
+  .team-insight-data { grid-template-columns: 1fr; }
+}

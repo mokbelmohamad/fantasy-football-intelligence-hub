@@ -17,8 +17,8 @@ Central application version and external endpoint configuration.
 - update design references
 
 ## Maintenance notes
-- Version remains 2.0.0 for this documentation-only update.
+- Version remains 2.1.0 for this documentation-only update.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.0. This documentation update does not change `APP_VERSION` or create a new application release.
+Documented for Fantasy Football Intelligence Hub Version 2.1. This release sets `APP_VERSION` to 2.1.0.
