@@ -2,6 +2,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+// Offline data refresh script. root is the project directory; dataDirectory is
+// where browser-readable fallback snapshots are written.
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const dataDirectory = resolve(root, "data");
 const endpoints = {
@@ -16,6 +18,7 @@ const endpoints = {
 const formatKeys = ["1qb_ppr","1qb_half","sf_ppr","sf_half","sf_ppr_tep"];
 
 async function fetchResponse(url, timeout = 90000) {
+  // AbortController stops a single unavailable source from blocking an update.
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeout);
   try {
@@ -33,6 +36,7 @@ const fetchJson = async (url, timeout) => (await fetchResponse(url, timeout)).js
 const fetchText = async (url, timeout) => (await fetchResponse(url, timeout)).text();
 
 function parseCsv(text) {
+  // Minimal CSV parser that preserves quoted commas in player names.
   const rows=[];let row=[],cell="",quoted=false;
   for(let i=0;i<text.length;i+=1){
     const c=text[i],n=text[i+1];
@@ -64,6 +68,8 @@ async function readExisting(filename,fallback){
   catch{return fallback}
 }
 async function safeUpdate(name,filename,worker,fallback){
+  // Keep the last good file when a download fails. worker gets new data; the
+  // fallback describes the safe empty data shape for a first-time run.
   try{
     const payload=await worker();
     await writeJson(filename,payload);

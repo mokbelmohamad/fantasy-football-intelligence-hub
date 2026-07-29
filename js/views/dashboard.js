@@ -1,3 +1,4 @@
+// Dashboard view: summarizes one completed analysis; it does not recalculate it.
 import { state } from "../state.js";
 import { $, esc, fmt, intFmt } from "../utils.js";
 import { classCss, ordinal } from "../league.js";

@@ -1,9 +1,13 @@
+// Optimal-lineup view. "focus" is the selected team and "a" is the shared
+// completed analysis (the short name keeps template code readable).
 import { state } from "../state.js";
 import { $, esc, fmt, intFmt } from "../utils.js";
 import { classCss, tierClass } from "../league.js";
 import { sortableTable } from "./shared.js";
 
 export function renderLineups(){
+  // h is the table's column definition; focusRows is one team and allRows is
+  // the league-wide comparison table.
   const a=state.analysis,focus=a.teams.find(t=>t.team===state.selectedTeam)||a.teams[0];
   const h=[
     {key:"rank",label:"Team Rank",num:true},{key:"team",label:"Team"},{key:"slot",label:"Slot"},

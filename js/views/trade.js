@@ -1,3 +1,5 @@
+// Trade explorer view: compares assets from the completed analysis and presents
+// possible deal value; it never submits or changes a real Sleeper transaction.
 import { state } from "../state.js";
 import { $, esc, fmt, intFmt } from "../utils.js";
 import { eligible, tierClass } from "../league.js";

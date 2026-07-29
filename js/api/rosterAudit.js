@@ -5,10 +5,12 @@ import {
 } from "./http.js";
 
 async function snapshotFile(path, validator) {
+  // Keeps the three loaders below consistent when checking local snapshot data.
   return loadJsonSnapshot(path, validator);
 }
 
 export async function loadRosterAuditValues(formatKey) {
+  // formatKey selects the relevant scoring-market values (1QB, Superflex, etc.).
   const snapshot = await snapshotFile(
     "./data/dynasty-values.json",
     (value) => Object.keys(value?.formats?.[formatKey] || {}).length > 0,

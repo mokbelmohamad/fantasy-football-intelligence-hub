@@ -1,5 +1,7 @@
 export const APP_VERSION = "2.2.1";
 
+// Central list of outside data services. Keeping URLs here makes it clear
+// which sources supply league data, projections, and dynasty-market values.
 export const API = {
   sleeper: "https://api.sleeper.app/v1",
   projections: "https://api.sleeper.com/projections/nfl",

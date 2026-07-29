@@ -3,6 +3,8 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { spawnSync } from "node:child_process";
 
+// Lightweight release check. root anchors all paths; required lists every
+// runtime module and data snapshot that must be present in a release.
 const root=resolve(dirname(fileURLToPath(import.meta.url)),"..");
 const required=[
   "index.html","js/app.js","js/analyze.js","js/errors.js","js/api/index.js",

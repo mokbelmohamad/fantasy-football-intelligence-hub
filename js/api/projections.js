@@ -5,6 +5,8 @@ import { API } from "../config.js";
       loadJsonSnapshot,
     } from "./http.js";
 
+    // Walks an unknown RosterAudit response shape and builds a lookup by
+    // Sleeper player ID. node is the current nested value; out is accumulated.
     export function collectProjectionPlayers(node,out=new Map()){
   if(!node||typeof node!=="object")return out;
   if(!Array.isArray(node)&&node.sleeper_id&&(node.ppg_ppr!==undefined||node.ppg!==undefined))out.set(String(node.sleeper_id),node);
@@ -12,12 +14,15 @@ import { API } from "../config.js";
   return out;
 }
 
+// Sleeper has returned several response shapes over time; normalize each to rows.
 export function flattenProjectionResponse(j){if(Array.isArray(j))return j;if(Array.isArray(j?.data))return j.data;if(Array.isArray(j?.projections))return j.projections;return []}
 
 export function projectionId(row){return String(row?.player_id??row?.player?.player_id??row?.player?.id??"")}
 
 export function field(o,names){for(const n of names)if(o&&o[n]!==undefined&&o[n]!==null&&o[n]!=="")return o[n];return null}
 
+    // Retrieves a season's projections. If the all-player endpoint is empty,
+    // retry position by position so a partial report is still possible.
     export async function loadSleeperProjections(season, sources) {
       const snapshot = await loadJsonSnapshot(
         "./data/projections.json",

@@ -1,3 +1,5 @@
+// A consistent error shape. code is for developers/support, source tells the
+// user which system failed, and details offers a practical recovery step.
 export class AppError extends Error {
   constructor(message, options = {}) {
     super(message, { cause: options.cause });
@@ -10,6 +12,7 @@ export class AppError extends Error {
 }
 
 export function normalizeError(error, context = {}) {
+  // Turn browser/network errors into safe, friendly errors the UI can display.
   if (error instanceof AppError) {
     return error;
   }

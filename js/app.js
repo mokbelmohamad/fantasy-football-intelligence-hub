@@ -1,5 +1,7 @@
 "use strict";
 
+// Browser entry point: attach page events to the analysis and rendering modules.
+
 import { analyze } from "./analyze.js";
 import { reportError, userMessage } from "./errors.js";
 import { state } from "./state.js";
@@ -22,6 +24,7 @@ import {
   switchTab,
 } from "./render.js?v=2.2.1-header-string-2";
 
+// selector identifies a page element; handler is the action run for its event.
 const bind = (selector, eventName, handler) => {
   const element = $(selector);
   if (element) element.addEventListener(eventName, handler);
@@ -74,6 +77,8 @@ $("#snapshotExport").onclick=()=>{
 $("#printBtn").onclick=()=>window.print();
 window.addEventListener("resize",()=>{if($("#dashboard").classList.contains("active"))drawRankChart()});
 
+// One delegated handler enables sorting on every dynamically created table.
+// th = clicked header, rows = body rows, idx = the selected column's position.
 document.addEventListener("click",e=>{
   const th=e.target.closest("th[data-key]");if(!th)return;
   const table=th.closest("table"),key=th.dataset.key,tbody=table.querySelector("tbody"),rows=[...tbody.rows],idx=[...th.parentElement.cells].indexOf(th);

@@ -1,3 +1,5 @@
+// Team-list and focused-team views. state.analysis contains all teams, while
+// state.selectedTeam identifies the roster currently being examined.
 import { state } from "../state.js";
 import { $, esc, fmt, intFmt } from "../utils.js";
 import { tierClass } from "../league.js";

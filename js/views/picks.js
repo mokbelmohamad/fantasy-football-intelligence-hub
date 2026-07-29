@@ -1,3 +1,4 @@
+// Draft-pick view. Pick ownership has already incorporated traded-pick records.
 import { state } from "../state.js";
 import { $, esc, intFmt } from "../utils.js";
 

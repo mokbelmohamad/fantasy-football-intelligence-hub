@@ -1,3 +1,5 @@
+// Player-tier and team-insight calculations, separated from loading data so the
+// scoring rules are visible and consistently reusable.
 import { clamp, fmt, intFmt, num, nullable } from "./utils.js";
 import {
   assignPlayerPositionTiers,
@@ -8,6 +10,7 @@ import {
 } from "./league.js";
 
 export function longevityScoreForPlayer(p){
+  // Estimates career runway by position-specific age curve, then discounts risk.
   const age=nullable(p.age),pos=p.position;if(age===null)return 50;
   const peak={QB:[24,32,38],RB:[21,25,30],WR:[22,27,33],TE:[23,29,34]}[pos]||[22,28,34];
   const [start,peakAge,end]=peak;let score;
@@ -15,9 +18,12 @@ export function longevityScoreForPlayer(p){
   score-=num(p.riskScore)*.18;if(!p.nflTeam||p.nflTeam==='FA')score-=18;return clamp(score,0,100);
 }
 
+// group is the player's position peer group; key is the metric being compared.
 export function percentileWithinPosition(players,player,key,high=true){const group=players.filter(p=>p.position===player.position);return percentile(group.map(p=>num(p[key])),num(player[key]),high)}
 
 export function buildPlayerTierModel(players){
+  // Compare players only with others at the same position. The returned list
+  // contains the calculated percentile and tier fields needed by the tier view.
   const eligiblePlayers=players.filter(p=>{const activeStatus=String(p.status||'').toLowerCase();const relevantStatus=!['retired','inactive'].includes(activeStatus);const hasSignal=num(p.expectedPpg)>0||num(p.dynastyValue)>0||num(p.projectedTotal)>0;return relevantStatus&&hasSignal&&['QB','RB','WR','TE'].includes(p.position)});
   for(const p of eligiblePlayers){p.longevityScore=longevityScoreForPlayer(p);p.projectionPct=percentileWithinPosition(eligiblePlayers,p,'expectedPpg',true);p.valuePct=percentileWithinPosition(eligiblePlayers,p,'dynastyValue',true);p.longevityPct=percentileWithinPosition(eligiblePlayers,p,'longevityScore',true);p.tierComposite=.60*p.projectionPct+.25*p.valuePct+.15*p.longevityPct;if(p.tierComposite>=92)p.analysisTier='S';else if(p.tierComposite>=80)p.analysisTier='1';else if(p.tierComposite>=65)p.analysisTier='2';else if(p.tierComposite>=45)p.analysisTier='3';else p.analysisTier='4'}
   return eligiblePlayers.sort((a,b)=>b.tierComposite-a.tierComposite||b.expectedPpg-a.expectedPpg)
@@ -42,6 +48,7 @@ export function positionalEvidence(team,pos,allTeams){
 }
 
 export function prepareAnalysisForRender(analysis){
+  // Backfills display-only fields so current and older saved reports render alike.
   if(!analysis)return analysis;
   assignPlayerPositionTiers(analysis.players||[]);
   analysis.tierPlayers=buildPlayerTierModel(analysis.players||[]);

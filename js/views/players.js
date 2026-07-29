@@ -1,3 +1,5 @@
+// Player master view. It filters normalized player records already calculated
+// by the analysis workflow; it never fetches or alters source data.
 import { state } from "../state.js";
 import { $, esc, fmt, intFmt } from "../utils.js";
 import { tierClass } from "../league.js";
@@ -24,6 +26,8 @@ export function renderPlayers(){
 }
 
 export function renderPlayerTable(){
+  // q is the search phrase; team, pos, risk, and status are selected filters.
+  // h describes the output columns passed to the shared sortable-table builder.
   const q=($("#playerSearch")?.value||"").toLowerCase(),team=$("#playerTeam")?.value||"",pos=$("#playerPos")?.value||"",risk=$("#playerRisk")?.value||"",status=$("#playerStatus")?.value||"";
   const rows=state.analysis.players.filter(p=>(!q||p.name.toLowerCase().includes(q))&&(!team||p.fantasyTeam===team)&&(!pos||p.position===pos)&&(!risk||p.riskTier===risk)&&(!status||p.rosterStatus===status));
   const h=[

@@ -1,3 +1,4 @@
+// Plain-language explanation of the exact scoring rules saved with this report.
 import { state } from "../state.js";
 import { $, esc } from "../utils.js";
 

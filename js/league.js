@@ -1,6 +1,9 @@
 import { clamp, num, nullable } from "./utils.js";
 
+// League-domain calculations. These turn Sleeper's raw rules and rosters into
+// the football concepts used throughout the report.
 export function detectFormat(league,override){
+  // sf = superflex; rec is points per reception; tep is tight-end premium.
   if(override!=="auto")return override;
   const slots=league.roster_positions||[];
   const sf=slots.includes("SUPER_FLEX")||slots.filter(x=>x==="QB").length>1;
@@ -13,6 +16,8 @@ export function detectFormat(league,override){
 
 
 export function deriveStarterCount(source){
+  // Older saved reports can describe slots differently. Prefer explicit values,
+  // then derive a count from roster rules or the common lineup length.
   const directCandidates=[
     source?.starterCount,
     source?.detectedSetup?.starterCount,
@@ -57,6 +62,7 @@ export function starterSlots(league){
 }
 
 export function eligible(slot,pos){
+  // Answers whether a player's real position can legally fill a roster slot.
   if(slot===pos)return true;
   if(["FLEX","WRT","REC_FLEX"].includes(slot))return ["RB","WR","TE"].includes(pos);
   if(["WRRB_FLEX","RB_WR_FLEX"].includes(slot))return ["RB","WR"].includes(pos);
@@ -74,6 +80,7 @@ export function scoringFormatLabel(key){return ({
 })[key]||key}
 
 export function detectFuturePickHorizon(bundle, override="auto"){
+  // Use observed pick seasons but keep the analysis window sensibly bounded.
   const currentSeason=num(bundle?.league?.season,new Date().getFullYear());
   if(override!=="auto"){
     const years=clamp(num(override,3),1,8);
@@ -120,6 +127,7 @@ export function seasonStandings(bundle){
 }
 
 export function buildHistoricalTeamSummaries(history,currentRosters){
+  // Match prior teams by manager first (roster numbers can change), then by ID.
   const current=(currentRosters||history?.[0]?.rosters||[]);
   const summaries=new Map();
   const ownerByRoster=new Map(current.map(r=>[num(r.roster_id),String(r.owner_id||"")]));
@@ -172,6 +180,7 @@ export function buildHistoricalTeamSummaries(history,currentRosters){
 function meanNumbers(values){return values.length?values.reduce((a,b)=>a+num(b),0)/values.length:0;}
 
 export function aggregatePlayerProduction(matchups){
+  // m maps each Sleeper player ID to running production totals and weekly data.
   const m=new Map();
   for(const [weekText,entries] of Object.entries(matchups)){
     const week=Number(weekText);
@@ -193,6 +202,7 @@ export function teamName(user,rosterId){return user?.metadata?.team_name||user?.
 export function rosterPoints(settings,prefix="fpts"){return num(settings?.[prefix])+num(settings?.[`${prefix}_decimal`])/100}
 
 export function riskFor(p){
+  // Transparent rule-based risk score; reasons records why points were added.
   let score=0,reasons=[];const age=nullable(p.age),pos=p.position;
   if(age!==null){
     let a=0;
@@ -214,6 +224,7 @@ export function riskFor(p){
 }
 
 export function minCostLineup(slots,players){
+  // Minimizes negative projected points, which maximizes a legal lineup's PPG.
   const candidates=players.filter(p=>p.rosterStatus!=="Taxi"&&num(p.expectedPpg)>0);
   const nSlots=slots.length,nPlayers=candidates.length,N=2+nSlots+nPlayers,S=0,T=N-1,graph=Array.from({length:N},()=>[]);
   function add(u,v,cap,cost,meta=null){const a={to:v,rev:graph[v].length,cap,cost,meta},b={to:u,rev:graph[u].length,cap:0,cost:-cost,meta:null};graph[u].push(a);graph[v].push(b)}
@@ -249,6 +260,8 @@ export function classFranchise(rank,n){
 export function classCss(c){if(c.includes("Favorite")||c.includes("Elite"))return "class-favorite";if(c.includes("Strong"))return "class-strong";if(c.includes("Fringe")||c.includes("Middle")||c.includes("Mixed"))return "class-fringe";return "class-rebuild"}
 
 export function buildPickOwnership(bundle,futureYears,teamMap,raPickData){
+  // Starts each future pick with its original roster, then applies trades so the
+  // report credits value to its current owner. raPickData supplies market values.
   const year0=Number(bundle.league.season)+1;
   const rounds=clamp(num(bundle.league.settings?.draft_rounds,4),1,8);
   const ownership=[];const raw=new Map();
@@ -314,6 +327,8 @@ export function ordinal(n){
 }
 
 export function assignPlayerPositionTiers(players){
+  // A positional percentile becomes an easy-to-read tier, avoiding QB-vs-WR
+  // comparisons that would not be meaningful in fantasy lineup decisions.
   const groups=new Map();
   for(const p of players){
     const pos=p.position||"Other";
@@ -334,6 +349,8 @@ export function assignPlayerPositionTiers(players){
 }
 
 export function syncTeamPlayerReferences(analysis){
+  // Reconnect copied team lineup records to their canonical player records after
+  // a saved report is loaded, so later view-only calculations stay consistent.
   const playerMap=new Map((analysis.players||[]).map(p=>[String(p.sleeperId),p]));
   for(const team of analysis.teams||[]){
     team.players=(analysis.players||[]).filter(p=>p.rosterId===team.rosterId);

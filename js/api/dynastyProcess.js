@@ -4,6 +4,9 @@ import { API } from "../config.js";
       loadJsonSnapshot,
     } from "./http.js";
 
+    // Parses CSV locally because DynastyProcess publishes its lookup data as CSV.
+    // rows is the completed table, row is the record being built, and cell is
+    // the current field. quoted prevents commas inside names from splitting a field.
     export function parseCSV(text){
   const rows=[];let row=[],cell="",quoted=false;
   for(let i=0;i<text.length;i++){
@@ -20,6 +23,8 @@ import { API } from "../config.js";
   return rows.slice(1).map(r=>Object.fromEntries(h.map((k,i)=>[k,r[i]??""])));
 }
 
+    // Uses the packaged snapshot first, then downloads both the ID crosswalk
+    // and the valuation table needed to match it to Sleeper players.
     export async function loadDynastyProcessData() {
       const snapshot = await loadJsonSnapshot(
         "./data/dynasty-process.json",

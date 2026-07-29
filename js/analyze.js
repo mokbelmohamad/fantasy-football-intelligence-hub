@@ -1,4 +1,6 @@
 
+// Central workflow: download data, reconcile player records, calculate team
+// scores, then create the report consumed by every view.
 import { APP_VERSION } from "./config.js";
 import { state } from "./state.js";
 import { idbSet } from "./storage.js";
@@ -81,6 +83,7 @@ async function completeMinimumLoading(startedAt, minimumMs){
 }
 
 export async function analyze(force=false){
+  // force means the user chose live player data over local cached snapshots.
   const leagueId=$("#leagueId").value.trim();
   if(!/^\d{10,25}$/.test(leagueId)){log("Enter a valid numeric Sleeper league ID.");return}
   const startedAt=Date.now(),minimumLoadingMs=7000+Math.floor(Math.random()*3001);
@@ -132,6 +135,8 @@ sourceStatuses.push({name:"RosterAudit projections",status:external[1].status===
 sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfilled"?"ok":"warn",detail:external[3].status==="fulfilled"?external[3].value.source:"unavailable"});
     setSources(sourceStatuses);
 
+    // Lookup maps avoid repeated searches. dp = DynastyProcess, ra =
+    // RosterAudit, rp = RosterAudit projection, and sl = Sleeper projection.
     const users=new Map(bundle.users.map(u=>[String(u.user_id),u]));
     const teamMap=new Map(bundle.rosters.map(r=>[num(r.roster_id),teamName(users.get(String(r.owner_id)),r.roster_id)]));
     const production=aggregatePlayerProduction(matchups);
@@ -166,6 +171,8 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
         const valRA=nullable(ra["1qb"]??ra["sf"]??rp.dynasty_val);
         const valDP=nullable(formatKey.startsWith("sf")?dp.value_2qb:dp.value_1qb);
         const vals=[valRA,valDP].filter(x=>x!==null),dynastyValue=vals.length?Math.round(mean(vals)):0;
+        // p is the normalized player record shared across all views: identity,
+        // roster role, actual performance, forecast, market value, and risk.
         const p={
           rosterId:num(roster.roster_id),fantasyTeam:teamMap.get(num(roster.roster_id)),manager:users.get(String(roster.owner_id))?.display_name||"",
           sleeperId:id,name,position:sp.position||idr.position||"",nflTeam:sp.team||idr.team||"",age:nullable(sp.age??idr.age??dp.age),
@@ -201,6 +208,7 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
     }
 
     log("Solving legal optimal lineups and draft-pick ownership…",68);
+    // slots are required starters; pickOwnership applies traded-pick records.
     const slots=starterSlots(bundle.league);
     const pickOwnership=buildPickOwnership(bundle,pickHorizon.years,teamMap,raPicks);
     const prior=history[1]||null;
@@ -230,6 +238,7 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
     }
 
     log("Ranking teams and generating strategic insights…",80);
+    // Each metric array is the league-wide comparison group for percentiles.
     const metrics={
       projection:teams.map(t=>t.lineupPpg),depth:teams.map(t=>t.depth),dynasty:teams.map(t=>t.totalValue),risk:teams.map(t=>t.risk),
       picks:teams.map(t=>t.pickCapital),young:teams.map(t=>t.youngValue)
@@ -268,6 +277,7 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
     for(const t of teams)t.insights=buildTeamInsights(t,teams);
 
     const unsupportedSlots=slots.filter(s=>["DL","LB","DB","IDP_FLEX"].includes(s));
+    // The portable report saved in the browser and handed to every rendering view.
     const analysis={
       appVersion:APP_VERSION,generatedAt:new Date().toISOString(),leagueId,leagueName:bundle.league.name,season:currentSeason,
       leagueStatus:bundle.league.status,currentWeek:maxWeek,totalRosters:bundle.rosters.length,formatKey,formatLabel:scoringFormatLabel(formatKey),

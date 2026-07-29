@@ -1,3 +1,5 @@
+// Player-tier screen. Its controls change only presentation order/filtering;
+// tier scores themselves were calculated before the report reached this view.
 import { state } from "../state.js";
 import { $, esc, fmt, intFmt } from "../utils.js";
 import {
@@ -13,6 +15,7 @@ export function renderTiers(){
 }
 
 export function renderTierBoard(){
+  // q, pos, level, roster, and sort represent the five visible filter controls.
   const a=state.analysis;let rows=[...(a.tierPlayers||[])];const q=($('#tierSearch')?.value||'').toLowerCase(),pos=$('#tierPosition')?.value||'',level=$('#tierLevel')?.value||'',roster=$('#tierRoster')?.value||'',sort=$('#tierSort')?.value||'composite';
   rows=rows.filter(p=>(!q||p.name.toLowerCase().includes(q))&&(!pos||p.position===pos)&&(!level||p.analysisTier===level)&&(!roster||(roster==='Rostered'?p.rosterId>0:p.rosterStatus==='Free Agent')));
   const sorter={composite:(a,b)=>b.tierComposite-a.tierComposite,ppg:(a,b)=>b.expectedPpg-a.expectedPpg,value:(a,b)=>b.dynastyValue-a.dynastyValue,longevity:(a,b)=>b.longevityScore-a.longevityScore}[sort];rows.sort(sorter);

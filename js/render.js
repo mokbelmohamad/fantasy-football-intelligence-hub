@@ -1,3 +1,5 @@
+// Rendering coordinator: converts an already-calculated analysis into screen
+// content. It never calls external APIs or changes the report's scoring rules.
 import { state } from "./state.js";
 import { deriveStarterCount, scoringFormatLabel } from "./league.js";
 import {
@@ -60,6 +62,7 @@ export {
 };
 
 export function teamSelectOptions(selected) {
+  // selected is the focused team; its option is marked so both pickers match.
   return state.analysis.teams
     .map((team) => (
       `<option value="${esc(team.team)}" ${team.team === selected ? "selected" : ""}>`
@@ -69,6 +72,7 @@ export function teamSelectOptions(selected) {
 }
 
 export function populateTeamSelectors() {
+  // Synchronizes desktop and mobile pickers after loading or switching reports.
   const first = state.analysis?.teams?.[0]?.team || "";
 
   if (!state.analysis?.teams?.some((team) => team.team === state.selectedTeam)) {
@@ -92,6 +96,7 @@ function viewFromLocation() {
 }
 
 export function switchTab(name, options = {}) {
+  // name is the view/tab ID. fromHistory avoids duplicate Back/Forward entries.
   const next = VALID_VIEWS.has(name) ? name : "dashboard";
 
   $$(".view").forEach((view) => {
@@ -141,6 +146,7 @@ function cleanFormatLabel(value) {
 }
 
 export function leagueSettingsSummary(analysis) {
+  // Derives a short safe header summary even for reports saved by older versions.
   const starters = deriveStarterCount(analysis);
   const teamCount = analysis.totalRosters || analysis.teams?.length || 0;
   const canonicalFormat = analysis.formatKey
@@ -154,6 +160,7 @@ export function leagueSettingsSummary(analysis) {
 }
 
 export function updateHeaderContext() {
+  // Rewrites the shared header to reflect the active report and focused roster.
   if (!state.analysis) {
     return;
   }
@@ -235,6 +242,7 @@ export function showLanding() {
 }
 
 export function setSelectedTeam(teamName) {
+  // Stores the focus selection, updates both controls, and redraws dependent tabs.
   if (!state.analysis?.teams?.some((team) => team.team === teamName)) {
     return;
   }
@@ -254,6 +262,7 @@ export function setSelectedTeam(teamName) {
 }
 
 export function renderAll() {
+  // Every renderer reads the same state.analysis snapshot.
   populateTeamSelectors();
   renderDashboard();
   renderTeams();
@@ -268,6 +277,7 @@ export function renderAll() {
 }
 
 export function csvFrom(rows, columns) {
+  // rows are report records; columns maps each export heading to a record field.
   return [
     columns.map((column) => csvEscape(column.label)).join(","),
     ...rows.map((row) => (

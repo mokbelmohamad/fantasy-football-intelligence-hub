@@ -12,6 +12,8 @@ export async function getNflState() {
 }
 
 export async function loadPlayerDirectory(force, sources) {
+  // Prefer the checked-in snapshot, then today's browser cache, before asking
+  // Sleeper live. force skips both caches at the user's request.
   const snapshot = !force
     ? await loadJsonSnapshot(
         "./data/players.json",
@@ -52,6 +54,7 @@ export async function loadPlayerDirectory(force, sources) {
 }
 
 export async function getLeagueBundle(id) {
+  // A "bundle" groups all Sleeper records required to analyze one league.
   const [league, users, rosters, tradedPicks, drafts] = await Promise.all([
     fetchJson(`${API.sleeper}/league/${id}`),
     fetchJson(`${API.sleeper}/league/${id}/users`),
@@ -70,6 +73,7 @@ export async function getLeagueBundle(id) {
 }
 
 export async function getHistory(currentBundle, depth) {
+  // Follow Sleeper's linked previous_league_id chain up to the requested depth.
   const history = [currentBundle];
   let id = currentBundle.league.previous_league_id;
 
@@ -87,6 +91,7 @@ export async function getHistory(currentBundle, depth) {
 }
 
 export async function getMatchups(leagueId, maxWeek) {
+  // Sleeper exposes one week per request, so collect each completed week.
   if (maxWeek < 1) {
     return {};
   }
