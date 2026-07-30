@@ -177,6 +177,49 @@ export function buildHistoricalTeamSummaries(history,currentRosters){
   return summaries;
 }
 
+// Produces a chart-ready seasonal history for each current roster. Teams are
+// matched by owner first so a Sleeper roster-number change does not break the
+// franchise timeline. Each weekly value is that roster's Sleeper matchup score.
+export function buildHistoricalTeamWeeklyPpg(history, matchupHistory, currentRosters){
+  const current=currentRosters||history?.[0]?.rosters||[];
+  const out=new Map(current.map(r=>[num(r.roster_id),[]]));
+  for(const bundle of history||[]){
+    const leagueId=String(bundle?.league?.league_id||"");
+    const season=num(bundle?.league?.season);
+    const byOwner=new Map((bundle.rosters||[]).map(r=>[String(r.owner_id||""),r]));
+    const byRoster=new Map((bundle.rosters||[]).map(r=>[num(r.roster_id),r]));
+    const seasonMatchups=matchupHistory?.get(leagueId)||{};
+    for(const currentRoster of current){
+      const rosterId=num(currentRoster.roster_id);
+      const matched=byOwner.get(String(currentRoster.owner_id||""))||byRoster.get(rosterId);
+      if(!matched)continue;
+      const weekly=Object.entries(seasonMatchups).map(([week,entries])=>{
+        const weekNumber=num(week);
+        // Historical API data can include Week 18. It falls after the fantasy
+        // championship and therefore is not a valid team-history data point.
+        if(weekNumber<1||weekNumber>17)return null;
+        const entry=(entries||[]).find(item=>num(item.roster_id)===num(matched.roster_id));
+        // Do not turn a missing score into zero. A numeric zero is retained as
+        // a real reported score; absent/non-numeric scores are not chart data.
+        const points=entry?.points;
+        return Number.isFinite(Number(points))?{week:weekNumber,points:Number(points)}:null;
+      }).filter(Boolean).sort((a,b)=>a.week-b.week);
+      const settings=matched.settings||{};
+      out.get(rosterId).push({
+        season,
+        complete:bundle?.league?.status==="complete",
+        weekly,
+        wins:num(settings.wins),
+        losses:num(settings.losses),
+        ties:num(settings.ties),
+        ppg:weekly.length?meanNumbers(weekly.map(item=>item.points)):0,
+      });
+    }
+  }
+  for(const seasons of out.values())seasons.sort((a,b)=>a.season-b.season);
+  return out;
+}
+
 function meanNumbers(values){return values.length?values.reduce((a,b)=>a+num(b),0)/values.length:0;}
 
 export function aggregatePlayerProduction(matchups){
@@ -184,6 +227,9 @@ export function aggregatePlayerProduction(matchups){
   const m=new Map();
   for(const [weekText,entries] of Object.entries(matchups)){
     const week=Number(weekText);
+    // Week 18 is outside the fantasy schedule and cannot influence player,
+    // roster, or team performance metrics.
+    if(!Number.isFinite(week)||week<1||week>17)continue;
     for(const entry of entries||[]){
       const starters=new Set((entry.starters||[]).map(String).filter(x=>x!=="0"));
       const points=entry.players_points||{};
@@ -220,7 +266,10 @@ export function riskFor(p){
   const games=nullable(p.projectedGames);
   if(games!==null){if(games<10){score+=25;reasons.push(`only ${games} projected games`)}else if(games<14){score+=15;reasons.push(`only ${games} projected games`)}else if(games<16){score+=5;reasons.push(`${games} projected games`)}}
   if(num(p.expectedPpg)>=12&&num(p.dynastyValue)<1000){score+=12;reasons.push("production/value fragility")}
-  score=Math.min(100,score);return {score,tier:score>=60?"Very High":score>=40?"High":score>=20?"Moderate":"Low",reasons};
+  // Keep the original score/tier names for callers while also exposing the
+  // normalized player fields consumed by report tables and candidate cards.
+  score=Math.min(100,score);const tier=score>=60?"Very High":score>=40?"High":score>=20?"Moderate":"Low";
+  return {score,tier,riskScore:score,riskTier:tier,reasons};
 }
 
 export function minCostLineup(slots,players){

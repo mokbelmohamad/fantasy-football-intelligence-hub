@@ -118,3 +118,21 @@ test("header summary prefers canonical formatKey and appends derived starter cou
   });
   assert.equal(summary, "12 teams · 1QB PPR · Start 10");
 });
+
+test("Dashboard is league-centric while Team Insights owns focused-team summaries", async () => {
+  const dashboard = await read("js/views/dashboard.js");
+  const teams = await read("js/views/teams.js");
+  assert.doesNotMatch(dashboard, /Championship Outlook & Roster Review/);
+  assert.doesNotMatch(dashboard, /<h2 id="currentSeasonTitle">Current Season/);
+  assert.match(dashboard, /League Scoring History/);
+  assert.match(teams, /teamCurrentSeasonTitle/);
+  assert.match(teams, /teamOverallPerformanceTitle/);
+});
+
+test("the former Optimal Lineups tab is reserved for the Coming Soon feature", async () => {
+  const html = await read("index.html");
+  const lineups = await read("js/views/lineups.js");
+  assert.match(html, /data-view="lineups">Coming Soon!/);
+  assert.match(lineups, /innerHTML=""/);
+  assert.doesNotMatch(lineups, /All League Lineups/);
+});

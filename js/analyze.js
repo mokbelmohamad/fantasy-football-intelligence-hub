@@ -19,6 +19,7 @@ import {
   collectProjectionPlayers,
   field,
   getHistory,
+  getHistoryMatchups,
   getLeagueBundle,
   getMatchups,
   getNflState,
@@ -33,6 +34,7 @@ import {
   aggregatePlayerProduction,
   assignPlayerPositionTiers,
   buildHistoricalTeamSummaries,
+  buildHistoricalTeamWeeklyPpg,
   buildPickOwnership,
   classCurrent,
   classFranchise,
@@ -106,11 +108,17 @@ export async function analyze(force=false){
     setupNode.classList.remove("hidden");
     const currentSeason=Number(bundle.league.season);
     let maxWeek=0;
-    if(bundle.league.status==="complete")maxWeek=18;
-    else if(Number(nflState.season)===currentSeason&&["regular","post"].includes(nflState.season_type))maxWeek=clamp(num(nflState.leg||nflState.week),0,18);
+    // The fantasy season ends with the Week 17 championship; NFL Week 18 does
+    // not belong in this league's matchup, player, or team metrics.
+    if(bundle.league.status==="complete")maxWeek=17;
+    // Sleeper's leg/week represents the active NFL week. Only request prior
+    // legs so the history chart never includes a live or placeholder matchup.
+    else if(Number(nflState.season)===currentSeason&&["regular","post"].includes(nflState.season_type))maxWeek=clamp(num(nflState.leg||nflState.week)-1,0,17);
     log(`Loading rosters and ${maxWeek} weeks of current-season data…`,20);
     const matchups=await getMatchups(leagueId,maxWeek);
     sourceStatuses.push({name:"Sleeper matchups",status:Object.keys(matchups).length?"ok":"warn",detail:`${Object.keys(matchups).length} weeks`});setSources(sourceStatuses);
+    log("Loading linked-season matchup history…",25);
+    const historyMatchups=await getHistoryMatchups(history,matchups,maxWeek);
 
     log("Loading rosters and player data…",30);
     const playerDirectory=await loadPlayerDirectory(force,sourceStatuses);setSources(sourceStatuses);
@@ -271,7 +279,8 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
       t.biggestWeakness=rankedPositions[0]?.pos||"None";
     }
     const historicalSummaries=buildHistoricalTeamSummaries(history,bundle.rosters);
-    for(const t of teams)Object.assign(t,{historical:historicalSummaries.get(t.rosterId)||null});
+    const weeklyHistories=buildHistoricalTeamWeeklyPpg(history,historyMatchups,bundle.rosters);
+    for(const t of teams)Object.assign(t,{historical:historicalSummaries.get(t.rosterId)||null,weeklyHistory:weeklyHistories.get(t.rosterId)||[]});
     for(const t of teams){t.currentClass=classCurrent(t.currentRank,teams.length);t.franchiseClass=classFranchise(t.franchiseRank,teams.length)}
     assignPlayerPositionTiers(playerRows);
     for(const t of teams)t.insights=buildTeamInsights(t,teams);

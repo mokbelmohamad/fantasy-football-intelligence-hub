@@ -2,17 +2,14 @@
 
 ## Purpose
 
-Optimal Lineups page renderer.
+Coming Soon placeholder renderer.
 
 ## Responsibilities
-- Render focus-team legal lineup.
-- Render all league lineups with projection, value, risk, and positional tier detail.
+- Keep the tab blank until the future feature is ready.
+- Keep optimal-lineup evidence on Team Insights to avoid duplicate reporting.
 
 ## Dependencies
-- `state.js`
 - `utils.js`
-- `league.js`
-- `views/shared.js`
 
 ## Used by
 - render.js

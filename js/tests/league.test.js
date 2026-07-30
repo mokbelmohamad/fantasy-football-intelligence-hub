@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {
+  aggregatePlayerProduction,
   buildHistoricalTeamSummaries,
+  buildHistoricalTeamWeeklyPpg,
   buildPickOwnership,
   detectFuturePickHorizon,
   describeDetectedLeague,
@@ -38,6 +40,8 @@ test("riskFor identifies a high-risk player", () => {
     dynastyValue: 900,
   });
   assert.equal(risk.tier, "Very High");
+  assert.equal(risk.riskTier, "Very High");
+  assert.equal(risk.riskScore, risk.score);
   assert.ok(risk.score >= 60);
 });
 
@@ -136,6 +140,33 @@ test("buildHistoricalTeamSummaries excludes incomplete seasons from average fini
   assert.equal(summary.averageFinish,null);
   assert.equal(summary.games,0);
   assert.equal(summary.historicalPpgRank,null);
+});
+
+test("buildHistoricalTeamWeeklyPpg follows an owner across league seasons",()=>{
+  const history=[
+    {league:{league_id:"current",season:"2026"},rosters:[{roster_id:1,owner_id:"a",settings:{wins:2,losses:1}}]},
+    {league:{league_id:"prior",season:"2025"},rosters:[{roster_id:7,owner_id:"a",settings:{wins:9,losses:5}}]},
+  ];
+  const matchups=new Map([
+    ["current",{1:[{roster_id:1,points:120}],2:[{roster_id:1,points:130}],3:[{roster_id:1}],18:[{roster_id:1,points:190}]}],
+    ["prior",{1:[{roster_id:7,points:110}],2:[{roster_id:7,points:140}]}],
+  ]);
+  const seasons=buildHistoricalTeamWeeklyPpg(history,matchups,history[0].rosters).get(1);
+  assert.deepEqual(seasons.map(item=>item.season),[2025,2026]);
+  assert.equal(seasons[0].ppg,125);
+  assert.equal(seasons[0].complete,false);
+  assert.equal(seasons[1].wins,2);
+  assert.deepEqual(seasons[1].weekly,[{week:1,points:120},{week:2,points:130}]);
+});
+
+test("aggregatePlayerProduction excludes Week 18 from team performance evidence",()=>{
+  const production=aggregatePlayerProduction({
+    17:[{players:["player"],players_points:{player:12},starters:["player"]}],
+    18:[{players:["player"],players_points:{player:30},starters:["player"]}],
+  }).get("player");
+  assert.equal(production.total,12);
+  assert.equal(production.weeks,1);
+  assert.deepEqual(production.weekly,[{week:17,points:12}]);
 });
 
 test("deriveStarterCount uses stored and roster-position fallbacks", async () => {

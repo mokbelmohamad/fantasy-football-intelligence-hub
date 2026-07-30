@@ -7,6 +7,10 @@ import {
   loadJsonSnapshot,
 } from "./http.js";
 
+// The fantasy league concludes with its Week 17 championship. NFL Week 18 is
+// outside the fantasy schedule and must never affect team performance data.
+const LAST_LEAGUE_WEEK = 17;
+
 export async function getNflState() {
   return fetchJson(`${API.sleeper}/state/nfl`);
 }
@@ -92,11 +96,13 @@ export async function getHistory(currentBundle, depth) {
 
 export async function getMatchups(leagueId, maxWeek) {
   // Sleeper exposes one week per request, so collect each completed week.
-  if (maxWeek < 1) {
+  // Enforce the fantasy championship cutoff regardless of caller input.
+  const completedWeek = Math.min(Math.max(Number(maxWeek) || 0, 0), LAST_LEAGUE_WEEK);
+  if (completedWeek < 1) {
     return {};
   }
 
-  const weeks = Array.from({ length: maxWeek }, (_, index) => index + 1);
+  const weeks = Array.from({ length: completedWeek }, (_, index) => index + 1);
   const results = await allSettledMap(
     weeks,
     (week) => fetchJson(`${API.sleeper}/league/${leagueId}/matchups/${week}`),
@@ -115,4 +121,30 @@ export async function getMatchups(leagueId, maxWeek) {
   });
 
   return matchups;
+}
+
+// Collect matchup records for every linked season. The current season's data is
+// reused rather than fetched twice; older seasons are limited to two concurrent
+// leagues to avoid overwhelming Sleeper while still keeping the report usable.
+export async function getHistoryMatchups(history, currentMatchups, currentMaxWeek) {
+  const byLeagueId = new Map();
+  const current = history?.[0];
+  if (current?.league?.league_id) {
+    byLeagueId.set(String(current.league.league_id), currentMatchups || {});
+  }
+
+  const previous = (history || []).slice(1);
+  const results = await allSettledMap(previous, async (bundle) => {
+    const leagueId = String(bundle?.league?.league_id || "");
+    if (!leagueId) return { leagueId, matchups: {} };
+    const maxWeek = bundle.league.status === "complete" ? LAST_LEAGUE_WEEK : currentMaxWeek;
+    return { leagueId, matchups: await getMatchups(leagueId, maxWeek) };
+  }, 2);
+
+  results.forEach((result) => {
+    if (result.status === "fulfilled" && result.value.leagueId) {
+      byLeagueId.set(result.value.leagueId, result.value.matchups);
+    }
+  });
+  return byLeagueId;
 }

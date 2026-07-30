@@ -177,6 +177,22 @@ The recommendation is to seek an improvement only when the expected lineup gain 
   ]};
 }
 
+function buildCandidate(player){
+  const age=nullable(player.age),position=player.position;
+  const maxAge={QB:27,RB:25,WR:26,TE:27}[position];
+  return maxAge!==undefined&&age!==null&&age<=maxAge
+    &&num(player.expectedPpg)>=6&&num(player.dynastyValue)>=1000
+    &&player.rosterStatus!=="Free Agent";
+}
+
+function shopCandidate(player){
+  const age=nullable(player.age),position=player.position;
+  const minAge={QB:33,RB:27,WR:29,TE:30}[position];
+  return minAge!==undefined&&age!==null&&age>=minAge
+    &&num(player.expectedPpg)>=5&&num(player.dynastyValue)>=500
+    &&player.rosterStatus!=="Free Agent";
+}
+
 export function buildTeamInsights(team,allTeams){
   const strengths=[],weaknesses=[];
   for(const pos of ["QB","RB","WR","TE"]){
@@ -255,6 +271,14 @@ export function buildTeamInsights(team,allTeams){
     draftReview(team,allTeams),
   ];
   const outlook=championshipOutlook(team,allTeams,positionReviews,depthRank);
+  // Build: young, playable, valuable rostered assets. Shop: older, still
+  // marketable contributors. A player cannot appear in both lists, even when
+  // their current value and age happen to meet both screening thresholds.
+  const build=[...(team.players||[])].filter(buildCandidate)
+    .sort((a,b)=>num(b.dynastyValue)-num(a.dynastyValue)||num(b.expectedPpg)-num(a.expectedPpg)).slice(0,5);
+  const buildIds=new Set(build.map(player=>String(player.sleeperId)));
+  const shop=[...(team.players||[])].filter(player=>!buildIds.has(String(player.sleeperId))&&shopCandidate(player))
+    .sort((a,b)=>num(b.dynastyValue)-num(a.dynastyValue)||num(b.expectedPpg)-num(a.expectedPpg)).slice(0,5);
   return {
     strengths:strengths.slice(0,5),
     weaknesses:weaknesses.slice(0,5),
@@ -262,6 +286,6 @@ export function buildTeamInsights(team,allTeams){
     strategyEvidence:outlook.explanation,
     championshipOutlook:outlook,
     positionReviews,
-    build:[],shop:[]
+    build,shop
   };
 }

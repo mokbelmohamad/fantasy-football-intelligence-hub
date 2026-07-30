@@ -2,18 +2,21 @@
 
 ## Purpose
 
-Renders the league dashboard and focus-team analytical summaries.
+Renders the league-wide dashboard, scoring-history chart, and power rankings.
+Focus-team season, historical-performance, and roster-review details live on
+Team Insights.
 
 ## Version 2.1 responsibilities
 
-- Render separate Current Season and Overall Performance summary sections.
-- Display Contender Rank, Expected PPG, gaps to the leader and league average, actual current standing/record, historical average PPG and rank, average finish, cumulative record, and win percentage.
 - Render League Power Rankings across the full content width.
+- Render the league scoring-history chart: every explicitly reported completed
+  matchup score through the Week 17 fantasy championship is a weekly point,
+  with the focused roster emphasized and all
+  other rosters shown for comparison.
 - Retain Class, EPPG, Depth, PF, Dynasty Value, Risk, Future 1sts, Contender Index, and Dynasty Rank; add gap to #1, QB/RB/WR/TE/FLEX ranks, biggest strength, and biggest weakness.
 - Replace the desktop ranking table with expandable team cards on mobile.
-- Render Championship Outlook with an expanded plain-language explanation, supporting metrics, and explicit hold/no-move outcomes.
-- Render dedicated Team Strengths and Areas to Improve reviews beneath the championship outlook.
-- Render narrative-first position reviews with structured data for QB, RB, WR, TE, FLEX, Bench Depth, and Draft Capital.
+- Direct users to Team Insights for focused-team current-season, historical, and
+  championship-recommendation details.
 
 ## Dependencies
 
