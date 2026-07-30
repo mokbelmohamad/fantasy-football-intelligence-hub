@@ -5,7 +5,7 @@
 Central application version and external endpoint configuration.
 
 ## Responsibilities
-- Expose APP_VERSION without changing the displayed product baseline.
+- Expose APP_VERSION and external endpoint configuration.
 - Define Sleeper, RosterAudit, and DynastyProcess endpoint constants.
 
 ## Dependencies
@@ -17,8 +17,10 @@ Central application version and external endpoint configuration.
 - update design references
 
 ## Maintenance notes
-- Version remains 2.1.0 for this documentation-only update.
+- APP_VERSION remains 2.2.1 for this documentation update.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.1. This release sets `APP_VERSION` to 2.1.0.
+Documented for Fantasy Football Intelligence Hub Version 2.2.1. This
+documentation reflects the merged feature set and does not change
+`APP_VERSION`.

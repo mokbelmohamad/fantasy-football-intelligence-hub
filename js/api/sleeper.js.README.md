@@ -6,6 +6,9 @@ Sleeper-specific league and player retrieval.
 
 ## Responsibilities
 - Load NFL state, league bundles, linked history, and matchup weeks.
+- Reuse current-season matchup data and fetch linked-season matchup histories.
+- Limit matchup retrieval to Weeks 1–17 because the fantasy championship ends
+  before NFL Week 18.
 - Prefer local player snapshots, then IndexedDB, then live Sleeper data.
 - Update source-status details.
 
@@ -23,4 +26,6 @@ Sleeper-specific league and player retrieval.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.0. This documentation update does not change `APP_VERSION` or create a new application release.
+Documented for Fantasy Football Intelligence Hub Version 2.2.1. This
+documentation reflects the merged feature set and does not change
+`APP_VERSION`.

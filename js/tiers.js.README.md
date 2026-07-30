@@ -24,7 +24,7 @@ Player tier scoring and explainable team insight generation.
 
 - `analyze.js`
 - `render.js`
-- `views/dashboard.js`
+- `views/teams.js`
 - `views/tiers.js`
 - tests
 
@@ -35,4 +35,6 @@ Player tier scoring and explainable team insight generation.
 
 ## Version baseline
 
-Updated for Fantasy Football Intelligence Hub Version 2.1 / `APP_VERSION` 2.1.0.
+Documented for Fantasy Football Intelligence Hub Version 2.2.1. This
+documentation reflects the merged feature set and does not change
+`APP_VERSION`.

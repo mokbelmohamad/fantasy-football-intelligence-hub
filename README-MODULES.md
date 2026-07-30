@@ -27,6 +27,12 @@ to live sources when snapshots are empty or unavailable.
 `js/render.js` remains the view orchestrator. Each page now has its own module.
 `js/analyze.js` loads data through provider-specific API modules.
 
-- Dashboard v2.1 renders a championship outlook followed by analytical Team Strengths and Areas to Improve reviews, with structured supporting metrics beneath each narrative finding.
+- The Dashboard is league-centric: it renders League Scoring History and League
+  Power Rankings. Focused-team recommendations, performance, reviews, and
+  lineup evidence belong to Team Insights.
+- Weekly matchup scoring is capped at the Week 17 fantasy championship. NFL
+  Week 18 is excluded from team performance metrics and chart series.
+- The former Optimal Lineups tab is intentionally blank under the
+  **Coming Soon!** label; its evidence remains on Team Insights.
 
 The league panel now uses a labeled “League: [name]” heading and displays Sleeper ID, team count, detected settings, active-year range, season count, and the latest analysis timestamp in a single aligned panel.
