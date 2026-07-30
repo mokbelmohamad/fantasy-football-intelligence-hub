@@ -1,6 +1,8 @@
 # JavaScript and Automation File Documentation
 
-This index links every JavaScript runtime, test, and Node automation file to its companion README. The application baseline remains Version 2.0.
+This index links every JavaScript runtime, test, and Node automation file to
+its companion README. Documentation reflects the current Version 2.2.1
+application baseline and its merged Dashboard/Team Insights update.
 
 - [`js/analyze.js`](../js/analyze.js.README.md)
 - [`js/api.js`](../js/api.js.README.md)
@@ -19,6 +21,9 @@ This index links every JavaScript runtime, test, and Node automation file to its
 - [`js/storage.js`](../js/storage.js.README.md)
 - [`js/tests/league.test.js`](../js/tests/league.test.js.README.md)
 - [`js/tests/tiers.test.js`](../js/tests/tiers.test.js.README.md)
+- [`js/tests/header.test.js`](../js/tests/header.test.js.README.md)
+- [`js/tests/dashboard.test.js`](../js/tests/dashboard.test.js.README.md)
+- [`js/tests/teams.test.js`](../js/tests/teams.test.js.README.md)
 - [`js/tiers.js`](../js/tiers.js.README.md)
 - [`js/utils.js`](../js/utils.js.README.md)
 - [`js/views/dashboard.js`](../js/views/dashboard.js.README.md)

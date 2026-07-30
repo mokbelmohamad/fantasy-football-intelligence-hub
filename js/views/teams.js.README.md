@@ -19,7 +19,7 @@ Team Insights page renderer.
 `buildHistoricalTeamWeeklyPpg()` in `js/league.js`. The Dashboard uses it for
 league scoring history; it matches previous seasons by owner before falling
 back to roster ID, so a Sleeper roster-number change does not break the visual
-history.
+history. Week 18 is excluded because it follows the fantasy championship.
 
 Risk is calculated in `riskFor()` in `js/league.js`. It exposes both legacy
 `score`/`tier` fields and normalized `riskScore`/`riskTier` fields so table and
@@ -40,7 +40,7 @@ The two lists never overlap.
 
 ## Maintenance notes
 - Uses analysis insights prepared by `tiers.js` and the shared detailed insight
-  cards from `views/shared.js`, matching the Dashboard evidence presentation.
+  cards from `views/shared.js`, keeping Team Insights evidence consistent.
 
 ## Version baseline
 

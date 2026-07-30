@@ -14,8 +14,8 @@ Shared presentation helpers for tables and evidence blocks.
 - `utils.js`
 
 ## Used by
-- Dashboard and Team Insights use the shared detailed insight-card renderer;
-  lineup, trade, and player views use the table/evidence helpers.
+- Team Insights uses the shared detailed insight-card renderer; Dashboard,
+  lineup, trade, and player views use the relevant table or evidence helpers.
 
 ## Maintenance notes
 - Keep page-independent markup in this module.

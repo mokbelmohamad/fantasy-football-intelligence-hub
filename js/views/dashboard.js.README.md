@@ -6,7 +6,7 @@ Renders the league-wide dashboard, scoring-history chart, and power rankings.
 Focus-team season, historical-performance, and roster-review details live on
 Team Insights.
 
-## Version 2.1 responsibilities
+## Responsibilities
 
 - Render League Power Rankings across the full content width.
 - Render the league scoring-history chart: every explicitly reported completed
@@ -24,4 +24,6 @@ Uses `state.js`, utilities, league classification/rank helpers, and the shared s
 
 ## Version baseline
 
-Updated for Fantasy Football Intelligence Hub Version 2.1 / `APP_VERSION` 2.1.0.
+Documented for Fantasy Football Intelligence Hub Version 2.2.1. This
+documentation reflects the merged feature set and does not change
+`APP_VERSION`.

@@ -5,7 +5,10 @@
 Node tests for core league calculations.
 
 ## Responsibilities
-- Test slot eligibility, percentiles, risk, lineup optimization, and pick ownership.
+- Test slot eligibility, percentiles, risk, lineup optimization, and pick
+  ownership.
+- Test linked-season team history and the Week 17 championship cutoff for
+  player production.
 
 ## Dependencies
 - `node:test`
@@ -21,4 +24,4 @@ Node tests for core league calculations.
 
 ## Version baseline
 
-Updated for Fantasy Football Intelligence Hub Version 2.1.
+Documented for Fantasy Football Intelligence Hub Version 2.2.1.

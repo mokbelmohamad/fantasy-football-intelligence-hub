@@ -1,35 +1,36 @@
- The league panel now uses a labeled “League: [name]” heading and displays Sleeper ID, team count, detected settings, active-year range, season count, and the latest analysis timestamp in a single aligned panel.
-## Version 2.2.1 patch
-
-Version 2.2.1 corrects the active report-tab presentation. Active tabs now retain the exact same dimensions, padding, position, and spacing as inactive tabs. The selected tab is indicated only by the Fantasy Football Intelligence Hub blue background and bold white text, preventing the tab row from overlapping report content. The patch also corrects header starter-count metadata by deriving the count from saved lineup slots, detected league setup, or Sleeper roster positions. When the count cannot be determined, the header omits the field instead of displaying an unavailable message.
-
-## Version 2.2 release
-
-Version 2.2 consolidates application navigation and league context into one polished two-row header. The Focus Team selector sits beside the logo, complete league information is centered with a dedicated Change League action, and creator, release, data-status, and version information are stacked at the far right. Report pages are presented as browser-style tabs along the bottom edge of the header. Page selection is preserved across refreshes and participates in browser Back and Forward navigation.
 # fantasy-football-intelligence-hub
-Fantasy football league analytics, dynasty rankings, player tiers, and weekly trend reporting.
 
-## Version 2.2 design documentation
+Static, browser-based fantasy football league analytics for public Sleeper
+leagues. It combines league history, projections, dynasty market values, roster
+composition, risk, and draft capital into league-wide and focused-team reports.
+
+## Current product experience
+
+- **Dashboard** is league-centric: it provides the League Scoring History chart
+  and League Power Rankings.
+- **Team Insights** is focused-team-centric: it presents a championship
+  recommendation, current-season and overall-performance context, roster and
+  position reviews, Build/Shop candidates, optimal-lineup evidence, and the
+  complete roster.
+- **League Scoring History** plots every reported matchup score through the
+  Week 17 fantasy championship. The focused team is bold; other league teams
+  are faint comparison lines. NFL Week 18 is excluded from all team-performance
+  data.
+- **Coming Soon!** intentionally remains blank while the next feature is being
+  developed. Optimal-lineup evidence is available on Team Insights.
+
+The shared header retains the selected focus team and report page across browser
+history navigation and refreshes.
+
+## Documentation
 
 - [Software Design Specification (PDF)](docs/Fantasy_Football_Intelligence_Hub_Software_Design_Specification.pdf)
 - [Software Design Specification source (DOCX)](docs/Fantasy_Football_Intelligence_Hub_Software_Design_Specification.docx)
+- [Release notes](docs/RELEASE_NOTES_v2.2.1.md)
 - [Architecture diagram](docs/architecture/Fantasy_Football_Intelligence_Hub_Architecture_v2.png)
 - [JavaScript file documentation index](docs/JAVASCRIPT_FILE_DOCUMENTATION_INDEX.md)
 
-This documentation set records the completed Version 2.2 application shell, navigation, dashboard, and analytical behavior.
+## Validation
 
-
-## Version 2.1 release
-
-Version 2.1 simplifies league analysis with automatic setup detection and a paced loading workflow. The dashboard now separates Current Season metrics from Overall Performance metrics, including historical average PPG, historical PPG rank, average finish, cumulative record, and win percentage across matched linked seasons.
-
-### Dashboard ranking and recommendation updates
-
-- League Power Rankings now use the full dashboard width.
-- The standalone Projected Lineup PPG chart has been removed; EPPG remains in the ranking table.
-- Power rankings retain the original Class, EPPG, Depth, PF, Dynasty Value, Risk, Future 1sts, Contender Index, and Dynasty Rank fields, while adding Gap to #1, QB, RB, WR, TE, and FLEX ranks plus each team's biggest strength and weakness.
-- The bottom section is now Championship Outlook & Roster Review, with a detailed narrative recommendation and dedicated Team Strengths and Areas to Improve reviews. Each review now uses analytical plain text followed by structured supporting metrics; the separate Position Group Reviews block has been removed.
-
-
-### Version 2.2 header tabs
-All eight report page options are displayed simultaneously in one equal-width row along the bottom of the global header. The active page retains the same dimensions as every other tab and is identified by a blue background with bold white text.
+Run `npm test`, `npm run validate`, or `npm run check`. The final command
+runs the test suite and project validation together.
