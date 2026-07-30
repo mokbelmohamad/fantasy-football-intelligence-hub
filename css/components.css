@@ -127,6 +127,226 @@ details {
   font-weight: 900;
 }
 
+/* Team Insights desktop report */
+.team-insights-page {
+  display: grid;
+  gap: 22px;
+}
+
+.team-insights-page > .section-title,
+.team-insights-page > .callout {
+  margin-bottom: 0;
+}
+
+.team-insights-page .dashboard-summary-section {
+  margin-bottom: 0;
+}
+
+.team-recommendation,
+.team-kpi-section,
+.team-position-section,
+.team-candidate-section,
+.team-lineup-section,
+.team-roster-section {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--panel2);
+}
+
+.team-recommendation {
+  border-left: 5px solid var(--blue);
+}
+
+.team-recommendation h3,
+.dashboard-summary-heading h3,
+.team-section-heading h3,
+.team-candidate-card h4,
+.team-position-review h4 {
+  margin: 0;
+}
+
+.team-section-heading {
+  display: flex;
+  margin-bottom: 14px;
+  align-items: start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.team-section-heading p,
+.team-position-review-heading p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: .86rem;
+  line-height: 1.45;
+}
+
+.league-history-control {
+  display: grid;
+  min-width: 210px;
+  color: var(--muted);
+  font-size: .75rem;
+  font-weight: 800;
+  gap: 4px;
+}
+
+.league-history-chart-wrap {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  overflow-x: auto;
+}
+
+.league-history-chart-wrap canvas {
+  display: block;
+}
+
+.league-history-legend {
+  display: flex;
+  margin: 0 0 8px 44px;
+  color: var(--muted);
+  font-size: .74rem;
+  gap: 14px;
+}
+
+.league-history-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.league-history-legend i {
+  width: 22px;
+  height: 2px;
+  background: #526578;
+  opacity: .28;
+}
+
+.league-history-legend i.focus {
+  height: 4px;
+  background: var(--blue);
+  opacity: 1;
+}
+
+.team-position-review-grid,
+.team-candidate-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.team-position-review,
+.team-candidate-card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+}
+
+.team-position-review-heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.team-position-review-heading > span {
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--blue) 12%, transparent);
+  color: var(--blue);
+  font-size: .72rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.team-position-review > p {
+  min-height: 66px;
+  margin: 12px 0;
+  line-height: 1.5;
+}
+
+.team-review-data,
+.team-candidate-card dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  gap: 8px;
+}
+
+.team-review-data > div,
+.team-candidate-card dl > div {
+  padding: 8px;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--blue) 5%, var(--panel));
+}
+
+.team-review-data span,
+.team-candidate-card dt {
+  display: block;
+  color: var(--muted);
+  font-size: .68rem;
+  font-weight: 800;
+}
+
+.team-review-data strong,
+.team-candidate-card dd {
+  display: block;
+  margin: 3px 0 0;
+  font-size: .82rem;
+}
+
+.team-candidate-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.team-candidate-section.build {
+  border-top: 4px solid var(--green);
+}
+
+.team-candidate-section.shop {
+  border-top: 4px solid var(--yellow);
+}
+
+.team-empty-copy {
+  margin: 0;
+}
+
+.team-lineup-section th:nth-child(1),
+.team-lineup-section td:nth-child(1) { min-width: 96px; }
+.team-lineup-section th:nth-child(2),
+.team-lineup-section td:nth-child(2) { min-width: 180px; }
+.team-lineup-section th:nth-child(3),
+.team-lineup-section td:nth-child(3) { min-width: 110px; }
+.team-lineup-section th:nth-child(5),
+.team-lineup-section td:nth-child(5) { min-width: 140px; }
+
+.team-roster-section th:nth-child(1),
+.team-roster-section td:nth-child(1) { min-width: 108px; }
+.team-roster-section th:nth-child(2),
+.team-roster-section td:nth-child(2) { min-width: 180px; }
+.team-roster-section th:nth-child(5),
+.team-roster-section td:nth-child(5) { min-width: 140px; }
+
+.team-risk {
+  display: inline-block;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: var(--panel2);
+  font-size: .74rem;
+  font-weight: 900;
+}
+
+.team-risk.low { color: var(--green); }
+.team-risk.moderate { color: var(--yellow); }
+.team-risk.high,
+.team-risk.very-high { color: var(--red); }
+
+
 .section-title h2,
 .section-title h3 {
   margin: 0;

@@ -4,25 +4,70 @@ import { $, esc, fmt, intFmt } from "../utils.js";
 import { classCss, ordinal } from "../league.js";
 import { sortableTable } from "./shared.js";
 
-const signed=value=>`${value>=0?"+":""}${fmt(value,2)}`;
+const LAST_LEAGUE_WEEK=17;
 const rankText=(rank,total)=>rank?`${ordinal(rank)} of ${total}`:"N/A";
+const historyColors={focus:"#1677ff",league:"#526578"};
 
-function teamInsightReviewHtml(items,type){
-  const heading=type==="strength"?"Team Strengths":"Areas to Improve";
-  const intro=type==="strength"
-    ?"The roster advantages most likely to support a championship run, based on projected production, depth, dynasty value, and risk."
-    :"The roster limitations most likely to reduce championship odds, create lineup volatility, or require a targeted move.";
-  return `<section class="team-insight-review ${type}">
-    <div class="team-insight-review-heading"><h3>${heading}</h3><p>${intro}</p></div>
-    <div class="team-insight-review-grid">${items.map((item,index)=>`<article class="team-insight-card ${type}">
-      <div class="team-insight-number">${index+1}</div>
-      <div class="team-insight-content">
-        <h4>${esc(item.title)}</h4>
-        <p>${esc(item.summary||item.detail||"")}</p>
-        ${(item.metrics||[]).length?`<div class="team-insight-data" aria-label="${esc(item.title)} supporting data">${item.metrics.map(metric=>`<div><span>${esc(metric.label)}</span><strong>${esc(metric.value)}</strong></div>`).join("")}</div>`:""}
-      </div>
-    </article>`).join("")}</div>
-  </section>`;
+function focusedTeam(analysis){
+  return analysis?.teams?.find(team=>team.team===state.selectedTeam)||analysis?.teams?.[0]||null;
+}
+
+// Converts every fetched, completed matchup into a single shared time axis.
+// Weekly points are never synthesized: a point exists only when Sleeper
+// supplied a numeric matchup score for that roster and week.
+export function leagueHistorySeries(analysis, mode="weekly"){
+  const focus=focusedTeam(analysis);
+  const series=(analysis?.teams||[]).map(team=>{
+    const seasons=(team.weeklyHistory||[]).filter(season=>mode==="weekly"||season.complete===true);
+    const points=mode==="weekly"
+      ?seasons.flatMap(season=>(season.weekly||[])
+        .filter(point=>Number(point.week)>=1&&Number(point.week)<=LAST_LEAGUE_WEEK)
+        .map(point=>({season:season.season,week:point.week,value:point.points??point.ppg})))
+      :seasons.map(season=>({season:season.season,value:season.wins}));
+    return {rosterId:team.rosterId,team:team.team,focused:team.rosterId===focus?.rosterId,points};
+  }).filter(item=>item.points.length);
+  const slots=mode==="weekly"
+    ?[...new Map(series.flatMap(item=>item.points.map(point=>[`${point.season}:${point.week}`,{season:point.season,week:point.week}]))).values()].sort((a,b)=>a.season-b.season||a.week-b.week)
+    :[...new Set(series.flatMap(item=>item.points.map(point=>point.season)))].sort((a,b)=>a-b).map(season=>({season}));
+  return {series,slots};
+}
+
+function resizeHistoryCanvas(canvas, slotCount){
+  const minWidth=slotCount*38+78;
+  const width=Math.max(560,Math.ceil(canvas.parentElement?.clientWidth||560),minWidth);
+  const height=360,dpr=window.devicePixelRatio||1;
+  canvas.width=width*dpr;canvas.height=height*dpr;canvas.style.width=`${width}px`;canvas.style.height=`${height}px`;
+  const context=canvas.getContext("2d");context.scale(dpr,dpr);return {context,width,height};
+}
+
+function drawHistoryGrid(context,width,height,maxValue,slots,mode){
+  const pad={top:40,right:24,bottom:54,left:54};
+  context.strokeStyle="#d8e1eb";context.fillStyle="#526578";context.lineWidth=1;context.font="11px system-ui";
+  for(let index=0;index<=4;index+=1){const value=maxValue*index/4;const y=height-pad.bottom-(height-pad.top-pad.bottom)*index/4;context.beginPath();context.moveTo(pad.left,y);context.lineTo(width-pad.right,y);context.stroke();context.fillText(fmt(value,0),8,y+4);}
+  const usable=width-pad.left-pad.right,slotWidth=usable/Math.max(1,slots.length-1);
+  slots.forEach((slot,index)=>{const x=pad.left+index*slotWidth;const prior=slots[index-1];const newSeason=!prior||prior.season!==slot.season;context.strokeStyle=newSeason?"#aebccc":"#e6edf4";context.beginPath();context.moveTo(x,pad.top);context.lineTo(x,height-pad.bottom);context.stroke();context.fillStyle="#526578";if(newSeason)context.fillText(String(slot.season),x+3,18);if(mode==="weekly")context.fillText(`W${slot.week}`,x-8,height-24);else context.fillText(String(slot.season),x-12,height-24);});
+  context.fillText(mode==="weekly"?"Every completed league week":"Completed season",width/2-50,height-8);return {pad,slotWidth};
+}
+
+function drawHistoryLines(context,width,height,history,mode){
+  const {series,slots}=history;if(!series.length||!slots.length)return;
+  const maxValue=Math.max(1,...series.flatMap(item=>item.points.map(point=>point.value)));
+  const {pad,slotWidth}=drawHistoryGrid(context,width,height,maxValue,slots,mode);
+  const lookup=new Map(slots.map((slot,index)=>[mode==="weekly"?`${slot.season}:${slot.week}`:String(slot.season),index]));
+  const xFor=point=>pad.left+(lookup.get(mode==="weekly"?`${point.season}:${point.week}`:String(point.season))||0)*slotWidth;
+  const yFor=point=>height-pad.bottom-point.value/maxValue*(height-pad.top-pad.bottom);
+  for(const item of series.filter(item=>!item.focused)){context.globalAlpha=.16;context.strokeStyle=historyColors.league;context.lineWidth=1.25;context.beginPath();item.points.forEach((point,index)=>{if(index)context.lineTo(xFor(point),yFor(point));else context.moveTo(xFor(point),yFor(point));});context.stroke();}
+  const focus=series.find(item=>item.focused);if(focus){context.globalAlpha=1;context.strokeStyle=historyColors.focus;context.lineWidth=4;context.beginPath();focus.points.forEach((point,index)=>{if(index)context.lineTo(xFor(point),yFor(point));else context.moveTo(xFor(point),yFor(point));});context.stroke();}
+  context.globalAlpha=1;
+}
+
+export function drawLeagueHistoryChart(){
+  const canvas=$("#leagueHistoryChart"),empty=$("#leagueHistoryChartEmpty");
+  if(!canvas)return;
+  const mode=$("#leagueHistoryMode")?.value||"weekly",history=leagueHistorySeries(state.analysis,mode);
+  const focus=history.series.find(item=>item.focused),hasData=Boolean(focus?.points.length);
+  canvas.classList.toggle("hidden",!hasData);if(empty)empty.classList.toggle("hidden",hasData);if(!hasData)return;
+  const {context,width,height}=resizeHistoryCanvas(canvas,history.slots.length);context.clearRect(0,0,width,height);drawHistoryLines(context,width,height,history,mode);
 }
 
 function mobilePowerCards(teams,total,useCurrentProduction){
@@ -55,16 +100,7 @@ function mobilePowerCards(teams,total,useCurrentProduction){
 
 export function renderDashboard(){
   const a=state.analysis;if(!a)return;
-  if(!a.teams.some(t=>t.team===state.selectedTeam))state.selectedTeam=a.teams[0]?.team||"";
-  const focus=a.teams.find(t=>t.team===state.selectedTeam)||a.teams[0],leader=a.teams[0];
-  const leagueAverage=a.teams.length?a.teams.reduce((sum,t)=>sum+t.lineupPpg,0)/a.teams.length:0;
-  const historical=focus.historical||{};
-  const seasonStatus=a.leagueStatus==="complete"?"Final":a.currentWeek?`Through Week ${a.currentWeek}`:"Preseason";
-  const currentRecord=historical.currentRecord||`${focus.currentWins||0}-${focus.currentLosses||0}`;
-  const standing=historical.currentStanding?`#${historical.currentStanding} of ${a.totalRosters}`:"Not available";
-  const overallGames=historical.games||0;
-  const winPct=overallGames?((historical.wins+(historical.ties||0)*.5)/overallGames)*100:0;
-  const historicalGap=(historical.averagePpg||0)-(historical.historicalLeagueAverage||0);
+  const leader=a.teams[0];
   const headers=[
     {key:"currentRank",label:"Rank",num:true},
     {key:"team",label:"Team",render:r=>`<strong>${esc(r.team)}</strong>${r.manager?`<div class="table-subtext">${esc(r.manager)}</div>`:""}`},
@@ -82,54 +118,19 @@ export function renderDashboard(){
     {key:"biggestStrength",label:"Strength"},
     {key:"biggestWeakness",label:"Weakness"},
   ];
-  const outlook=focus.insights?.championshipOutlook||{};
   $("#dashboard").innerHTML=`
-    <div class="panel team-control-panel">
-      <div class="section-title"><div><h2>Dashboard Overview</h2><div class="small">Team-specific metrics update with the focus-team selector in the top banner.</div></div></div>
-    </div>
-    <section class="dashboard-summary-section" aria-labelledby="currentSeasonTitle">
-      <div class="dashboard-summary-heading"><div><h2 id="currentSeasonTitle">Current Season</h2><div class="small">Forward-looking model metrics and actual Sleeper standing for ${esc(String(a.season))}.</div></div><span class="season-status">${esc(seasonStatus)}</span></div>
-      <div class="dashboard-kpi-grid current-season-grid">
-        <div class="kpi"><div class="label">Contender Rank</div><div class="value">#${focus.currentRank} of ${a.totalRosters}</div><div class="kpi-note">Model-based championship rank</div></div>
-        <div class="kpi"><div class="label">Expected PPG</div><div class="value">${fmt(focus.lineupPpg,2)}</div><div class="kpi-note">Optimal legal lineup</div></div>
-        <div class="kpi"><div class="label">Gap to #1</div><div class="value">${focus.currentRank===1?"Leader":`-${fmt(leader.lineupPpg-focus.lineupPpg,2)}`}</div><div class="kpi-note">Expected PPG difference</div></div>
-        <div class="kpi"><div class="label">Gap to League Average</div><div class="value">${signed(focus.lineupPpg-leagueAverage)}</div><div class="kpi-note">Expected PPG difference</div></div>
-        <div class="kpi"><div class="label">Current Standing & Record</div><div class="value compact-value">${esc(standing)}</div><div class="kpi-note">${esc(currentRecord)} · ${esc(seasonStatus)}</div></div>
-      </div>
-      ${!a.currentWeek&&a.leagueStatus!=="complete"?`<div class="summary-note"><strong>Preseason:</strong> current standings are not yet meaningful; contender rankings are model-based.</div>`:""}
-    </section>
-    <section class="dashboard-summary-section" aria-labelledby="overallPerformanceTitle">
-      <div class="dashboard-summary-heading"><div><h2 id="overallPerformanceTitle">Overall Performance</h2><div class="small">Matched franchise history across ${historical.seasonsMatched||0} linked seasons and ${historical.games||0} completed matchups.</div></div></div>
-      <div class="dashboard-kpi-grid overall-performance-grid">
-        <div class="kpi"><div class="label">Average Finish</div><div class="value">${historical.averageFinish==null?"N/A":fmt(historical.averageFinish,1)}</div><div class="kpi-note">${historical.completedSeasons||0} completed seasons</div></div>
-        <div class="kpi featured-kpi"><div class="label">Historical Average PPG</div><div class="value">${fmt(historical.averagePpg||0,2)}</div><div class="kpi-note">#${historical.historicalPpgRank||"-"} of ${a.totalRosters} · ${signed(historicalGap)} vs league average</div></div>
-        <div class="kpi"><div class="label">Overall Record</div><div class="value compact-value">${historical.wins||0}-${historical.losses||0}${historical.ties?`-${historical.ties}`:""}</div><div class="kpi-note">Across matched linked seasons</div></div>
-        <div class="kpi"><div class="label">Overall Win Percentage</div><div class="value">${fmt(winPct,1)}%</div><div class="kpi-note">Ties count as half a win</div></div>
-      </div>
-    </section>
     ${a.unsupportedSlots.length?`<div class="callout warn"><strong>Format warning:</strong> The league contains ${esc(a.unsupportedSlots.join(", "))}. Sleeper roster analysis is included, but public dynasty market values for IDP players may be incomplete.</div>`:""}
+    <section class="panel league-history-panel">
+      <div class="section-title"><div><h2>League Scoring History</h2><div class="small">Every point is a completed Sleeper matchup week. The focused team is bold; every other league roster is shown faintly for context.</div></div><label class="league-history-control">Chart view<select id="leagueHistoryMode" aria-label="League history chart view"><option value="weekly">Weekly points</option><option value="record">Completed-season wins</option></select></label></div>
+      <div class="league-history-chart-wrap"><div class="league-history-legend"><span><i class="focus"></i>${esc(focusedTeam(a)?.team||"Focused team")}</span><span><i></i>Other league teams</span></div><canvas id="leagueHistoryChart" role="img" aria-label="League scoring history chart"></canvas><p id="leagueHistoryChartEmpty" class="small hidden">No completed weekly scoring data is available for this report. Reanalyze the league after games have posted.</p></div>
+    </section>
     <section class="panel power-rankings-panel">
-      <div class="section-title"><div><h2>League Power Rankings</h2><div class="small">Full-league comparison retaining production, dynasty, risk, pick, and Contender Index metrics while adding positional ranks and roster strengths and weaknesses.</div></div></div>
+      <div class="section-title"><div><h2>League Dashboard</h2><div class="small">League Power Rankings compare every roster across production, dynasty, risk, draft capital, and positional strength. Select a Focus Team to see its detailed season and historical review on Team Insights.</div></div></div>
       <div class="power-ranking-table">${sortableTable(headers,a.teams,"rankings")}</div>
       ${mobilePowerCards(a.teams,a.totalRosters,a.useCurrentProduction)}
-    </section>
-    <section class="panel championship-review-panel">
-      <div class="section-title"><div><h2>Championship Outlook & Roster Review</h2><div class="small">A championship-focused recommendation followed by analytical reviews of the roster's strongest advantages and most important limitations.</div></div><span class="${classCss(focus.currentClass)}">${esc(focus.currentClass)}</span></div>
-      <div class="championship-outlook">
-        <div class="outlook-label">Recommendation</div>
-        <h3>${esc(outlook.title||focus.insights?.strategy||"Review the roster before making a move")}</h3>
-        <div class="outlook-explanation">
-          ${(outlook.explanation||focus.insights?.strategyEvidence||"").split("\n\n").filter(Boolean).map(paragraph=>`<p>${esc(paragraph)}</p>`).join("")}
-        </div>
-        <div class="outlook-metrics">
-          ${(outlook.metrics||[]).map(metric=>`<div><span>${esc(metric.label)}</span><strong>${esc(metric.value)}</strong></div>`).join("")}
-        </div>
-      </div>
-      <div class="team-insight-review-wrap">
-        ${teamInsightReviewHtml(focus.insights?.strengths||[],"strength")}
-        ${teamInsightReviewHtml(focus.insights?.weaknesses||[],"weakness")}
-      </div>
     </section>`;
+  const control=$("#leagueHistoryMode");if(control)control.addEventListener("change",drawLeagueHistoryChart);
+  if(typeof requestAnimationFrame==="function")requestAnimationFrame(drawLeagueHistoryChart);else drawLeagueHistoryChart();
 }
 
 export function drawRankChart(){}

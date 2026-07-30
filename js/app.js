@@ -16,6 +16,7 @@ import { prepareAnalysisForRender } from "./tiers.js";
 import {
   csvFrom,
   drawRankChart,
+  drawLeagueHistoryChart,
   populateTeamSelectors,
   renderAll,
   setSelectedTeam,
@@ -75,7 +76,10 @@ $("#snapshotExport").onclick=()=>{
   download(`sleeper_${state.analysis.leagueId}_report.html`,"<!DOCTYPE html>\n"+clone.outerHTML,"text/html;charset=utf-8");
 };
 $("#printBtn").onclick=()=>window.print();
-window.addEventListener("resize",()=>{if($("#dashboard").classList.contains("active"))drawRankChart()});
+window.addEventListener("resize",()=>{
+  if($("#dashboard").classList.contains("active"))drawRankChart();
+  if($("#dashboard").classList.contains("active"))drawLeagueHistoryChart();
+});
 
 // One delegated handler enables sorting on every dynamically created table.
 // th = clicked header, rows = body rows, idx = the selected column's position.

@@ -45,3 +45,21 @@ test("team insights include an expanded championship recommendation", () => {
   assert.ok(insights.championshipOutlook.explanation.length>300);
   assert.equal("moves" in insights.championshipOutlook,false);
 });
+
+test("team insight build and shop candidates are useful and never overlap", () => {
+  const team={
+    rosterId:1,currentRank:2,franchiseRank:2,lineupPpg:120,depth:8,depthPct:50,
+    riskPct:70,picksPct:50,youngPct:60,totalValue:10000,risk:20,highRiskStarters:0,
+    futureFirsts:1,pickCapital:1000,picksOwned:[],bench:[],lineup:[],
+    positionScores:{QB:20,RB:30,WR:35,TE:10,FLEX:22},positionRanks:{QB:2,RB:2,WR:2,TE:2,FLEX:2},
+    players:[
+      {sleeperId:"young",name:"Young Core",position:"WR",age:24,expectedPpg:14,dynastyValue:6000,rosterStatus:"Starter"},
+      {sleeperId:"veteran",name:"Veteran",position:"RB",age:29,expectedPpg:12,dynastyValue:2500,rosterStatus:"Starter"},
+    ]
+  };
+  const other={...team,rosterId:2,currentRank:1,players:[]};
+  const insights=buildTeamInsights(team,[other,team]);
+  assert.deepEqual(insights.build.map(player=>player.sleeperId),["young"]);
+  assert.deepEqual(insights.shop.map(player=>player.sleeperId),["veteran"]);
+  assert.equal(insights.build.some(player=>insights.shop.includes(player)),false);
+});

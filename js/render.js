@@ -13,6 +13,7 @@ import { prepareAnalysisForRender } from "./tiers.js";
 import {
   renderDashboard,
   drawRankChart,
+  drawLeagueHistoryChart,
 } from "./views/dashboard.js";
 import {
   renderTeams,
@@ -47,6 +48,7 @@ const VALID_VIEWS = new Set([
 
 export {
   drawRankChart,
+  drawLeagueHistoryChart,
   renderDashboard,
   renderLineups,
   renderMethodology,
