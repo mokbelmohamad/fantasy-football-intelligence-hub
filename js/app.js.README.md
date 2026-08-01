@@ -1,24 +1,25 @@
 
-## Version 2.2 header behavior
+## Version 2.3 header behavior
 
-`app.js` binds the browser-style report tabs, immediate Focus Team changes, the central Change League action, global overflow actions, and browser history navigation. Report refresh, live-data analysis, export navigation, and saved-report actions remain available from the header menu.
+`app.js` binds the browser-style report tabs, immediate Focus Team changes, the
+central Change League action, browser-history navigation, and transient-session
+cleanup.
 # `js/app.js`
 
 ## Purpose
 
-Browser entry point. Registers UI event handlers, export actions, table sorting, global error listeners, and embedded-report startup.
+Browser entry point. Registers UI event handlers, table sorting, session cleanup,
+and global error listeners.
 
 ## Responsibilities
 - Connect buttons and form controls to application behavior.
-- Load cached or embedded analysis records.
-- Coordinate report exports and printing.
+- Clear transient league evidence on Change League, page close, or reload.
 - Handle unhandled browser errors and promise rejections.
 
 ## Dependencies
 - `analyze.js`
 - `errors.js`
 - `state.js`
-- `storage.js`
 - `utils.js`
 - `tiers.js`
 - `render.js`
@@ -32,8 +33,11 @@ Browser entry point. Registers UI event handlers, export actions, table sorting,
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This documentation reflects the merged feature set and does not change `APP_VERSION`.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This documentation reflects the merged feature set and does not change `APP_VERSION`.
 
 
-### Version 2.2 header tabs
-All eight report page options are displayed simultaneously in one equal-width row along the bottom of the global header. The active page is rendered as a fixed-size blue tab with bold white text that does not overlap the report content.
+### Version 2.3 header tabs
+All eight report page options are displayed simultaneously in one equal-width row
+along the bottom of the global header. Settings can rerun the Contender Index
+from current report percentiles without network access. There is no report
+persistence, export, print, or overflow-menu behavior in this entry point.

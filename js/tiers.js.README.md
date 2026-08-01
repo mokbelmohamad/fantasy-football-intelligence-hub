@@ -35,6 +35,6 @@ Player tier scoring and explainable team insight generation.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This
 documentation reflects the merged feature set and does not change
 `APP_VERSION`.

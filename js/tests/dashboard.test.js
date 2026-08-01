@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { leagueHistorySeries } from "../views/dashboard.js";
+import { gapToLeaderLabel } from "../views/shared.js";
 import { state } from "../state.js";
 
 test("League history plots reported weekly scores for every team and every week",()=>{
@@ -15,4 +16,9 @@ test("League history plots reported weekly scores for every team and every week"
   assert.equal(weekly.series.find(item=>item.focused).points[1].value,0);
   const record=leagueHistorySeries(analysis,"record");
   assert.deepEqual(record.slots,[{season:2024}]);
+});
+
+test("EPPG gap displays a plus when a lower-ranked contender projects ahead", () => {
+  assert.equal(gapToLeaderLabel(144.56, 148.86), "+4.30");
+  assert.equal(gapToLeaderLabel(148.86, 144.56), "-4.30");
 });

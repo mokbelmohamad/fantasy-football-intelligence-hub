@@ -1,4 +1,4 @@
-export const APP_VERSION = "2.2.1";
+export const APP_VERSION = "2.3.0";
 
 // Central list of outside data services. Keeping URLs here makes it clear
 // which sources supply league data, projections, and dynasty-market values.

@@ -1,14 +1,15 @@
 # JavaScript and Automation File Documentation
 
 This index links every JavaScript runtime, test, and Node automation file to
-its companion README. Documentation reflects the current Version 2.2.1
-application baseline and its merged Dashboard/Team Insights update.
+its companion README. Documentation reflects the current Version 2.3.0
+application baseline and its stateless Sleeper acquisition release.
 
 - [`js/analyze.js`](../js/analyze.js.README.md)
 - [`js/api.js`](../js/api.js.README.md)
 - [`js/api/dynastyProcess.js`](../js/api/dynastyProcess.js.README.md)
 - [`js/api/http.js`](../js/api/http.js.README.md)
 - [`js/api/index.js`](../js/api/index.js.README.md)
+- [`js/api/leagueSession.js`](../js/api/leagueSession.js.README.md)
 - [`js/api/projections.js`](../js/api/projections.js.README.md)
 - [`js/api/rosterAudit.js`](../js/api/rosterAudit.js.README.md)
 - [`js/api/sleeper.js`](../js/api/sleeper.js.README.md)
@@ -20,6 +21,7 @@ application baseline and its merged Dashboard/Team Insights update.
 - [`js/state.js`](../js/state.js.README.md)
 - [`js/storage.js`](../js/storage.js.README.md)
 - [`js/tests/league.test.js`](../js/tests/league.test.js.README.md)
+- [`js/tests/league-session.test.js`](../js/tests/league-session.test.js.README.md)
 - [`js/tests/tiers.test.js`](../js/tests/tiers.test.js.README.md)
 - [`js/tests/header.test.js`](../js/tests/header.test.js.README.md)
 - [`js/tests/dashboard.test.js`](../js/tests/dashboard.test.js.README.md)
@@ -28,10 +30,12 @@ application baseline and its merged Dashboard/Team Insights update.
 - [`js/utils.js`](../js/utils.js.README.md)
 - [`js/views/dashboard.js`](../js/views/dashboard.js.README.md)
 - [`js/views/lineups.js`](../js/views/lineups.js.README.md)
+- [`js/views/history.js`](../js/views/history.js.README.md)
 - [`js/views/methodology.js`](../js/views/methodology.js.README.md)
 - [`js/views/picks.js`](../js/views/picks.js.README.md)
 - [`js/views/players.js`](../js/views/players.js.README.md)
 - [`js/views/shared.js`](../js/views/shared.js.README.md)
+- [`js/views/settings.js`](../js/views/settings.js.README.md)
 - [`js/views/teams.js`](../js/views/teams.js.README.md)
 - [`js/views/tiers.js`](../js/views/tiers.js.README.md)
 - [`js/views/trade.js`](../js/views/trade.js.README.md)

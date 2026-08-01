@@ -2,21 +2,21 @@
 
 ## Purpose
 
-Methodology page renderer.
+Methodology-section renderer for Settings.
 
 ## Responsibilities
-- Present detected settings, score weights, formulas, sources, limitations, and tier methodology.
+- Present detected settings, score weights, formulas, sources, limitations, and tier methodology inside Settings.
 
 ## Dependencies
 - `state.js`
 - `utils.js`
 
 ## Used by
-- render.js
+- views/settings.js
 
 ## Maintenance notes
 - Keep this page aligned with the SDS when analytical formulas change.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This documentation reflects the merged feature set and does not change `APP_VERSION`.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This documentation reflects the merged feature set and does not change `APP_VERSION`.

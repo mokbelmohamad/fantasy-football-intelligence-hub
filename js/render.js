@@ -1,12 +1,14 @@
 // Rendering coordinator: converts an already-calculated analysis into screen
 // content. It never calls external APIs or changes the report's scoring rules.
 import { state } from "./state.js";
-import { deriveStarterCount, scoringFormatLabel } from "./league.js";
+import { APP_VERSION } from "./config.js";
+import { buildHistoricalTeamSummaries, buildHistoricalTeamWeeklyPpg, deriveStarterCount, scoringFormatLabel } from "./league.js";
+import { loadAllTeamHistory } from "./api/leagueSession.js";
 import {
   $,
   $$,
-  csvEscape,
   esc,
+  log,
   setSources,
 } from "./utils.js";
 import { prepareAnalysisForRender } from "./tiers.js";
@@ -14,26 +16,26 @@ import {
   renderDashboard,
   drawRankChart,
   drawLeagueHistoryChart,
-} from "./views/dashboard.js";
+} from "./views/dashboard.js?v=2.3.0";
 import {
   renderTeams,
   renderTeamDetail,
-} from "./views/teams.js";
-import { renderLineups } from "./views/lineups.js";
+} from "./views/teams.js?v=2.3.0";
+import { renderLineups } from "./views/lineups.js?v=2.3.0";
 import {
   renderTrade,
   renderTradeBody,
-} from "./views/trade.js";
+} from "./views/trade.js?v=2.3.0";
 import {
   renderPlayers,
   renderPlayerTable,
-} from "./views/players.js";
+} from "./views/players.js?v=2.3.0";
 import {
   renderTiers,
   renderTierBoard,
-} from "./views/tiers.js";
-import { renderPicks } from "./views/picks.js";
-import { renderMethodology } from "./views/methodology.js";
+} from "./views/tiers.js?v=2.3.0";
+import { renderPicks } from "./views/picks.js?v=2.3.0";
+import { renderSettings } from "./views/settings.js?v=2.3.0";
 
 const VALID_VIEWS = new Set([
   "dashboard",
@@ -43,7 +45,7 @@ const VALID_VIEWS = new Set([
   "picks",
   "players",
   "tiers",
-  "methodology",
+  "settings",
 ]);
 
 export {
@@ -51,7 +53,7 @@ export {
   drawLeagueHistoryChart,
   renderDashboard,
   renderLineups,
-  renderMethodology,
+  renderSettings,
   renderPicks,
   renderPlayers,
   renderPlayerTable,
@@ -119,14 +121,11 @@ export function switchTab(name, options = {}) {
     window.history[method]({ view: next }, "", `#${next}`);
   }
 
-  const menu = $("#headerMoreMenu");
-  if (menu) {
-    menu.open = false;
-  }
-
   if (next === "dashboard") {
     requestAnimationFrame(drawRankChart);
   }
+  if (next === "teams") void hydrateTeamHistory();
+  if (next === "settings") renderSettings();
 }
 
 function resolveLeagueName(analysis) {
@@ -180,7 +179,6 @@ export function updateHeaderContext() {
   const leagueName = resolveLeagueName(state.analysis);
 
   $("#activeLeagueName").textContent = `League: ${leagueName}`;
-  $("#activeLeagueId").textContent = `Sleeper ID: ${state.analysis.leagueId || "Unavailable"}`;
   $("#activeLeagueSettings").textContent = leagueSettingsSummary(state.analysis);
   $("#activeLeagueHistory").textContent = historyLabel;
   $("#activeLeagueUpdated").textContent = (
@@ -207,7 +205,7 @@ export function updateHeaderContext() {
     mobileLeagueUpdated.textContent = `Analysis updated ${new Date(state.analysis.generatedAt).toLocaleString()}`;
   }
   if (mobileDataStatus) {
-    mobileDataStatus.textContent = `${statusNode.textContent} · Version 2.2`;
+    mobileDataStatus.textContent = `${statusNode.textContent} · Version ${APP_VERSION}`;
   }
 }
 
@@ -224,7 +222,6 @@ export function showDashboardShell() {
   $("#appShell").classList.remove("hidden");
   $("#headerAppControls").classList.remove("hidden");
   $("#headerPageTabs").classList.remove("hidden");
-  $("#exportPanel").classList.remove("hidden");
   document.body.classList.add("app-active");
 
   switchTab(viewFromLocation(), { replaceHistory: !window.location.hash });
@@ -235,7 +232,6 @@ export function showLanding() {
   $("#appShell").classList.add("hidden");
   $("#headerAppControls").classList.add("hidden");
   $("#headerPageTabs").classList.add("hidden");
-  $("#exportPanel").classList.add("hidden");
   $("#landingPage").classList.remove("hidden");
   document.body.classList.remove("app-active");
   window.history.replaceState({}, "", window.location.pathname + window.location.search);
@@ -273,25 +269,38 @@ export function renderAll() {
   renderPlayers();
   renderTiers();
   renderPicks();
-  renderMethodology();
   setSources(state.analysis.sourceStatuses || []);
   updateHeaderContext();
 }
 
-export function csvFrom(rows, columns) {
-  // rows are report records; columns maps each export heading to a record field.
-  return [
-    columns.map((column) => csvEscape(column.label)).join(","),
-    ...rows.map((row) => (
-      columns
-        .map((column) => (
-          csvEscape(
-            typeof column.get === "function"
-              ? column.get(row)
-              : row[column.key],
-          )
-        ))
-        .join(",")
-    )),
-  ].join("\n");
+async function hydrateTeamHistory() {
+  if (!state.analysis || state.analysis.deepHistoryLoaded) return;
+  try {
+    log("Loading linked-team history…");
+    const result = await loadAllTeamHistory((message) => log(message));
+    const summaries = buildHistoricalTeamSummaries(result.bundles, result.bundles[0].rosters);
+    const weekly = buildHistoricalTeamWeeklyPpg(result.bundles, result.matchups, result.bundles[0].rosters);
+    state.analysis.teams.forEach((team) => {
+      team.historical = summaries.get(team.rosterId) || team.historical;
+      team.weeklyHistory = weekly.get(team.rosterId) || team.weeklyHistory;
+    });
+    if (result.failures.length) {
+      state.analysis.sourceStatuses = [
+        ...(state.analysis.sourceStatuses || []).filter((item) => item.name !== "Linked team history"),
+        { name: "Linked team history", status: "warn", detail: "partially available" },
+      ];
+      setSources(state.analysis.sourceStatuses);
+    }
+    state.analysis.deepHistoryLoaded = true;
+    renderTeams();
+    renderDashboard();
+  } catch {
+    state.analysis.historyUnavailable = true;
+    state.analysis.sourceStatuses = [
+      ...(state.analysis.sourceStatuses || []).filter((item) => item.name !== "Linked team history"),
+      { name: "Linked team history", status: "warn", detail: "unavailable" },
+    ];
+    setSources(state.analysis.sourceStatuses);
+    renderTeams();
+  }
 }

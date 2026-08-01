@@ -6,20 +6,19 @@ IndexedDB cache abstraction.
 
 ## Responsibilities
 - Open the SleeperDynastyAnalyzer database.
-- Read, write, and delete cache entries.
+- Read and write public player-directory cache entries only.
 - Fail safely when browser storage is unavailable.
 
 ## Dependencies
 - None.
 
 ## Used by
-- app.js
-- analyze.js
 - api/sleeper.js
 
 ## Maintenance notes
-- Current object store name is cache and schema version is 1.
+- Current object store name is cache and schema version is 1. It must not store
+  league IDs, league bundles, reports, or session evidence.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This documentation reflects the merged feature set and does not change `APP_VERSION`.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This documentation reflects the merged feature set and does not change `APP_VERSION`.

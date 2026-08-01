@@ -8,6 +8,24 @@ export async function fetchWithTimeout(url,opts={},timeout=45000){
 
 export async function fetchJson(url,timeout=45000){return (await fetchWithTimeout(url,{},timeout)).json()}
 
+// Retries protect deferred, read-only Sleeper history requests from temporary
+// upstream failures. The short backoff is network recovery time, not a
+// manufactured loading delay, and the final failure is returned to the view.
+export async function fetchJsonWithRetry(url, timeout = 45000, retries = 2) {
+  let lastError;
+  for (let attempt = 0; attempt <= retries; attempt += 1) {
+    try {
+      return await fetchJson(url, timeout);
+    } catch (error) {
+      lastError = error;
+      if (attempt < retries) {
+        await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
+      }
+    }
+  }
+  throw lastError;
+}
+
 export async function fetchText(url,timeout=45000){return (await fetchWithTimeout(url,{},timeout)).text()}
 
 export async function allSettledMap(items,worker,concurrency=6){

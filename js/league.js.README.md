@@ -25,7 +25,7 @@ Core league rules and analytical calculations.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. Linked-season
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. Linked-season
 weekly histories match franchises by owner before roster ID and exclude Week 18
 from historical scoring and production aggregation.
 

@@ -1,6 +1,15 @@
 // Shared HTML building blocks. Inputs are escaped before being inserted into
 // generated markup, including content that originated with an outside API.
-import { esc } from "../utils.js";
+import { esc, fmt, num } from "../utils.js";
+
+// A team can rank behind the Contender Index leader while projecting for more
+// weekly points. Show that fact with a plus sign instead of constructing a
+// misleading double-negative gap.
+export function gapToLeaderLabel(leaderPpg, teamPpg) {
+  const difference = num(leaderPpg) - num(teamPpg);
+  if (difference === 0) return "Even";
+  return `${difference > 0 ? "-" : "+"}${fmt(Math.abs(difference), 2)}`;
+}
 
 export function evidenceHtml(items,type){
   return `<div class="insight-stack">${items.map(item=>`

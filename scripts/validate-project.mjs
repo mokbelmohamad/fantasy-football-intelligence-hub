@@ -10,9 +10,11 @@ const required=[
   "index.html","js/app.js","js/analyze.js","js/errors.js","js/api/index.js",
   "js/api/http.js","js/api/sleeper.js","js/api/rosterAudit.js",
   "js/api/dynastyProcess.js","js/api/projections.js","js/render.js",
+  "js/api/leagueSession.js",
   "js/views/dashboard.js","js/views/teams.js","js/views/lineups.js",
   "js/views/trade.js","js/views/players.js","js/views/tiers.js",
-  "js/views/picks.js","js/views/methodology.js","data/metadata.json",
+  "js/views/picks.js","js/views/history.js","js/views/methodology.js",
+  "js/views/settings.js","data/metadata.json",
   ".github/workflows/update-data.yml"
 ];
 for(const file of required)await access(resolve(root,file));
@@ -21,7 +23,7 @@ for(const file of required.filter((item)=>item.endsWith(".js"))){
   if(result.status!==0)throw new Error(result.stderr||`Syntax failed: ${file}`);
 }
 const html=await readFile(resolve(root,"index.html"),"utf8");
-if(!html.includes('<script type="module" src="./js/app.js"></script>')){
+if(!/<script type="module" src="\.\/js\/app\.js(?:\?[^\"]+)?"><\/script>/.test(html)){
   throw new Error("index.html is missing the module app.js script.");
 }
 for(const file of ["players.json","projections.json","dynasty-values.json","roster-audit-projections.json","pick-values.json","dynasty-process.json","metadata.json"]){

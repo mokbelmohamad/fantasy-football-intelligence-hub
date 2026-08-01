@@ -2,7 +2,7 @@
 import { state } from "../state.js";
 import { $, esc, fmt, intFmt } from "../utils.js";
 import { classCss, ordinal } from "../league.js";
-import { sortableTable } from "./shared.js";
+import { gapToLeaderLabel, sortableTable } from "./shared.js?v=2.3.0";
 
 const LAST_LEAGUE_WEEK=17;
 const rankText=(rank,total)=>rank?`${ordinal(rank)} of ${total}`:"N/A";
@@ -81,7 +81,7 @@ function mobilePowerCards(teams,total,useCurrentProduction){
       <div class="power-card-body">
         <div class="power-card-primary">
           <div><span>EPPG</span><strong>${fmt(team.lineupPpg,2)}</strong></div>
-          <div><span>Gap to #1</span><strong>${team.currentRank===1?"Leader":`-${fmt(teams[0].lineupPpg-team.lineupPpg,2)}`}</strong></div>
+          <div><span>Gap to #1</span><strong>${team.currentRank===1?"Leader":gapToLeaderLabel(teams[0].lineupPpg,team.lineupPpg)}</strong></div>
           <div><span>${useCurrentProduction?"Current PF":"Prior PF"}</span><strong>${fmt(useCurrentProduction?team.currentPF:team.priorPF,1)}</strong></div>
           <div><span>Dynasty Value</span><strong>${intFmt(team.totalValue)}</strong></div>
           <div><span>Dynasty Rank</span><strong>${rankText(team.franchiseRank,total)}</strong></div>
@@ -106,7 +106,7 @@ export function renderDashboard(){
     {key:"team",label:"Team",render:r=>`<strong>${esc(r.team)}</strong>${r.manager?`<div class="table-subtext">${esc(r.manager)}</div>`:""}`},
     {key:"currentClass",label:"Class",render:r=>`<span class="${classCss(r.currentClass)}">${esc(r.currentClass)}</span>`},
     {key:"lineupPpg",label:"EPPG",num:true,render:r=>fmt(r.lineupPpg,2)},
-    {key:"gapToLeader",label:"Gap to #1",num:true,render:r=>r.currentRank===1?"Leader":`-${fmt(leader.lineupPpg-r.lineupPpg,2)}`},
+    {key:"gapToLeader",label:"Gap to #1",num:true,render:r=>r.currentRank===1?"Leader":gapToLeaderLabel(leader.lineupPpg,r.lineupPpg)},
     {key:"depth",label:"Depth",num:true,render:r=>fmt(r.depth,2)},
     {key:"production",label:a.useCurrentProduction?"Current PF":"Prior PF",num:true,render:r=>fmt(a.useCurrentProduction?r.currentPF:r.priorPF,1)},
     {key:"totalValue",label:"Dynasty Value",num:true,render:r=>intFmt(r.totalValue)},

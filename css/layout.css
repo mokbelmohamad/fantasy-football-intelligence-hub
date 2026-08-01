@@ -720,3 +720,27 @@ body.app-active #headerPageTabs {
 body:not(.app-active) #headerPageTabs {
   display: none !important;
 }
+/* Stateless acquisition release: the header has one larger brand column and
+   two report controls to its right; export and persistence controls are gone. */
+.header-main-row { grid-template-columns: 270px minmax(0,1fr); min-height: 138px; }
+.header-brand-stack { display:grid; min-width:0; gap:8px; align-content:center; }
+.header-logo { max-width:260px; height:78px; }
+.header-release-stack { justify-items:start; text-align:left; }
+.header-context { grid-template-columns:minmax(250px,290px) minmax(400px,1fr); align-items:end; }
+.header-focus-field,.header-league-context { min-height:94px; height:94px; }
+.header-page-tabs { grid-template-columns:repeat(8,minmax(0,1fr)); }
+.header-data-status,.header-version-badge { min-height:22px; padding:3px 8px; }
+.header-status-version-row { margin-top:4px; }
+.progress > div,#progressBar { transition:width .32s ease-out; }
+.history-raw { overflow:auto; border:1px solid var(--line); border-radius:10px; background:var(--panel2); }
+.history-raw summary { padding:12px; cursor:pointer; font-weight:800; }
+.history-raw pre { max-height:680px; margin:0; padding:14px; overflow:auto; font-size:.74rem; line-height:1.45; white-space:pre-wrap; }
+@media (max-width:760px) {
+  .header-main-row { grid-template-columns:130px minmax(0,1fr); min-height:112px; }
+  .header-logo { max-width:126px; height:56px; }
+  .header-context { grid-template-columns:1fr; gap:7px; }
+  .header-focus-field,.header-league-context { min-height:48px; height:auto; }
+  .header-focus-field,.header-league-context { padding:8px 10px; }
+  .header-release-date { font-size:.58rem; }
+  .header-page-tabs { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}

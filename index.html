@@ -7,16 +7,25 @@
 <link rel="icon" type="image/png" href="./assets/icons/favicon.png">
 <link rel="stylesheet" href="./css/base.css">
 <link rel="stylesheet" href="./css/layout.css">
-<link rel="stylesheet" href="./css/components.css">
+<link rel="stylesheet" href="./css/components.css?v=2.3.0">
 <link rel="stylesheet" href="./css/mobile.css">
 </head>
 <body>
 <header id="globalHeader" class="global-header">
   <div class="header-inner app-header">
     <div class="header-main-row">
-      <a class="header-brand" href="#dashboard" aria-label="Fantasy Football Intelligence Hub dashboard">
-        <img class="brand-logo header-logo" src="./assets/images/logo.png" alt="Fantasy Football Intelligence Hub">
-      </a>
+      <div class="header-brand-stack">
+        <a class="header-brand" href="#dashboard" aria-label="Fantasy Football Intelligence Hub dashboard">
+          <img class="brand-logo header-logo" src="./assets/images/logo.png" alt="Fantasy Football Intelligence Hub">
+        </a>
+        <div class="header-release-stack" aria-label="Application release information">
+          <div class="header-release-date">Released August 1, 2026</div>
+          <div class="header-status-version-row">
+            <div id="headerDataStatus" class="header-data-status" aria-live="polite">Data ready</div>
+            <div class="header-version-badge" title="Application version">v2.3.0</div>
+          </div>
+        </div>
+      </div>
 
       <div id="headerAppControls" class="header-context hidden">
         <div class="header-focus-field">
@@ -27,7 +36,6 @@
         <div class="header-league-context" id="headerLeagueContext">
           <div class="header-league-copy">
             <div id="activeLeagueName" class="header-league-name">League: Loading...</div>
-            <div id="activeLeagueId" class="header-league-id"></div>
             <div id="activeLeagueSettings" class="header-league-settings"></div>
             <div id="activeLeagueHistory" class="header-league-history"></div>
             <div id="activeLeagueUpdated" class="header-league-updated"></div>
@@ -35,38 +43,18 @@
           <button id="changeLeagueBtn" class="header-change-league" type="button">Change League</button>
         </div>
 
-        <details id="headerMoreMenu" class="header-more-menu">
-          <summary aria-label="Open application menu">More</summary>
-          <div class="header-menu-panel">
-            <button id="appRefreshBtn">Reanalyze League</button>
-            <button id="appLiveRefreshBtn">Analyze with Live Player Data</button>
-            <button id="headerExportBtn">Export Report</button>
-            <button id="headerOpenSavedBtn">Open Previous Report</button>
-            <button id="headerDeleteSavedBtn" class="ghost">Delete Previous Report</button>
-          </div>
-        </details>
-      </div>
-
-      <div class="header-release-stack" aria-label="Application release information">
-        <div class="header-created-label">Created by</div>
-        <div class="header-created-name">Mohamad Mokbel</div>
-        <div class="header-release-date">Released July 28, 2026</div>
-        <div class="header-status-version-row">
-          <div id="headerDataStatus" class="header-data-status" aria-live="polite">Data ready</div>
-          <div class="header-version-badge" title="Application version">v2.2</div>
-        </div>
       </div>
     </div>
 
     <nav id="headerPageTabs" class="header-page-tabs hidden" aria-label="Report pages">
       <button type="button" class="header-page-tab active" data-view="dashboard">Dashboard</button>
       <button type="button" class="header-page-tab" data-view="teams">Team Insights</button>
-      <button type="button" class="header-page-tab" data-view="lineups">Coming Soon!</button>
-      <button type="button" class="header-page-tab" data-view="trade">Trade Finder</button>
+      <button type="button" class="header-page-tab" data-view="trade">Trade Center</button>
       <button type="button" class="header-page-tab" data-view="picks">Draft Capital</button>
-      <button type="button" class="header-page-tab" data-view="players">Player Master</button>
+      <button type="button" class="header-page-tab" data-view="lineups">Player Trends</button>
       <button type="button" class="header-page-tab" data-view="tiers">Player Tiers</button>
-      <button type="button" class="header-page-tab" data-view="methodology">Methodology</button>
+      <button type="button" class="header-page-tab" data-view="players">Player Master</button>
+      <button type="button" class="header-page-tab" data-view="settings">Settings</button>
     </nav>
   </div>
 </header>
@@ -90,18 +78,8 @@
     <button id="analyzeBtn">Analyze League</button>
   </div>
 
-  <details class="secondary-options">
-    <summary>More options</summary>
-    <div class="buttons secondary-option-actions">
-      <button id="refreshBtn" class="good">Analyze with Live Player Data</button>
-      <button id="loadSavedBtn" class="secondary">Open Previous Report</button>
-      <button id="clearBtn" class="ghost">Delete Previous Report</button>
-    </div>
-    <p class="small">Use live player data when you need to bypass locally stored player information. Previous reports are stored only in this browser.</p>
-  </details>
-
-  <details class="ranking-weights">
-    <summary>Contender Ranking Weights</summary>
+  <section class="ranking-weights">
+    <h3>Contender Index Weights</h3>
     <p class="weight-scope">These percentages control the team Contender Score, contender ranking and contender classification. They do not change player projections, optimal lineups, player tiers, dynasty values or positional rankings. Weights normalize automatically and do not need to total exactly 100%.</p>
     <div class="advanced-grid weight-grid">
       <div class="weight-field">
@@ -135,43 +113,7 @@
         <p class="field-help">Uses future draft-pick ownership and value. Increase it to reward long-term flexibility more heavily.</p>
       </div>
     </div>
-  </details>
-
-  <details class="advanced-overrides">
-    <summary>Advanced detection overrides</summary>
-    <p class="small">Leave these values on Auto unless Sleeper data is incomplete or the league uses an unusual configuration.</p>
-    <div class="advanced-grid override-grid">
-      <div>
-        <label for="formatOverride">Dynasty format</label>
-        <select id="formatOverride">
-          <option value="auto">Auto-detect</option>
-          <option value="1qb_ppr">1QB PPR</option>
-          <option value="1qb_half">1QB Half PPR</option>
-          <option value="sf_ppr">Superflex PPR</option>
-          <option value="sf_half">Superflex Half PPR</option>
-          <option value="sf_ppr_tep">Superflex PPR TEP</option>
-        </select>
-      </div>
-      <div>
-        <label for="historyDepth">Linked history</label>
-        <select id="historyDepth">
-          <option value="auto" selected>Auto-detect all</option>
-          <option value="1">Current + 1 prior</option>
-          <option value="3">Current + up to 3 prior</option>
-          <option value="5">Current + up to 5 prior</option>
-        </select>
-      </div>
-      <div>
-        <label for="futureYears">Future pick years</label>
-        <select id="futureYears">
-          <option value="auto" selected>Auto-detect</option>
-          <option value="2">2 years</option>
-          <option value="3">3 years</option>
-          <option value="4">4 years</option>
-        </select>
-      </div>
-    </div>
-  </details>
+  </section>
 
   <div id="detectedSetup" class="detected-setup hidden" aria-live="polite"></div>
 
@@ -189,19 +131,7 @@
 <section id="players" class="view"></section>
 <section id="tiers" class="view"></section>
 <section id="picks" class="view"></section>
-<section id="methodology" class="view"></section>
-
-<section id="exportPanel" class="panel hidden">
-  <div class="section-title"><h2>Export and Update</h2></div>
-  <div class="buttons">
-    <button id="jsonExport" class="secondary">Download Analysis JSON</button>
-    <button id="rankingCsv" class="secondary">Download Rankings CSV</button>
-    <button id="playerCsv" class="secondary">Download Player Master CSV</button>
-    <button id="snapshotExport" class="secondary">Download Report HTML</button>
-    <button id="printBtn" class="ghost">Print / Save PDF</button>
-  </div>
-  <p class="small">A previous report can be reopened from the landing-page options. Use Refresh Data here to rerun the analysis with live player data.</p>
-</section>
+<section id="settings" class="view"></section>
 </div>
 </main>
 
@@ -211,7 +141,6 @@
   Secondary market values from DynastyProcess. This tool is not affiliated with Sleeper.
 </footer>
 
-<script id="embedded-analysis" type="application/json"></script>
-<script type="module" src="./js/app.js"></script>
+<script type="module" src="./js/app.js?v=2.3.0-release"></script>
 </body>
 </html>

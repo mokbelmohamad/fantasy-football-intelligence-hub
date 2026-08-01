@@ -17,4 +17,4 @@ Node tests for Team Insights rendering safeguards and content hierarchy.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0.

@@ -5,19 +5,19 @@
 End-to-end league analysis orchestrator.
 
 ## Responsibilities
-- Validate the league ID and user options.
+- Validate the league ID and Contender Index weights.
 - Load Sleeper, RosterAudit, DynastyProcess, and snapshot data.
 - Normalize players and construct roster/free-agent analytical records.
 - Build legal lineups, team metrics, ranks, insights, and the final analysis object.
-- Fetch linked-season matchup history and attach chart-ready weekly history to
-  every team.
+- Build a metadata-only linked-season index, then begin a transient session for
+  deferred history retrieval.
 - Cap matchup-derived performance data at the Week 17 fantasy championship.
-- Cache completed analysis and trigger rendering.
+- Keep the completed analysis in memory and trigger rendering; it does not save
+  a league report to IndexedDB.
 
 ## Dependencies
 - `config.js`
 - `state.js`
-- `storage.js`
 - `utils.js`
 - `api/index.js`
 - `league.js`
@@ -34,5 +34,8 @@ End-to-end league analysis orchestrator.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. It attaches
-linked-season summaries and Week 1–17 weekly histories to each team record.
+Documented for the Phase 1 stateless acquisition work on the Version 2.3.0
+baseline. Initial rendering uses current-season evidence; Team Insights and the
+collapsed League History Evidence area in Settings hydrate deeper linked-season
+evidence only when opened. `applyContenderWeights` recalculates rankings from
+existing percentiles and makes no network request.
