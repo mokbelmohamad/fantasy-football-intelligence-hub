@@ -18,4 +18,4 @@ Node tests for Dashboard-specific render preparation.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0.

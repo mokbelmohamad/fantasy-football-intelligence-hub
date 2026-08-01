@@ -31,10 +31,6 @@ export function mean(arr){return arr.length?sum(arr)/arr.length:0}
 
 // Creates a temporary browser download. b is the file contents and a is a
 // temporary hidden link that starts the browser's normal download flow.
-export function download(name,text,type){const b=new Blob([text],{type});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1200)}
-
-export function csvEscape(v){if(v===null||v===undefined)return "";const s=Array.isArray(v)?v.join("; "):String(v);return /[",\n]/.test(s)?`"${s.replaceAll('"','""')}"`:s}
-
 export function log(msg,pct){$("#status").textContent=msg;if(pct!==undefined)$("#progressBar").style.width=`${clamp(pct,0,100)}%`}
 
 export function sourceBadge(name,status,detail=""){return `<span class="badge ${status}">${status==="ok"?"●":status==="warn"?"▲":"●"} ${esc(name)}${detail?`: ${esc(detail)}`:""}</span>`}

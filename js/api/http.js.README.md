@@ -6,6 +6,7 @@ Low-level HTTP and same-origin snapshot utilities.
 
 ## Responsibilities
 - Fetch with timeout and no-store behavior.
+- Retry transient JSON requests with a short, bounded network backoff.
 - Load JSON and text.
 - Run bounded-concurrency workers.
 - Load and validate local JSON snapshots.
@@ -21,4 +22,4 @@ Low-level HTTP and same-origin snapshot utilities.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This documentation reflects the merged feature set and does not change `APP_VERSION`.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This documentation reflects the merged feature set and does not change `APP_VERSION`.

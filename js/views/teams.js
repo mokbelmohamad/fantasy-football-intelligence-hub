@@ -3,7 +3,7 @@
 import { state } from "../state.js";
 import { $, esc, fmt, intFmt } from "../utils.js";
 import { classCss, tierClass } from "../league.js";
-import { sortableTable, teamInsightReviewHtml } from "./shared.js";
+import { gapToLeaderLabel, sortableTable, teamInsightReviewHtml } from "./shared.js?v=2.3.0";
 
 const signed=value=>`${value>=0?"+":""}${fmt(value,2)}`;
 
@@ -26,7 +26,7 @@ function seasonAndPerformanceHtml(analysis, team){
     <div class="dashboard-kpi-grid current-season-grid">
       <div class="kpi"><div class="label">Contender Rank</div><div class="value">#${team.currentRank||"—"} of ${analysis.totalRosters||"—"}</div><div class="kpi-note">Model-based championship rank</div></div>
       <div class="kpi"><div class="label">Expected PPG</div><div class="value">${fmt(team.lineupPpg,2)}</div><div class="kpi-note">Optimal legal lineup</div></div>
-      <div class="kpi"><div class="label">Gap to #1</div><div class="value">${team.currentRank===1?"Leader":`-${fmt((leader.lineupPpg||0)-(team.lineupPpg||0),2)}`}</div><div class="kpi-note">Expected PPG difference</div></div>
+      <div class="kpi"><div class="label">Gap to #1</div><div class="value">${team.currentRank===1?"Leader":gapToLeaderLabel(leader.lineupPpg,team.lineupPpg)}</div><div class="kpi-note">Expected PPG difference</div></div>
       <div class="kpi"><div class="label">Gap to League Average</div><div class="value">${signed((team.lineupPpg||0)-leagueAverage)}</div><div class="kpi-note">Expected PPG difference</div></div>
       <div class="kpi"><div class="label">Current Standing & Record</div><div class="value compact-value">${esc(standing)}</div><div class="kpi-note">${esc(currentRecord)} · ${esc(seasonStatus)}</div></div>
     </div>
@@ -89,7 +89,7 @@ function rosterTable(team){
 
 // Pure markup builder so regression tests can verify Team Insights without a DOM.
 export function teamInsightsMarkup(analysis, selectedTeam){
-  if(!analysis)return `<div class="panel team-insights-empty"><h2>Team Insights</h2><p>No analysis is loaded. Analyze a league or open a saved report to view team insights.</p></div>`;
+  if(!analysis)return `<div class="panel team-insights-empty"><h2>Team Insights</h2><p>No analysis is loaded. Analyze a league to view team insights.</p></div>`;
   const team=focusedTeam(analysis,selectedTeam);
   if(!team)return `<div class="panel team-insights-empty"><h2>Team Insights</h2><p>This report does not contain any teams to review.</p></div>`;
   const insights=team.insights||{};

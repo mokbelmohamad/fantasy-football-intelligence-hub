@@ -17,10 +17,10 @@ Central application version and external endpoint configuration.
 - update design references
 
 ## Maintenance notes
-- APP_VERSION remains 2.2.1 for this documentation update.
+- APP_VERSION is 2.3.0 for the stateless Sleeper acquisition release.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This
 documentation reflects the merged feature set and does not change
 `APP_VERSION`.

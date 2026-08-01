@@ -11,10 +11,19 @@ export class AppError extends Error {
   }
 }
 
+function scrubSensitiveText(value) {
+  return String(value || "").replace(/\b\d{10,25}\b/g, "[redacted]");
+}
+
 export function normalizeError(error, context = {}) {
   // Turn browser/network errors into safe, friendly errors the UI can display.
   if (error instanceof AppError) {
-    return error;
+    return new AppError(scrubSensitiveText(error.message), {
+      code: error.code,
+      source: error.source,
+      recoverable: error.recoverable,
+      details: scrubSensitiveText(error.details),
+    });
   }
 
   const aborted = error?.name === "AbortError";
@@ -38,7 +47,7 @@ export function normalizeError(error, context = {}) {
     });
   }
 
-  return new AppError(message, {
+  return new AppError(scrubSensitiveText(message), {
     code: context.code || "UNEXPECTED_ERROR",
     source: context.source || "Application",
     cause: error,
@@ -58,6 +67,8 @@ export function userMessage(error) {
 
 export function reportError(error, context = {}) {
   const normalized = normalizeError(error, context);
-  console.error(`[${normalized.code}] ${normalized.source}`, normalized);
+  // Avoid logging request objects or causes: they can contain submitted league
+  // or Sleeper user identifiers. The safe code/source pair is enough here.
+  console.error("[" + normalized.code + "] " + normalized.source + ": " + scrubSensitiveText(normalized.message));
   return normalized;
 }

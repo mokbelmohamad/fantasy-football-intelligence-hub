@@ -3,7 +3,7 @@ import { idbGet, idbSet } from "../storage.js";
 import { todayKey } from "../utils.js";
 import {
   allSettledMap,
-  fetchJson,
+  fetchJsonWithRetry,
   loadJsonSnapshot,
 } from "./http.js";
 
@@ -12,7 +12,7 @@ import {
 const LAST_LEAGUE_WEEK = 17;
 
 export async function getNflState() {
-  return fetchJson(`${API.sleeper}/state/nfl`);
+  return fetchJsonWithRetry(`${API.sleeper}/state/nfl`);
 }
 
 export async function loadPlayerDirectory(force, sources) {
@@ -47,7 +47,7 @@ export async function loadPlayerDirectory(force, sources) {
     }
   }
 
-  const players = await fetchJson(`${API.sleeper}/players/nfl`, 90000);
+  const players = await fetchJsonWithRetry(`${API.sleeper}/players/nfl`, 90000);
   await idbSet(key, players);
   sources.push({
     name: "Sleeper players",
@@ -60,11 +60,11 @@ export async function loadPlayerDirectory(force, sources) {
 export async function getLeagueBundle(id) {
   // A "bundle" groups all Sleeper records required to analyze one league.
   const [league, users, rosters, tradedPicks, drafts] = await Promise.all([
-    fetchJson(`${API.sleeper}/league/${id}`),
-    fetchJson(`${API.sleeper}/league/${id}/users`),
-    fetchJson(`${API.sleeper}/league/${id}/rosters`),
-    fetchJson(`${API.sleeper}/league/${id}/traded_picks`).catch(() => []),
-    fetchJson(`${API.sleeper}/league/${id}/drafts`).catch(() => []),
+    fetchJsonWithRetry(`${API.sleeper}/league/${id}`),
+    fetchJsonWithRetry(`${API.sleeper}/league/${id}/users`),
+    fetchJsonWithRetry(`${API.sleeper}/league/${id}/rosters`),
+    fetchJsonWithRetry(`${API.sleeper}/league/${id}/traded_picks`).catch(() => []),
+    fetchJsonWithRetry(`${API.sleeper}/league/${id}/drafts`).catch(() => []),
   ]);
 
   return {
@@ -76,22 +76,39 @@ export async function getLeagueBundle(id) {
   };
 }
 
-export async function getHistory(currentBundle, depth) {
-  // Follow Sleeper's linked previous_league_id chain up to the requested depth.
-  const history = [currentBundle];
-  let id = currentBundle.league.previous_league_id;
+export async function getLeagueMetadata(id) {
+  return fetchJsonWithRetry(API.sleeper + "/league/" + id);
+}
 
-  while (id && id !== "0" && history.length <= depth) {
+export async function getSeasonRosterBundle(id) {
+  const [league, users, rosters] = await Promise.all([
+    getLeagueMetadata(id),
+    fetchJsonWithRetry(API.sleeper + "/league/" + id + "/users"),
+    fetchJsonWithRetry(API.sleeper + "/league/" + id + "/rosters"),
+  ]);
+  return { league, users, rosters };
+}
+
+export async function getSeasonIndex(currentLeague, depth = 20) {
+  // Linked seasons must be discovered in order because each league points to
+  // its predecessor. Only metadata is loaded here; detailed evidence waits for
+  // the page that needs it.
+  const seasons = [{ league: currentLeague }];
+  const failures = [];
+  let id = currentLeague.previous_league_id;
+
+  while (id && id !== "0" && seasons.length <= depth) {
     try {
-      const bundle = await getLeagueBundle(id);
-      history.push(bundle);
-      id = bundle.league.previous_league_id;
+      const league = await getLeagueMetadata(id);
+      seasons.push({ league });
+      id = league.previous_league_id;
     } catch {
+      failures.push("A linked season could not be indexed.");
       break;
     }
   }
 
-  return history;
+  return { seasons, failures };
 }
 
 export async function getMatchups(leagueId, maxWeek) {
@@ -105,7 +122,7 @@ export async function getMatchups(leagueId, maxWeek) {
   const weeks = Array.from({ length: completedWeek }, (_, index) => index + 1);
   const results = await allSettledMap(
     weeks,
-    (week) => fetchJson(`${API.sleeper}/league/${leagueId}/matchups/${week}`),
+    (week) => fetchJsonWithRetry(`${API.sleeper}/league/${leagueId}/matchups/${week}`),
     6,
   );
 
@@ -123,28 +140,66 @@ export async function getMatchups(leagueId, maxWeek) {
   return matchups;
 }
 
-// Collect matchup records for every linked season. The current season's data is
-// reused rather than fetched twice; older seasons are limited to two concurrent
-// leagues to avoid overwhelming Sleeper while still keeping the report usable.
-export async function getHistoryMatchups(history, currentMatchups, currentMaxWeek) {
-  const byLeagueId = new Map();
-  const current = history?.[0];
-  if (current?.league?.league_id) {
-    byLeagueId.set(String(current.league.league_id), currentMatchups || {});
-  }
-
-  const previous = (history || []).slice(1);
-  const results = await allSettledMap(previous, async (bundle) => {
-    const leagueId = String(bundle?.league?.league_id || "");
-    if (!leagueId) return { leagueId, matchups: {} };
-    const maxWeek = bundle.league.status === "complete" ? LAST_LEAGUE_WEEK : currentMaxWeek;
-    return { leagueId, matchups: await getMatchups(leagueId, maxWeek) };
-  }, 2);
-
-  results.forEach((result) => {
-    if (result.status === "fulfilled" && result.value.leagueId) {
-      byLeagueId.set(result.value.leagueId, result.value.matchups);
+export async function getTransactions(leagueId) {
+  // Sleeper has no season transaction index. Request every public round,
+  // including round 0 for offseason activity, without treating an empty round
+  // as an error.
+  const rounds = Array.from({ length: 19 }, (_, index) => index);
+  const results = await allSettledMap(
+    rounds,
+    (round) => fetchJsonWithRetry(API.sleeper + "/league/" + leagueId + "/transactions/" + round),
+    4,
+  );
+  const transactions = {};
+  const failures = [];
+  results.forEach((result, index) => {
+    if (result.status === "fulfilled" && Array.isArray(result.value)) {
+      transactions[rounds[index]] = result.value;
+    } else if (result.status === "rejected") {
+      failures.push("Transaction round " + rounds[index] + " could not be loaded.");
     }
   });
-  return byLeagueId;
+  return { transactions, failures };
+}
+
+export async function getLeagueDrafts(leagueId) {
+  return fetchJsonWithRetry(API.sleeper + "/league/" + leagueId + "/drafts");
+}
+
+export async function getDraftEvidence(drafts) {
+  const results = await allSettledMap(drafts || [], async (draft) => {
+    const id = String(draft?.draft_id || "");
+    if (!id) return { draft, detail: null, picks: [], tradedPicks: [], error: "Missing draft identifier." };
+    const [detail, picks, tradedPicks] = await Promise.allSettled([
+      fetchJsonWithRetry(API.sleeper + "/draft/" + id),
+      fetchJsonWithRetry(API.sleeper + "/draft/" + id + "/picks"),
+      fetchJsonWithRetry(API.sleeper + "/draft/" + id + "/traded_picks"),
+    ]);
+    return {
+      draft,
+      detail: detail.status === "fulfilled" ? detail.value : null,
+      picks: picks.status === "fulfilled" && Array.isArray(picks.value) ? picks.value : [],
+      tradedPicks: tradedPicks.status === "fulfilled" && Array.isArray(tradedPicks.value) ? tradedPicks.value : [],
+      error: [detail, picks, tradedPicks].some((item) => item.status === "rejected")
+        ? "Some draft evidence is unavailable."
+        : "",
+    };
+  }, 2);
+  return results.map((result) => result.status === "fulfilled"
+    ? result.value
+    : { draft: null, detail: null, picks: [], tradedPicks: [], error: "Draft evidence could not be loaded." });
+}
+
+export async function getPlayoffBrackets(leagueId) {
+  const [winners, losers] = await Promise.allSettled([
+    fetchJsonWithRetry(API.sleeper + "/league/" + leagueId + "/winners_bracket"),
+    fetchJsonWithRetry(API.sleeper + "/league/" + leagueId + "/losers_bracket"),
+  ]);
+  return {
+    winners: winners.status === "fulfilled" && Array.isArray(winners.value) ? winners.value : [],
+    losers: losers.status === "fulfilled" && Array.isArray(losers.value) ? losers.value : [],
+    failures: [winners, losers].filter((item) => item.status === "rejected").length
+      ? ["One or more playoff brackets are unavailable."]
+      : [],
+  };
 }

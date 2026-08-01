@@ -5,7 +5,8 @@
 Public barrel export for provider modules.
 
 ## Responsibilities
-- Re-export HTTP, Sleeper, RosterAudit, DynastyProcess, and projection functions.
+- Re-export HTTP, Sleeper, stateless league-session, RosterAudit,
+  DynastyProcess, and projection functions.
 
 ## Dependencies
 - `All js/api provider files`
@@ -19,4 +20,4 @@ Public barrel export for provider modules.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This documentation reflects the merged feature set and does not change `APP_VERSION`.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This documentation reflects the merged feature set and does not change `APP_VERSION`.

@@ -1,7 +1,7 @@
 
 digraph FFIH {
   graph [rankdir=LR, bgcolor="white", pad="0.25", nodesep="0.55", ranksep="0.8",
-         fontname="Arial", label="Fantasy Football Intelligence Hub v2.0 - Published Static Architecture",
+         fontname="Arial", label="Fantasy Football Intelligence Hub v2.3.0 - Published Static Architecture",
          labelloc="t", fontsize=22];
   node [shape=box, style="rounded,filled", fontname="Arial", fontsize=10,
         color="#0B5ED7", fillcolor="#EAF2FF", margin="0.14,0.09"];
@@ -13,16 +13,16 @@ digraph FFIH {
   app [label="js/app.js\nStartup + Events"];
   analyze [label="js/analyze.js\nAnalysis Orchestrator"];
   render [label="js/render.js\nView Orchestrator"];
-  views [label="js/views/*\nDashboard, Teams, Lineups,\nTrade, Players, Tiers, Picks"];
+  views [label="js/views/*\nDashboard, Teams, Player Trends,\nTrade Center, Players, Tiers, Picks, Settings"];
   core [label="Core Analytics\nleague.js + tiers.js"];
+  session [label="Session-Memory Evidence Cache\nleagueSession.js\nCleared on reload, tab close,\nor Change League", fillcolor="#F1F7F9", color="#34727D"];
   support [label="Shared Runtime\nstate.js, storage.js,\nutils.js, errors.js"];
   api [label="Provider Layer\njs/api/*"];
   local [label="Same-Origin Snapshots\ndata/*.json", fillcolor="#FFF7E6", color="#C47A00"];
   sleeper [label="Sleeper APIs", fillcolor="#FFF0F0", color="#B43A3A"];
   ra [label="RosterAudit APIs", fillcolor="#FFF0F0", color="#B43A3A"];
   dp [label="DynastyProcess CSV", fillcolor="#FFF0F0", color="#B43A3A"];
-  idb [label="IndexedDB\nPlayer cache + saved analyses", fillcolor="#F1F7F9", color="#34727D"];
-  exports [label="User Exports\nJSON, CSV, HTML, Print/PDF", fillcolor="#F1F7F9", color="#34727D"];
+  idb [label="IndexedDB\nDaily public player cache only", fillcolor="#F1F7F9", color="#34727D"];
   action [label="GitHub Actions\nScheduled + Manual", fillcolor="#F2EEFF", color="#6842C2"];
   script [label="scripts/update-data.mjs\nFetch + Normalize + Write"];
   test [label="Node Test + Validation\nnpm test / npm run validate", fillcolor="#E8F7EE", color="#16874A"];
@@ -36,6 +36,7 @@ digraph FFIH {
   analyze -> api;
   analyze -> core;
   analyze -> support;
+  analyze -> session [label="index linked seasons"];
   render -> views;
   render -> support;
   core -> support;
@@ -43,8 +44,8 @@ digraph FFIH {
   api -> sleeper [label="live fallback"];
   api -> ra [label="live fallback"];
   api -> dp [label="live fallback"];
-  analyze -> idb [label="read/write"];
-  render -> exports [label="generate"];
+  render -> session [label="defer and reuse deep evidence"];
+  analyze -> idb [label="player directory only"];
   repo -> pages [label="deploy main/root"];
   action -> test;
   action -> script;

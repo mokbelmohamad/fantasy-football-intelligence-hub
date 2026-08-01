@@ -24,4 +24,4 @@ Node tests for core league calculations.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0.

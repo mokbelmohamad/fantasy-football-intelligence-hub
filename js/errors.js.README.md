@@ -9,6 +9,7 @@ Central error normalization, reporting, and user-facing message generation.
 - Classify timeout and network failures.
 - Preserve source and recovery details.
 - Log normalized errors consistently.
+- Scrub long numeric Sleeper identifiers from user-facing errors and logs.
 
 ## Dependencies
 - None.
@@ -22,4 +23,4 @@ Central error normalization, reporting, and user-facing message generation.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This documentation reflects the merged feature set and does not change `APP_VERSION`.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This documentation reflects the merged feature set and does not change `APP_VERSION`.

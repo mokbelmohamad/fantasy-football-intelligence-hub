@@ -5,7 +5,7 @@
 Player Tiers page renderer.
 
 ## Responsibilities
-- Render tier controls and methodology.
+- Render tier controls and tier-specific methodology.
 - Filter and sort tier players.
 - Render tier groups and player cards.
 
@@ -22,4 +22,4 @@ Player Tiers page renderer.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This documentation reflects the merged feature set and does not change `APP_VERSION`.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This documentation reflects the merged feature set and does not change `APP_VERSION`.

@@ -133,6 +133,13 @@ details {
   gap: 22px;
 }
 
+/* Grid children otherwise inherit the minimum width of the wide evidence
+   tables. Keeping that width inside the table wrapper prevents Team Insights
+   from forcing the entire page to scroll sideways on a narrow screen. */
+.team-insights-page > * {
+  min-width: 0;
+}
+
 .team-insights-page > .section-title,
 .team-insights-page > .callout {
   margin-bottom: 0;
@@ -345,6 +352,17 @@ details {
 .team-risk.moderate { color: var(--yellow); }
 .team-risk.high,
 .team-risk.very-high { color: var(--red); }
+
+/* Settings uses the existing report-panel language while keeping deep history
+   collapsed until a user explicitly asks to load that evidence. */
+.settings-page { display: grid; gap: 18px; }
+.settings-weights { padding: 18px; border: 1px solid var(--line); border-radius: 13px; background: var(--panel2); }
+.settings-weights h3 { margin: 0; }
+.settings-history { margin: 0; padding: 0; overflow: hidden; background: var(--panel2); }
+.settings-history > summary { padding: 14px 16px; color: var(--blue); font-weight: 900; cursor: pointer; }
+.settings-history-content { padding: 0 16px 16px; }
+.settings-methodology { padding: 18px; border: 1px solid var(--line); border-radius: 13px; background: var(--panel2); }
+.settings-methodology > h3 { margin-top: 0; }
 
 
 .section-title h2,

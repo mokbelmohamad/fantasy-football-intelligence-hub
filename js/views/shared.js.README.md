@@ -22,6 +22,6 @@ Shared presentation helpers for tables and evidence blocks.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This
 documentation update does not change `APP_VERSION` or create a new application
 release.

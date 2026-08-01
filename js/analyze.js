@@ -3,7 +3,6 @@
 // scores, then create the report consumed by every view.
 import { APP_VERSION } from "./config.js";
 import { state } from "./state.js";
-import { idbSet } from "./storage.js";
 import {
   $,
   clamp,
@@ -18,11 +17,11 @@ import {
 import {
   collectProjectionPlayers,
   field,
-  getHistory,
-  getHistoryMatchups,
   getLeagueBundle,
   getMatchups,
   getNflState,
+  getSeasonIndex,
+  beginLeagueSession,
   loadDynastyProcessData,
   loadPlayerDirectory,
   loadRosterAuditPicks,
@@ -57,52 +56,68 @@ import {
   populateTeamSelectors,
   renderAll,
   showDashboardShell,
-} from "./render.js?v=2.2.1-header-string-2";
+} from "./render.js?v=2.3.0";
 import {
   normalizeError,
   reportError,
   userMessage,
 } from "./errors.js";
 
-const sleep=(ms)=>new Promise(resolve=>setTimeout(resolve,ms));
+function normalizedWeights(rawWeights) {
+  const weights = {
+    projection: num(rawWeights.projection), depth: num(rawWeights.depth),
+    history: num(rawWeights.history), dynasty: num(rawWeights.dynasty),
+    risk: num(rawWeights.risk), picks: num(rawWeights.picks),
+  };
+  const total = sum(Object.values(weights)) || 100;
+  Object.keys(weights).forEach((key) => { weights[key] /= total; });
+  return weights;
+}
 
-async function completeMinimumLoading(startedAt, minimumMs){
-  const remaining=minimumMs-(Date.now()-startedAt);
-  if(remaining<=0)return;
-  const steps=[
-    ["Evaluating projections and dynasty values…",84],
-    ["Building optimal lineups…",88],
-    ["Generating team insights…",92],
-    ["Finalizing your report…",95],
-  ];
-  const stepDelay=Math.max(250,Math.floor(remaining/steps.length));
-  for(const [message,progress] of steps){
-    log(message,progress);
-    await sleep(Math.min(stepDelay,Math.max(0,minimumMs-(Date.now()-startedAt))));
-  }
-  const finalWait=minimumMs-(Date.now()-startedAt);
-  if(finalWait>0)await sleep(finalWait);
+// Settings reuses the computed percentiles already in the open report. This
+// changes rankings and recommendations immediately without repeating any
+// Sleeper request or retaining a league identifier.
+export function applyContenderWeights(rawWeights) {
+  const analysis = state.analysis;
+  if (!analysis?.teams?.length) return false;
+  const weights = normalizedWeights(rawWeights);
+  const teams = analysis.teams;
+  teams.forEach((team) => {
+    team.contenderScore = 100 * (
+      weights.projection * num(team.projectionPct)
+      + weights.depth * num(team.depthPct)
+      + weights.history * num(team.productionPct)
+      + weights.dynasty * num(team.dynastyPct)
+      + weights.risk * num(team.riskPct)
+      + weights.picks * num(team.picksPct)
+    );
+  });
+  teams.sort((left, right) => right.contenderScore - left.contenderScore)
+    .forEach((team, index) => { team.currentRank = index + 1; });
+  teams.forEach((team) => {
+    team.currentClass = classCurrent(team.currentRank, teams.length);
+    team.insights = buildTeamInsights(team, teams);
+  });
+  analysis.weights = weights;
+  return true;
 }
 
 export async function analyze(force=false){
   // force means the user chose live player data over local cached snapshots.
   const leagueId=$("#leagueId").value.trim();
   if(!/^\d{10,25}$/.test(leagueId)){log("Enter a valid numeric Sleeper league ID.");return}
-  const startedAt=Date.now(),minimumLoadingMs=7000+Math.floor(Math.random()*3001);
-  const sourceStatuses=[];setSources([]);$("#analyzeBtn").disabled=true;$("#refreshBtn").disabled=true;
+  const sourceStatuses=[];setSources([]);$("#analyzeBtn").disabled=true;
   $("#detectedSetup").classList.add("hidden");
   try{
     log("Preparing league analysis…",2);
     const [nflState,bundle]=await Promise.all([getNflState(),getLeagueBundle(leagueId)]);
     log("Loading league settings…",7);
     sourceStatuses.push({name:"Sleeper league",status:"ok",detail:`${bundle.rosters.length} teams`});setSources(sourceStatuses);
-    const formatKey=detectFormat(bundle.league,$("#formatOverride").value);
-    const historyOverride=$("#historyDepth").value;
-    const historyDepth=historyOverride==="auto"?20:num(historyOverride,3);
+    const formatKey=detectFormat(bundle.league,"auto");
     log("Detecting league format and history…",12);
-    const history=await getHistory(bundle,historyDepth);
-    const pickHorizon=detectFuturePickHorizon(bundle,$("#futureYears").value);
-    const detectedSetup=describeDetectedLeague(bundle.league,formatKey,history,pickHorizon);
+    const seasonIndex=await getSeasonIndex(bundle.league,20);
+    const pickHorizon=detectFuturePickHorizon(bundle,"auto");
+    const detectedSetup=describeDetectedLeague(bundle.league,formatKey,seasonIndex.seasons,pickHorizon);
     const setupNode=$("#detectedSetup");
     setupNode.innerHTML=`Detected: ${detectedSetup.teams} teams · ${detectedSetup.formatLabel} · Start ${detectedSetup.starterCount}${detectedSetup.idp?" · IDP":""}<span class="small">History: ${detectedSetup.historyStart}–${detectedSetup.historyEnd} · Future picks: ${detectedSetup.pickStart}–${detectedSetup.pickEnd}</span>`;
     setupNode.classList.remove("hidden");
@@ -116,9 +131,13 @@ export async function analyze(force=false){
     else if(Number(nflState.season)===currentSeason&&["regular","post"].includes(nflState.season_type))maxWeek=clamp(num(nflState.leg||nflState.week)-1,0,17);
     log(`Loading rosters and ${maxWeek} weeks of current-season data…`,20);
     const matchups=await getMatchups(leagueId,maxWeek);
-    sourceStatuses.push({name:"Sleeper matchups",status:Object.keys(matchups).length?"ok":"warn",detail:`${Object.keys(matchups).length} weeks`});setSources(sourceStatuses);
-    log("Loading linked-season matchup history…",25);
-    const historyMatchups=await getHistoryMatchups(history,matchups,maxWeek);
+    const loadedWeeks=Object.keys(matchups).length;
+    sourceStatuses.push({name:"Sleeper matchups",status:loadedWeeks===maxWeek?"ok":"warn",detail:`${loadedWeeks} of ${maxWeek} completed weeks`});setSources(sourceStatuses);
+    if(seasonIndex.failures.length){sourceStatuses.push({name:"Linked season index",status:"warn",detail:"partially available"});setSources(sourceStatuses);}
+    // Keep all submitted league identifiers in the transient session cache.
+    // Deep transactions, drafts, prior matchups, and brackets load only when
+    // the related report page is opened.
+    beginLeagueSession(bundle,seasonIndex.seasons,matchups,maxWeek);
 
     log("Loading rosters and player data…",30);
     const playerDirectory=await loadPlayerDirectory(force,sourceStatuses);setSources(sourceStatuses);
@@ -219,8 +238,7 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
     // slots are required starters; pickOwnership applies traded-pick records.
     const slots=starterSlots(bundle.league);
     const pickOwnership=buildPickOwnership(bundle,pickHorizon.years,teamMap,raPicks);
-    const prior=history[1]||null;
-    const priorByRoster=new Map((prior?.rosters||[]).map(r=>[num(r.roster_id),r]));
+    const priorByRoster=new Map();
     const teams=[];
     for(const roster of bundle.rosters){
       const rid=num(roster.roster_id),teamPlayers=playerRows.filter(p=>p.rosterId===rid),solved=minCostLineup(slots,teamPlayers);
@@ -253,14 +271,13 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
     };
     const useCurrent=maxWeek>=4&&teams.some(t=>t.currentPF>0);
     const productionMetric=teams.map(t=>useCurrent?(t.currentPF+t.currentMaxPF)/2:(t.priorPF+t.priorMaxPF)/2);
-    const weightInputs={projection:num($("#wProjection").value),depth:num($("#wDepth").value),history:num($("#wHistory").value),dynasty:num($("#wDynasty").value),risk:num($("#wRisk").value),picks:num($("#wPicks").value)};
-    const wTotal=sum(Object.values(weightInputs))||100;Object.keys(weightInputs).forEach(k=>weightInputs[k]/=wTotal);
+    const weightInputs=normalizedWeights({projection:$("#wProjection").value,depth:$("#wDepth").value,history:$("#wHistory").value,dynasty:$("#wDynasty").value,risk:$("#wRisk").value,picks:$("#wPicks").value});
     for(const t of teams){
       t.projectionPct=percentile(metrics.projection,t.lineupPpg);t.depthPct=percentile(metrics.depth,t.depth);
       t.productionPct=percentile(productionMetric,useCurrent?(t.currentPF+t.currentMaxPF)/2:(t.priorPF+t.priorMaxPF)/2);
       t.dynastyPct=percentile(metrics.dynasty,t.totalValue);t.riskPct=percentile(metrics.risk,t.risk,false);
       t.picksPct=percentile(metrics.picks,t.pickCapital);t.youngPct=percentile(metrics.young,t.youngValue);
-      t.contenderScore=wTotal?100*(weightInputs.projection*t.projectionPct+weightInputs.depth*t.depthPct+weightInputs.history*t.productionPct+weightInputs.dynasty*t.dynastyPct+weightInputs.risk*t.riskPct+weightInputs.picks*t.picksPct):0;
+      t.contenderScore=100*(weightInputs.projection*t.projectionPct+weightInputs.depth*t.depthPct+weightInputs.history*t.productionPct+weightInputs.dynasty*t.dynastyPct+weightInputs.risk*t.riskPct+weightInputs.picks*t.picksPct);
       t.franchiseScore=.40*t.dynastyPct+.25*t.youngPct+.15*t.picksPct+.10*t.projectionPct+.10*t.riskPct;
     }
     teams.sort((a,b)=>b.contenderScore-a.contenderScore).forEach((t,i)=>t.currentRank=i+1);
@@ -278,20 +295,25 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
       rankedPositions.sort((a,b)=>b.rank-a.rank||a.score-b.score);
       t.biggestWeakness=rankedPositions[0]?.pos||"None";
     }
-    const historicalSummaries=buildHistoricalTeamSummaries(history,bundle.rosters);
-    const weeklyHistories=buildHistoricalTeamWeeklyPpg(history,historyMatchups,bundle.rosters);
+    // Initial rendering uses only current-season matchups. Linked-season
+    // history is filled in lazily when Team Insights or League History needs it.
+    const currentHistory=[bundle];
+    const currentMatchupHistory=new Map([[String(bundle.league.league_id),matchups]]);
+    const historicalSummaries=buildHistoricalTeamSummaries(currentHistory,bundle.rosters);
+    const weeklyHistories=buildHistoricalTeamWeeklyPpg(currentHistory,currentMatchupHistory,bundle.rosters);
     for(const t of teams)Object.assign(t,{historical:historicalSummaries.get(t.rosterId)||null,weeklyHistory:weeklyHistories.get(t.rosterId)||[]});
     for(const t of teams){t.currentClass=classCurrent(t.currentRank,teams.length);t.franchiseClass=classFranchise(t.franchiseRank,teams.length)}
     assignPlayerPositionTiers(playerRows);
     for(const t of teams)t.insights=buildTeamInsights(t,teams);
 
     const unsupportedSlots=slots.filter(s=>["DL","LB","DB","IDP_FLEX"].includes(s));
-    // The portable report saved in the browser and handed to every rendering view.
+    // The report excludes submitted league IDs. Those identifiers remain only
+    // in the transient session loader and are cleared when the tab closes.
     const analysis={
-      appVersion:APP_VERSION,generatedAt:new Date().toISOString(),leagueId,leagueName:bundle.league.name,season:currentSeason,
+      appVersion:APP_VERSION,generatedAt:new Date().toISOString(),leagueName:bundle.league.name,season:currentSeason,
       leagueStatus:bundle.league.status,currentWeek:maxWeek,totalRosters:bundle.rosters.length,formatKey,formatLabel:scoringFormatLabel(formatKey),
       starterCount:slots.length,starterSlots:slots,rosterSlots:slots,unsupportedSlots,weights:weightInputs,useCurrentProduction:useCurrent,detectedSetup,pickHorizon,teams,players:playerRows,
-      picks:pickOwnership,sourceStatuses,history:history.map(h=>({leagueId:h.league.league_id,season:h.league.season,name:h.league.name,status:h.league.status})),
+      picks:pickOwnership,sourceStatuses,history:seasonIndex.seasons.map(h=>({season:h.league.season,name:h.league.name,status:h.league.status})),
       methodology:{
         projection:"Legal lineups are solved using projected season totals divided by 17, which adjusts for projected missed games.",
         production:useCurrent?"Current-season points-for and maximum points are used.":"The most recent completed linked season is used until enough current-season data exists.",
@@ -300,10 +322,9 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
         picks:"Future pick ownership comes from Sleeper traded-pick records. Mid-round fallback values are used for team-level scoring."
       }
     };
-    state.analysis=prepareAnalysisForRender(analysis);await idbSet(`analysis:${leagueId}`,state.analysis);
-    await completeMinimumLoading(startedAt,minimumLoadingMs);
+    state.analysis=prepareAnalysisForRender(analysis);
     populateTeamSelectors();renderAll();showDashboardShell();
-    log(`Complete: ${bundle.league.name}\n${teams.length} teams · ${playerRows.length} rostered players · ${maxWeek} current-season weeks · ${history.length} linked seasons`,100);
+    log(`Complete: ${bundle.league.name}\n${teams.length} teams · ${playerRows.length} rostered players · ${maxWeek} current-season weeks · ${seasonIndex.seasons.length} linked seasons`,100);
 
 }catch(e){
   const normalized=normalizeError(e,{source:"League analysis"});
@@ -311,7 +332,7 @@ sourceStatuses.push({name:"DynastyProcess",status:external[3].status==="fulfille
   log(`Analysis failed:
 ${userMessage(normalized)}
 
-Try Analyze with Live Player Data or open a previous report.`,0);
+Try Analyze League again.`,0);
   sourceStatuses.push({name:"Run",status:"bad",detail:normalized.message});setSources(sourceStatuses);
-}finally{$("#analyzeBtn").disabled=false;$("#refreshBtn").disabled=false}
+}finally{$("#analyzeBtn").disabled=false}
 }

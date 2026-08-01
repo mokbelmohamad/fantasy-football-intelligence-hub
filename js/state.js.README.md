@@ -1,5 +1,5 @@
 
-## Version 2.2 state
+## Version 2.3 state
 
 The shared state now includes `activeView` so the selected report page can remain synchronized with the grouped header selector and browser navigation.
 # `js/state.js`
@@ -27,4 +27,4 @@ Single shared in-memory state object.
 
 ## Version baseline
 
-Documented for Fantasy Football Intelligence Hub Version 2.2.1. This documentation reflects the merged feature set and does not change `APP_VERSION`.
+Documented for Fantasy Football Intelligence Hub Version 2.3.0. This documentation reflects the merged feature set and does not change `APP_VERSION`.
