@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T16:27:10.970Z",
+  "generatedAt": "2026-08-01T14:47:39.823Z",
   "data": {
     "rankings": [
       {
@@ -2753,7 +2753,7 @@
         "name": "James Cook",
         "position": "RB",
         "team": "BUF",
-        "age": 26.8,
+        "age": 26.9,
         "ppg": 14.8,
         "ppg_half": 14.8,
         "ppg_ppr": 16.1,
@@ -4202,7 +4202,7 @@
         "name": "Will Howard",
         "position": "QB",
         "team": "PIT",
-        "age": 24.8,
+        "age": 24.9,
         "ppg": 13.9,
         "ppg_half": 13.9,
         "ppg_ppr": 13.9,
@@ -4919,7 +4919,7 @@
         "name": "Bucky Irving",
         "position": "RB",
         "team": "TB",
-        "age": 23.9,
+        "age": 24,
         "ppg": 13.4,
         "ppg_half": 13.4,
         "ppg_ppr": 15,
