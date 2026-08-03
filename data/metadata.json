@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T14:48:21.075Z",
+  "generatedAt": "2026-08-03T17:26:50.778Z",
   "season": 2026,
   "nflState": {
     "week": 0,
@@ -9,7 +9,7 @@
     "league_season": "2026",
     "previous_season": "2025",
     "season_start_date": "2026-08-06",
-    "display_week": 0,
+    "display_week": 1,
     "league_create_season": "2026",
     "season_has_scores": true
   },
