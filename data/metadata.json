@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-12T14:33:55.904Z",
+  "generatedAt": "2026-08-13T14:34:51.355Z",
   "season": 2026,
   "nflState": {
     "week": 1,
@@ -29,8 +29,7 @@
       "error": "403 Forbidden"
     },
     "pickValues": {
-      "ok": false,
-      "error": "403 Forbidden"
+      "ok": true
     },
     "dynastyProcess": {
       "ok": true
