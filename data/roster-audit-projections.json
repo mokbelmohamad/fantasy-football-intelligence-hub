@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-20T11:13:44.950Z",
+  "generatedAt": "2026-08-21T11:13:35.650Z",
   "data": {
     "rankings": [
       {
@@ -8,12 +8,12 @@
         "name": "Josh Allen",
         "position": "QB",
         "team": "BUF",
-        "age": 30.2,
+        "age": 30.3,
         "ppg": 22.5,
         "ppg_half": 22.5,
         "ppg_ppr": 22.5,
         "ppg_std": 22.5,
-        "dynasty_val": 8855,
+        "dynasty_val": 9531,
         "dynasty_rank": 4,
         "stats": [
           {
@@ -74,8 +74,8 @@
         "ppg_half": 22.3,
         "ppg_ppr": 22.3,
         "ppg_std": 22.3,
-        "dynasty_val": 6427,
-        "dynasty_rank": 11,
+        "dynasty_val": 6863,
+        "dynasty_rank": 9,
         "stats": [
           {
             "year": 2026,
@@ -135,8 +135,8 @@
         "ppg_half": 21.4,
         "ppg_ppr": 21.4,
         "ppg_std": 21.4,
-        "dynasty_val": 7539,
-        "dynasty_rank": 7,
+        "dynasty_val": 8515,
+        "dynasty_rank": 6,
         "stats": [
           {
             "year": 2026,
@@ -196,7 +196,7 @@
         "ppg_half": 20.8,
         "ppg_ppr": 20.8,
         "ppg_std": 20.8,
-        "dynasty_val": 6246,
+        "dynasty_val": 6191,
         "dynasty_rank": 14,
         "stats": [
           {
@@ -318,8 +318,8 @@
         "ppg_half": 20.1,
         "ppg_ppr": 20.1,
         "ppg_std": 20.1,
-        "dynasty_val": 4261,
-        "dynasty_rank": 29,
+        "dynasty_val": 4807,
+        "dynasty_rank": 27,
         "stats": [
           {
             "year": 2026,
@@ -379,8 +379,8 @@
         "ppg_half": 19.6,
         "ppg_ppr": 19.6,
         "ppg_std": 19.6,
-        "dynasty_val": 6258,
-        "dynasty_rank": 13,
+        "dynasty_val": 6091,
+        "dynasty_rank": 16,
         "stats": [
           {
             "year": 2026,
@@ -440,7 +440,7 @@
         "ppg_half": 19.3,
         "ppg_ppr": 21.5,
         "ppg_std": 17,
-        "dynasty_val": 9676,
+        "dynasty_val": 9904,
         "dynasty_rank": 2,
         "stats": [
           {
@@ -501,8 +501,8 @@
         "ppg_half": 19.1,
         "ppg_ppr": 21.5,
         "ppg_std": 16.7,
-        "dynasty_val": 5516,
-        "dynasty_rank": 19,
+        "dynasty_val": 5582,
+        "dynasty_rank": 22,
         "stats": [
           {
             "year": 2026,
@@ -562,8 +562,8 @@
         "ppg_half": 18.9,
         "ppg_ppr": 18.9,
         "ppg_std": 18.9,
-        "dynasty_val": 6895,
-        "dynasty_rank": 8,
+        "dynasty_val": 6749,
+        "dynasty_rank": 11,
         "stats": [
           {
             "year": 2026,
@@ -623,8 +623,8 @@
         "ppg_half": 18.6,
         "ppg_ppr": 21,
         "ppg_std": 16.2,
-        "dynasty_val": 3828,
-        "dynasty_rank": 35,
+        "dynasty_val": 3654,
+        "dynasty_rank": 39,
         "stats": [
           {
             "year": 2026,
@@ -684,8 +684,8 @@
         "ppg_half": 18.5,
         "ppg_ppr": 18.5,
         "ppg_std": 18.5,
-        "dynasty_val": 2957,
-        "dynasty_rank": 51,
+        "dynasty_val": 3220,
+        "dynasty_rank": 47,
         "stats": [
           {
             "year": 2026,
@@ -745,8 +745,8 @@
         "ppg_half": 18.5,
         "ppg_ppr": 18.5,
         "ppg_std": 18.5,
-        "dynasty_val": 1656,
-        "dynasty_rank": 90,
+        "dynasty_val": 2150,
+        "dynasty_rank": 82,
         "stats": [
           {
             "year": 2026,
@@ -806,8 +806,8 @@
         "ppg_half": 18.4,
         "ppg_ppr": 18.4,
         "ppg_std": 18.4,
-        "dynasty_val": 5377,
-        "dynasty_rank": 21,
+        "dynasty_val": 5761,
+        "dynasty_rank": 19,
         "stats": [
           {
             "year": 2026,
@@ -867,8 +867,8 @@
         "ppg_half": 18.3,
         "ppg_ppr": 18.3,
         "ppg_std": 18.3,
-        "dynasty_val": 3899,
-        "dynasty_rank": 32,
+        "dynasty_val": 3907,
+        "dynasty_rank": 35,
         "stats": [
           {
             "year": 2026,
@@ -919,67 +919,6 @@
       },
       {
         "rank": 16,
-        "sleeper_id": "12510",
-        "name": "Jalen Milroe",
-        "position": "QB",
-        "team": "SEA",
-        "age": 23.7,
-        "ppg": 18.3,
-        "ppg_half": 18.3,
-        "ppg_ppr": 18.3,
-        "ppg_std": 18.3,
-        "dynasty_val": 55,
-        "dynasty_rank": 291,
-        "stats": [
-          {
-            "year": 2026,
-            "games": 6,
-            "pass_yd": 1150,
-            "pass_td": 7,
-            "int": 5,
-            "rush_yd": 280,
-            "rush_td": 3,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 18.3,
-            "ppg_half": 18.3,
-            "ppg_ppr": 18.3
-          },
-          {
-            "year": 2027,
-            "games": 15,
-            "pass_yd": 3100,
-            "pass_td": 21,
-            "int": 12,
-            "rush_yd": 680,
-            "rush_td": 8,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 20,
-            "ppg_half": 20,
-            "ppg_ppr": 20
-          },
-          {
-            "year": 2028,
-            "games": 16,
-            "pass_yd": 3450,
-            "pass_td": 24,
-            "int": 11,
-            "rush_yd": 720,
-            "rush_td": 9,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 21.1,
-            "ppg_half": 21.1,
-            "ppg_ppr": 21.1
-          }
-        ]
-      },
-      {
-        "rank": 17,
         "sleeper_id": "7564",
         "name": "Ja'Marr Chase",
         "position": "WR",
@@ -989,7 +928,7 @@
         "ppg_half": 18.2,
         "ppg_ppr": 21.9,
         "ppg_std": 14.5,
-        "dynasty_val": 9147,
+        "dynasty_val": 9601,
         "dynasty_rank": 3,
         "stats": [
           {
@@ -1040,7 +979,7 @@
         ]
       },
       {
-        "rank": 18,
+        "rank": 17,
         "sleeper_id": "7523",
         "name": "Trevor Lawrence",
         "position": "QB",
@@ -1050,8 +989,8 @@
         "ppg_half": 18.1,
         "ppg_ppr": 18.1,
         "ppg_std": 18.1,
-        "dynasty_val": 4870,
-        "dynasty_rank": 24,
+        "dynasty_val": 5065,
+        "dynasty_rank": 25,
         "stats": [
           {
             "year": 2026,
@@ -1101,7 +1040,7 @@
         ]
       },
       {
-        "rank": 19,
+        "rank": 18,
         "sleeper_id": "6813",
         "name": "Jonathan Taylor",
         "position": "RB",
@@ -1111,8 +1050,8 @@
         "ppg_half": 18,
         "ppg_ppr": 19.3,
         "ppg_std": 16.7,
-        "dynasty_val": 5178,
-        "dynasty_rank": 23,
+        "dynasty_val": 5224,
+        "dynasty_rank": 24,
         "stats": [
           {
             "year": 2026,
@@ -1162,7 +1101,7 @@
         ]
       },
       {
-        "rank": 20,
+        "rank": 19,
         "sleeper_id": "4046",
         "name": "Patrick Mahomes",
         "position": "QB",
@@ -1172,7 +1111,7 @@
         "ppg_half": 17.9,
         "ppg_ppr": 17.9,
         "ppg_std": 17.9,
-        "dynasty_val": 4733,
+        "dynasty_val": 4874,
         "dynasty_rank": 26,
         "stats": [
           {
@@ -1223,7 +1162,7 @@
         ]
       },
       {
-        "rank": 21,
+        "rank": 20,
         "sleeper_id": "421",
         "name": "Matthew Stafford",
         "position": "QB",
@@ -1233,8 +1172,8 @@
         "ppg_half": 17.4,
         "ppg_ppr": 17.4,
         "ppg_std": 17.4,
-        "dynasty_val": 1825,
-        "dynasty_rank": 86,
+        "dynasty_val": 2032,
+        "dynasty_rank": 85,
         "stats": [
           {
             "year": 2026,
@@ -1284,18 +1223,18 @@
         ]
       },
       {
-        "rank": 22,
+        "rank": 21,
         "sleeper_id": "8183",
         "name": "Brock Purdy",
         "position": "QB",
         "team": "SF",
-        "age": 26.6,
+        "age": 26.7,
         "ppg": 17.4,
         "ppg_half": 17.4,
         "ppg_ppr": 17.4,
         "ppg_std": 17.4,
-        "dynasty_val": 3331,
-        "dynasty_rank": 41,
+        "dynasty_val": 3328,
+        "dynasty_rank": 44,
         "stats": [
           {
             "year": 2026,
@@ -1345,7 +1284,7 @@
         ]
       },
       {
-        "rank": 23,
+        "rank": 22,
         "sleeper_id": "12508",
         "name": "Jaxson Dart",
         "position": "QB",
@@ -1355,8 +1294,8 @@
         "ppg_half": 17.4,
         "ppg_ppr": 17.4,
         "ppg_std": 17.4,
-        "dynasty_val": 4349,
-        "dynasty_rank": 28,
+        "dynasty_val": 4510,
+        "dynasty_rank": 30,
         "stats": [
           {
             "year": 2026,
@@ -1406,7 +1345,7 @@
         ]
       },
       {
-        "rank": 24,
+        "rank": 23,
         "sleeper_id": "4892",
         "name": "Baker Mayfield",
         "position": "QB",
@@ -1416,8 +1355,8 @@
         "ppg_half": 17.3,
         "ppg_ppr": 17.3,
         "ppg_std": 17.3,
-        "dynasty_val": 2721,
-        "dynasty_rank": 58,
+        "dynasty_val": 2505,
+        "dynasty_rank": 66,
         "stats": [
           {
             "year": 2026,
@@ -1467,7 +1406,7 @@
         ]
       },
       {
-        "rank": 25,
+        "rank": 24,
         "sleeper_id": "9488",
         "name": "Jaxon Smith-Njigba",
         "position": "WR",
@@ -1477,7 +1416,7 @@
         "ppg_half": 17.3,
         "ppg_ppr": 20.6,
         "ppg_std": 14,
-        "dynasty_val": 8071,
+        "dynasty_val": 8541,
         "dynasty_rank": 5,
         "stats": [
           {
@@ -1528,7 +1467,7 @@
         ]
       },
       {
-        "rank": 26,
+        "rank": 25,
         "sleeper_id": "9493",
         "name": "Puka Nacua",
         "position": "WR",
@@ -1538,8 +1477,8 @@
         "ppg_half": 17.2,
         "ppg_ppr": 20.9,
         "ppg_std": 13.5,
-        "dynasty_val": 7911,
-        "dynasty_rank": 6,
+        "dynasty_val": 8472,
+        "dynasty_rank": 7,
         "stats": [
           {
             "year": 2026,
@@ -1589,129 +1528,7 @@
         ]
       },
       {
-        "rank": 27,
-        "sleeper_id": "7591",
-        "name": "Justin Fields",
-        "position": "QB",
-        "team": "KC",
-        "age": 27.5,
-        "ppg": 17,
-        "ppg_half": 17,
-        "ppg_ppr": 17,
-        "ppg_std": 17,
-        "dynasty_val": 75,
-        "dynasty_rank": 260,
-        "stats": [
-          {
-            "year": 2026,
-            "games": 2,
-            "pass_yd": 310,
-            "pass_td": 2,
-            "int": 1,
-            "rush_yd": 95,
-            "rush_td": 1,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 17,
-            "ppg_half": 17,
-            "ppg_ppr": 17
-          },
-          {
-            "year": 2027,
-            "games": 4,
-            "pass_yd": 650,
-            "pass_td": 4,
-            "int": 3,
-            "rush_yd": 180,
-            "rush_td": 2,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 16.5,
-            "ppg_half": 16.5,
-            "ppg_ppr": 16.5
-          },
-          {
-            "year": 2028,
-            "games": 3,
-            "pass_yd": 480,
-            "pass_td": 3,
-            "int": 2,
-            "rush_yd": 140,
-            "rush_td": 1,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 15.7,
-            "ppg_half": 15.7,
-            "ppg_ppr": 15.7
-          }
-        ]
-      },
-      {
-        "rank": 28,
-        "sleeper_id": "13306",
-        "name": "Taylen Green",
-        "position": "QB",
-        "team": "CLE",
-        "age": 23.8,
-        "ppg": 17,
-        "ppg_half": 17,
-        "ppg_ppr": 17,
-        "ppg_std": 17,
-        "dynasty_val": 71,
-        "dynasty_rank": 262,
-        "stats": [
-          {
-            "year": 2026,
-            "games": 4,
-            "pass_yd": 850,
-            "pass_td": 4,
-            "int": 3,
-            "rush_yd": 180,
-            "rush_td": 1,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 17,
-            "ppg_half": 17,
-            "ppg_ppr": 17
-          },
-          {
-            "year": 2027,
-            "games": 14,
-            "pass_yd": 2950,
-            "pass_td": 16,
-            "int": 12,
-            "rush_yd": 620,
-            "rush_td": 5,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 17.9,
-            "ppg_half": 17.9,
-            "ppg_ppr": 17.9
-          },
-          {
-            "year": 2028,
-            "games": 17,
-            "pass_yd": 3300,
-            "pass_td": 21,
-            "int": 14,
-            "rush_yd": 740,
-            "rush_td": 6,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 17.5,
-            "ppg_half": 17.5,
-            "ppg_ppr": 17.5
-          }
-        ]
-      },
-      {
-        "rank": 29,
+        "rank": 26,
         "sleeper_id": "6804",
         "name": "Jordan Love",
         "position": "QB",
@@ -1721,8 +1538,8 @@
         "ppg_half": 16.8,
         "ppg_ppr": 16.8,
         "ppg_std": 16.8,
-        "dynasty_val": 3192,
-        "dynasty_rank": 46,
+        "dynasty_val": 3148,
+        "dynasty_rank": 49,
         "stats": [
           {
             "year": 2026,
@@ -1772,7 +1589,7 @@
         ]
       },
       {
-        "rank": 30,
+        "rank": 27,
         "sleeper_id": "5870",
         "name": "Daniel Jones",
         "position": "QB",
@@ -1782,8 +1599,8 @@
         "ppg_half": 16.6,
         "ppg_ppr": 16.6,
         "ppg_std": 16.6,
-        "dynasty_val": 1562,
-        "dynasty_rank": 96,
+        "dynasty_val": 1551,
+        "dynasty_rank": 98,
         "stats": [
           {
             "year": 2026,
@@ -1833,18 +1650,18 @@
         ]
       },
       {
-        "rank": 31,
+        "rank": 28,
         "sleeper_id": "3163",
         "name": "Jared Goff",
         "position": "QB",
         "team": "DET",
-        "age": 31.8,
+        "age": 31.9,
         "ppg": 16.5,
         "ppg_half": 16.5,
         "ppg_ppr": 16.5,
         "ppg_std": 16.5,
-        "dynasty_val": 2487,
-        "dynasty_rank": 68,
+        "dynasty_val": 2843,
+        "dynasty_rank": 58,
         "stats": [
           {
             "year": 2026,
@@ -1894,7 +1711,7 @@
         ]
       },
       {
-        "rank": 32,
+        "rank": 29,
         "sleeper_id": "12507",
         "name": "Omarion Hampton",
         "position": "RB",
@@ -1904,8 +1721,8 @@
         "ppg_half": 16.4,
         "ppg_ppr": 18.1,
         "ppg_std": 14.6,
-        "dynasty_val": 5419,
-        "dynasty_rank": 20,
+        "dynasty_val": 5785,
+        "dynasty_rank": 18,
         "stats": [
           {
             "year": 2026,
@@ -1955,7 +1772,68 @@
         ]
       },
       {
-        "rank": 33,
+        "rank": 30,
+        "sleeper_id": "7591",
+        "name": "Justin Fields",
+        "position": "QB",
+        "team": "KC",
+        "age": 27.5,
+        "ppg": 16.3,
+        "ppg_half": 16.3,
+        "ppg_ppr": 16.3,
+        "ppg_std": 16.3,
+        "dynasty_val": 176,
+        "dynasty_rank": 236,
+        "stats": [
+          {
+            "year": 2026,
+            "games": 3,
+            "pass_yd": 450,
+            "pass_td": 3,
+            "int": 1,
+            "rush_yd": 150,
+            "rush_td": 1,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 16.3,
+            "ppg_half": 16.3,
+            "ppg_ppr": 16.3
+          },
+          {
+            "year": 2027,
+            "games": 6,
+            "pass_yd": 1100,
+            "pass_td": 7,
+            "int": 3,
+            "rush_yd": 300,
+            "rush_td": 3,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 19,
+            "ppg_half": 19,
+            "ppg_ppr": 19
+          },
+          {
+            "year": 2028,
+            "games": 12,
+            "pass_yd": 2200,
+            "pass_td": 14,
+            "int": 8,
+            "rush_yd": 550,
+            "rush_td": 5,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 17.8,
+            "ppg_half": 17.8,
+            "ppg_ppr": 17.8
+          }
+        ]
+      },
+      {
+        "rank": 31,
         "sleeper_id": "6786",
         "name": "CeeDee Lamb",
         "position": "WR",
@@ -1965,8 +1843,8 @@
         "ppg_half": 16.2,
         "ppg_ppr": 19.5,
         "ppg_std": 12.8,
-        "dynasty_val": 5668,
-        "dynasty_rank": 18,
+        "dynasty_val": 5945,
+        "dynasty_rank": 17,
         "stats": [
           {
             "year": 2026,
@@ -2016,7 +1894,7 @@
         ]
       },
       {
-        "rank": 34,
+        "rank": 32,
         "sleeper_id": "9758",
         "name": "C.J. Stroud",
         "position": "QB",
@@ -2026,8 +1904,8 @@
         "ppg_half": 16.2,
         "ppg_ppr": 16.2,
         "ppg_std": 16.2,
-        "dynasty_val": 2337,
-        "dynasty_rank": 70,
+        "dynasty_val": 2426,
+        "dynasty_rank": 71,
         "stats": [
           {
             "year": 2026,
@@ -2077,7 +1955,7 @@
         ]
       },
       {
-        "rank": 35,
+        "rank": 33,
         "sleeper_id": "6794",
         "name": "Justin Jefferson",
         "position": "WR",
@@ -2087,8 +1965,8 @@
         "ppg_half": 16.1,
         "ppg_ppr": 19.5,
         "ppg_std": 12.8,
-        "dynasty_val": 6232,
-        "dynasty_rank": 15,
+        "dynasty_val": 6477,
+        "dynasty_rank": 12,
         "stats": [
           {
             "year": 2026,
@@ -2138,6 +2016,128 @@
         ]
       },
       {
+        "rank": 34,
+        "sleeper_id": "13306",
+        "name": "Taylen Green",
+        "position": "QB",
+        "team": "CLE",
+        "age": 23.8,
+        "ppg": 16,
+        "ppg_half": 16,
+        "ppg_ppr": 16,
+        "ppg_std": 16,
+        "dynasty_val": 113,
+        "dynasty_rank": 287,
+        "stats": [
+          {
+            "year": 2026,
+            "games": 4,
+            "pass_yd": 750,
+            "pass_td": 4,
+            "int": 3,
+            "rush_yd": 180,
+            "rush_td": 1,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 16,
+            "ppg_half": 16,
+            "ppg_ppr": 16
+          },
+          {
+            "year": 2027,
+            "games": 10,
+            "pass_yd": 1950,
+            "pass_td": 11,
+            "int": 9,
+            "rush_yd": 420,
+            "rush_td": 3,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 16.4,
+            "ppg_half": 16.4,
+            "ppg_ppr": 16.4
+          },
+          {
+            "year": 2028,
+            "games": 15,
+            "pass_yd": 3100,
+            "pass_td": 18,
+            "int": 14,
+            "rush_yd": 610,
+            "rush_td": 5,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 17.3,
+            "ppg_half": 17.3,
+            "ppg_ppr": 17.3
+          }
+        ]
+      },
+      {
+        "rank": 35,
+        "sleeper_id": "12511",
+        "name": "Will Howard",
+        "position": "QB",
+        "team": "PIT",
+        "age": 24.9,
+        "ppg": 15.8,
+        "ppg_half": 15.8,
+        "ppg_ppr": 15.8,
+        "ppg_std": 15.8,
+        "dynasty_val": 129,
+        "dynasty_rank": 274,
+        "stats": [
+          {
+            "year": 2026,
+            "games": 4,
+            "pass_yd": 850,
+            "pass_td": 5,
+            "int": 4,
+            "rush_yd": 110,
+            "rush_td": 1,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 15.8,
+            "ppg_half": 15.8,
+            "ppg_ppr": 15.8
+          },
+          {
+            "year": 2027,
+            "games": 14,
+            "pass_yd": 3100,
+            "pass_td": 19,
+            "int": 13,
+            "rush_yd": 380,
+            "rush_td": 4,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 16.9,
+            "ppg_half": 16.9,
+            "ppg_ppr": 16.9
+          },
+          {
+            "year": 2028,
+            "games": 16,
+            "pass_yd": 3450,
+            "pass_td": 22,
+            "int": 15,
+            "rush_yd": 420,
+            "rush_td": 5,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 16.8,
+            "ppg_half": 16.8,
+            "ppg_ppr": 16.8
+          }
+        ]
+      },
+      {
         "rank": 36,
         "sleeper_id": "12527",
         "name": "Ashton Jeanty",
@@ -2148,8 +2148,8 @@
         "ppg_half": 15.7,
         "ppg_ppr": 17.3,
         "ppg_std": 14.1,
-        "dynasty_val": 6414,
-        "dynasty_rank": 12,
+        "dynasty_val": 6467,
+        "dynasty_rank": 13,
         "stats": [
           {
             "year": 2026,
@@ -2209,8 +2209,8 @@
         "ppg_half": 15.6,
         "ppg_ppr": 15.6,
         "ppg_std": 15.6,
-        "dynasty_val": 88,
-        "dynasty_rank": 244,
+        "dynasty_val": 144,
+        "dynasty_rank": 263,
         "stats": [
           {
             "year": 2026,
@@ -2270,7 +2270,7 @@
         "ppg_half": 15.6,
         "ppg_ppr": 15.6,
         "ppg_std": 15.6,
-        "dynasty_val": 2482,
+        "dynasty_val": 2455,
         "dynasty_rank": 69,
         "stats": [
           {
@@ -2331,8 +2331,8 @@
         "ppg_half": 15.5,
         "ppg_ppr": 15.5,
         "ppg_std": 15.5,
-        "dynasty_val": 2023,
-        "dynasty_rank": 80,
+        "dynasty_val": 1916,
+        "dynasty_rank": 90,
         "stats": [
           {
             "year": 2026,
@@ -2392,8 +2392,8 @@
         "ppg_half": 15.3,
         "ppg_ppr": 15.3,
         "ppg_std": 15.3,
-        "dynasty_val": 1359,
-        "dynasty_rank": 100,
+        "dynasty_val": 1414,
+        "dynasty_rank": 103,
         "stats": [
           {
             "year": 2026,
@@ -2453,8 +2453,8 @@
         "ppg_half": 15.2,
         "ppg_ppr": 15.2,
         "ppg_std": 15.2,
-        "dynasty_val": 3194,
-        "dynasty_rank": 45,
+        "dynasty_val": 3201,
+        "dynasty_rank": 48,
         "stats": [
           {
             "year": 2026,
@@ -2514,8 +2514,8 @@
         "ppg_half": 15.1,
         "ppg_ppr": 16.5,
         "ppg_std": 13.7,
-        "dynasty_val": 3512,
-        "dynasty_rank": 40,
+        "dynasty_val": 3657,
+        "dynasty_rank": 37,
         "stats": [
           {
             "year": 2026,
@@ -2575,8 +2575,8 @@
         "ppg_half": 15.1,
         "ppg_ppr": 15.1,
         "ppg_std": 15.1,
-        "dynasty_val": 163,
-        "dynasty_rank": 205,
+        "dynasty_val": 265,
+        "dynasty_rank": 202,
         "stats": [
           {
             "year": 2026,
@@ -2636,8 +2636,8 @@
         "ppg_half": 15.1,
         "ppg_ppr": 16.8,
         "ppg_std": 13.3,
-        "dynasty_val": 5791,
-        "dynasty_rank": 16,
+        "dynasty_val": 5759,
+        "dynasty_rank": 20,
         "stats": [
           {
             "year": 2026,
@@ -2697,8 +2697,8 @@
         "ppg_half": 15,
         "ppg_ppr": 18.3,
         "ppg_std": 11.8,
-        "dynasty_val": 5682,
-        "dynasty_rank": 17,
+        "dynasty_val": 6142,
+        "dynasty_rank": 15,
         "stats": [
           {
             "year": 2026,
@@ -2758,8 +2758,8 @@
         "ppg_half": 14.9,
         "ppg_ppr": 18.1,
         "ppg_std": 11.6,
-        "dynasty_val": 6578,
-        "dynasty_rank": 10,
+        "dynasty_val": 7060,
+        "dynasty_rank": 8,
         "stats": [
           {
             "year": 2026,
@@ -2819,8 +2819,8 @@
         "ppg_half": 14.7,
         "ppg_ppr": 16.5,
         "ppg_std": 12.9,
-        "dynasty_val": 3131,
-        "dynasty_rank": 47,
+        "dynasty_val": 3274,
+        "dynasty_rank": 46,
         "stats": [
           {
             "year": 2026,
@@ -2880,8 +2880,8 @@
         "ppg_half": 14.6,
         "ppg_ppr": 15.9,
         "ppg_std": 13.4,
-        "dynasty_val": 3219,
-        "dynasty_rank": 43,
+        "dynasty_val": 2952,
+        "dynasty_rank": 56,
         "stats": [
           {
             "year": 2026,
@@ -2941,7 +2941,7 @@
         "ppg_half": 14.6,
         "ppg_ppr": 15.9,
         "ppg_std": 13.4,
-        "dynasty_val": 2650,
+        "dynasty_val": 2719,
         "dynasty_rank": 60,
         "stats": [
           {
@@ -2993,67 +2993,6 @@
       },
       {
         "rank": 50,
-        "sleeper_id": "2307",
-        "name": "Marcus Mariota",
-        "position": "QB",
-        "team": "WAS",
-        "age": 32.8,
-        "ppg": 14.4,
-        "ppg_half": 14.4,
-        "ppg_ppr": 14.4,
-        "ppg_std": 14.4,
-        "dynasty_val": 47,
-        "dynasty_rank": 307,
-        "stats": [
-          {
-            "year": 2026,
-            "games": 3,
-            "pass_yd": 520,
-            "pass_td": 3,
-            "int": 2,
-            "rush_yd": 85,
-            "rush_td": 1,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 14.4,
-            "ppg_half": 14.4,
-            "ppg_ppr": 14.4
-          },
-          {
-            "year": 2027,
-            "games": 2,
-            "pass_yd": 310,
-            "pass_td": 2,
-            "int": 1,
-            "rush_yd": 45,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 11.5,
-            "ppg_half": 11.5,
-            "ppg_ppr": 11.5
-          },
-          {
-            "year": 2028,
-            "games": 1,
-            "pass_yd": 150,
-            "pass_td": 1,
-            "int": 1,
-            "rush_yd": 20,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 10,
-            "ppg_half": 10,
-            "ppg_ppr": 10
-          }
-        ]
-      },
-      {
-        "rank": 51,
         "sleeper_id": "8138",
         "name": "James Cook",
         "position": "RB",
@@ -3063,8 +3002,8 @@
         "ppg_half": 14.4,
         "ppg_ppr": 15.6,
         "ppg_std": 13.3,
-        "dynasty_val": 4504,
-        "dynasty_rank": 27,
+        "dynasty_val": 4594,
+        "dynasty_rank": 28,
         "stats": [
           {
             "year": 2026,
@@ -3114,7 +3053,7 @@
         ]
       },
       {
-        "rank": 52,
+        "rank": 51,
         "sleeper_id": "6768",
         "name": "Tua Tagovailoa",
         "position": "QB",
@@ -3124,8 +3063,8 @@
         "ppg_half": 14.2,
         "ppg_ppr": 14.2,
         "ppg_std": 14.2,
-        "dynasty_val": 200,
-        "dynasty_rank": 192,
+        "dynasty_val": 317,
+        "dynasty_rank": 186,
         "stats": [
           {
             "year": 2026,
@@ -3175,7 +3114,7 @@
         ]
       },
       {
-        "rank": 53,
+        "rank": 52,
         "sleeper_id": "7083",
         "name": "Tyler Huntley",
         "position": "QB",
@@ -3185,8 +3124,8 @@
         "ppg_half": 14.2,
         "ppg_ppr": 14.2,
         "ppg_std": 14.2,
-        "dynasty_val": 6,
-        "dynasty_rank": 443,
+        "dynasty_val": 0,
+        "dynasty_rank": 440,
         "stats": [
           {
             "year": 2026,
@@ -3236,7 +3175,7 @@
         ]
       },
       {
-        "rank": 54,
+        "rank": 53,
         "sleeper_id": "7569",
         "name": "Nico Collins",
         "position": "WR",
@@ -3246,8 +3185,8 @@
         "ppg_half": 14.2,
         "ppg_ppr": 17,
         "ppg_std": 11.5,
-        "dynasty_val": 3197,
-        "dynasty_rank": 44,
+        "dynasty_val": 3514,
+        "dynasty_rank": 41,
         "stats": [
           {
             "year": 2026,
@@ -3297,6 +3236,67 @@
         ]
       },
       {
+        "rank": 54,
+        "sleeper_id": "2307",
+        "name": "Marcus Mariota",
+        "position": "QB",
+        "team": "WAS",
+        "age": 32.8,
+        "ppg": 14.1,
+        "ppg_half": 14.1,
+        "ppg_ppr": 14.1,
+        "ppg_std": 14.1,
+        "dynasty_val": 134,
+        "dynasty_rank": 271,
+        "stats": [
+          {
+            "year": 2026,
+            "games": 3,
+            "pass_yd": 520,
+            "pass_td": 3,
+            "int": 2,
+            "rush_yd": 75,
+            "rush_td": 1,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 14.1,
+            "ppg_half": 14.1,
+            "ppg_ppr": 14.1
+          },
+          {
+            "year": 2027,
+            "games": 2,
+            "pass_yd": 310,
+            "pass_td": 2,
+            "int": 2,
+            "rush_yd": 40,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 10.2,
+            "ppg_half": 10.2,
+            "ppg_ppr": 10.2
+          },
+          {
+            "year": 2028,
+            "games": 1,
+            "pass_yd": 140,
+            "pass_td": 1,
+            "int": 1,
+            "rush_yd": 10,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 8.6,
+            "ppg_half": 8.6,
+            "ppg_ppr": 8.6
+          }
+        ]
+      },
+      {
         "rank": 55,
         "sleeper_id": "9228",
         "name": "Bryce Young",
@@ -3307,8 +3307,8 @@
         "ppg_half": 14.1,
         "ppg_ppr": 14.1,
         "ppg_std": 14.1,
-        "dynasty_val": 1533,
-        "dynasty_rank": 98,
+        "dynasty_val": 1660,
+        "dynasty_rank": 95,
         "stats": [
           {
             "year": 2026,
@@ -3368,8 +3368,8 @@
         "ppg_half": 14.1,
         "ppg_ppr": 14.1,
         "ppg_std": 14.1,
-        "dynasty_val": 124,
-        "dynasty_rank": 221,
+        "dynasty_val": 212,
+        "dynasty_rank": 220,
         "stats": [
           {
             "year": 2026,
@@ -3429,8 +3429,8 @@
         "ppg_half": 14,
         "ppg_ppr": 14,
         "ppg_std": 14,
-        "dynasty_val": 120,
-        "dynasty_rank": 223,
+        "dynasty_val": 214,
+        "dynasty_rank": 219,
         "stats": [
           {
             "year": 2026,
@@ -3481,6 +3481,67 @@
       },
       {
         "rank": 58,
+        "sleeper_id": "4017",
+        "name": "Deshaun Watson",
+        "position": "QB",
+        "team": "CLE",
+        "age": 30.9,
+        "ppg": 14,
+        "ppg_half": 14,
+        "ppg_ppr": 14,
+        "ppg_std": 14,
+        "dynasty_val": 155,
+        "dynasty_rank": 253,
+        "stats": [
+          {
+            "year": 2026,
+            "games": 8,
+            "pass_yd": 1650,
+            "pass_td": 9,
+            "int": 7,
+            "rush_yd": 180,
+            "rush_td": 1,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 14,
+            "ppg_half": 14,
+            "ppg_ppr": 14
+          },
+          {
+            "year": 2027,
+            "games": 4,
+            "pass_yd": 820,
+            "pass_td": 4,
+            "int": 5,
+            "rush_yd": 65,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 11.3,
+            "ppg_half": 11.3,
+            "ppg_ppr": 11.3
+          },
+          {
+            "year": 2028,
+            "games": 1,
+            "pass_yd": 150,
+            "pass_td": 1,
+            "int": 1,
+            "rush_yd": 10,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 9,
+            "ppg_half": 9,
+            "ppg_ppr": 9
+          }
+        ]
+      },
+      {
+        "rank": 59,
         "sleeper_id": "9224",
         "name": "Chase Brown",
         "position": "RB",
@@ -3490,7 +3551,7 @@
         "ppg_half": 14,
         "ppg_ppr": 15.9,
         "ppg_std": 12.1,
-        "dynasty_val": 3650,
+        "dynasty_val": 3874,
         "dynasty_rank": 36,
         "stats": [
           {
@@ -3541,7 +3602,7 @@
         ]
       },
       {
-        "rank": 59,
+        "rank": 60,
         "sleeper_id": "11604",
         "name": "Brock Bowers",
         "position": "TE",
@@ -3551,8 +3612,8 @@
         "ppg_half": 14,
         "ppg_ppr": 17.4,
         "ppg_std": 10.7,
-        "dynasty_val": 6769,
-        "dynasty_rank": 9,
+        "dynasty_val": 6850,
+        "dynasty_rank": 10,
         "stats": [
           {
             "year": 2026,
@@ -3602,114 +3663,7 @@
         ]
       },
       {
-        "rank": 60,
-        "sleeper_id": "96",
-        "name": "Aaron Rodgers",
-        "position": "QB",
-        "team": "PIT",
-        "age": 42.7,
-        "ppg": 13.9,
-        "ppg_half": 13.9,
-        "ppg_ppr": 13.9,
-        "ppg_std": 13.9,
-        "dynasty_val": 90,
-        "dynasty_rank": 240,
-        "stats": [
-          {
-            "year": 2026,
-            "games": 14,
-            "pass_yd": 3050,
-            "pass_td": 21,
-            "int": 8,
-            "rush_yd": 40,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 13.9,
-            "ppg_half": 13.9,
-            "ppg_ppr": 13.9
-          },
-          {
-            "year": 2027,
-            "games": 5,
-            "pass_yd": 950,
-            "pass_td": 6,
-            "int": 4,
-            "rush_yd": 5,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 10.9,
-            "ppg_half": 10.9,
-            "ppg_ppr": 10.9
-          }
-        ]
-      },
-      {
         "rank": 61,
-        "sleeper_id": "12511",
-        "name": "Will Howard",
-        "position": "QB",
-        "team": "PIT",
-        "age": 24.9,
-        "ppg": 13.9,
-        "ppg_half": 13.9,
-        "ppg_ppr": 13.9,
-        "ppg_std": 13.9,
-        "dynasty_val": 65,
-        "dynasty_rank": 277,
-        "stats": [
-          {
-            "year": 2026,
-            "games": 2,
-            "pass_yd": 380,
-            "pass_td": 2,
-            "int": 3,
-            "rush_yd": 45,
-            "rush_td": 1,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 13.9,
-            "ppg_half": 13.9,
-            "ppg_ppr": 13.9
-          },
-          {
-            "year": 2027,
-            "games": 6,
-            "pass_yd": 1150,
-            "pass_td": 7,
-            "int": 6,
-            "rush_yd": 130,
-            "rush_td": 2,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 14.5,
-            "ppg_half": 14.5,
-            "ppg_ppr": 14.5
-          },
-          {
-            "year": 2028,
-            "games": 4,
-            "pass_yd": 820,
-            "pass_td": 4,
-            "int": 5,
-            "rush_yd": 90,
-            "rush_td": 1,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 13.5,
-            "ppg_half": 13.5,
-            "ppg_ppr": 13.5
-          }
-        ]
-      },
-      {
-        "rank": 62,
         "sleeper_id": "2028",
         "name": "Derek Carr",
         "position": "QB",
@@ -3720,7 +3674,7 @@
         "ppg_ppr": 13.8,
         "ppg_std": 13.8,
         "dynasty_val": 0,
-        "dynasty_rank": 3429,
+        "dynasty_rank": 3427,
         "stats": [
           {
             "year": 2026,
@@ -3770,7 +3724,7 @@
         ]
       },
       {
-        "rank": 63,
+        "rank": 62,
         "sleeper_id": "2306",
         "name": "Jameis Winston",
         "position": "QB",
@@ -3780,16 +3734,16 @@
         "ppg_half": 13.8,
         "ppg_ppr": 13.8,
         "ppg_std": 13.8,
-        "dynasty_val": 69,
-        "dynasty_rank": 268,
+        "dynasty_val": 130,
+        "dynasty_rank": 273,
         "stats": [
           {
             "year": 2026,
             "games": 4,
-            "pass_yd": 920,
+            "pass_yd": 945,
             "pass_td": 6,
             "int": 5,
-            "rush_yd": 45,
+            "rush_yd": 35,
             "rush_td": 0,
             "rec": 0,
             "rec_yd": 0,
@@ -3801,7 +3755,7 @@
           {
             "year": 2027,
             "games": 2,
-            "pass_yd": 450,
+            "pass_yd": 480,
             "pass_td": 3,
             "int": 3,
             "rush_yd": 15,
@@ -3809,9 +3763,9 @@
             "rec": 0,
             "rec_yd": 0,
             "rec_td": 0,
-            "ppg_std": 12.8,
-            "ppg_half": 12.8,
-            "ppg_ppr": 12.8
+            "ppg_std": 13.4,
+            "ppg_half": 13.4,
+            "ppg_ppr": 13.4
           },
           {
             "year": 2028,
@@ -3831,7 +3785,7 @@
         ]
       },
       {
-        "rank": 64,
+        "rank": 63,
         "sleeper_id": "10229",
         "name": "Rashee Rice",
         "position": "WR",
@@ -3841,8 +3795,8 @@
         "ppg_half": 13.8,
         "ppg_ppr": 16.9,
         "ppg_std": 10.6,
-        "dynasty_val": 2663,
-        "dynasty_rank": 59,
+        "dynasty_val": 2956,
+        "dynasty_rank": 55,
         "stats": [
           {
             "year": 2026,
@@ -3892,7 +3846,7 @@
         ]
       },
       {
-        "rank": 65,
+        "rank": 64,
         "sleeper_id": "1234",
         "name": "Russell Wilson",
         "position": "QB",
@@ -3903,7 +3857,7 @@
         "ppg_ppr": 13.7,
         "ppg_std": 13.7,
         "dynasty_val": 0,
-        "dynasty_rank": 2983,
+        "dynasty_rank": 2980,
         "stats": [
           {
             "year": 2026,
@@ -3938,6 +3892,52 @@
         ]
       },
       {
+        "rank": 65,
+        "sleeper_id": "1166",
+        "name": "Kirk Cousins",
+        "position": "QB",
+        "team": "LV",
+        "age": 38,
+        "ppg": 13.6,
+        "ppg_half": 13.6,
+        "ppg_ppr": 13.6,
+        "ppg_std": 13.6,
+        "dynasty_val": 155,
+        "dynasty_rank": 254,
+        "stats": [
+          {
+            "year": 2026,
+            "games": 8,
+            "pass_yd": 1850,
+            "pass_td": 12,
+            "int": 7,
+            "rush_yd": 5,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 13.6,
+            "ppg_half": 13.6,
+            "ppg_ppr": 13.6
+          },
+          {
+            "year": 2027,
+            "games": 4,
+            "pass_yd": 900,
+            "pass_td": 5,
+            "int": 4,
+            "rush_yd": 0,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 12,
+            "ppg_half": 12,
+            "ppg_ppr": 12
+          }
+        ]
+      },
+      {
         "rank": 66,
         "sleeper_id": "13272",
         "name": "Carson Beck",
@@ -3948,8 +3948,8 @@
         "ppg_half": 13.6,
         "ppg_ppr": 13.6,
         "ppg_std": 13.6,
-        "dynasty_val": 266,
-        "dynasty_rank": 176,
+        "dynasty_val": 339,
+        "dynasty_rank": 183,
         "stats": [
           {
             "year": 2026,
@@ -4009,7 +4009,7 @@
         "ppg_half": 13.6,
         "ppg_ppr": 15,
         "ppg_std": 12.3,
-        "dynasty_val": 2499,
+        "dynasty_val": 2505,
         "dynasty_rank": 67,
         "stats": [
           {
@@ -4070,8 +4070,8 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 32,
-        "dynasty_rank": 325,
+        "dynasty_val": 0,
+        "dynasty_rank": 1413,
         "stats": [
           {
             "year": 2026,
@@ -4131,7 +4131,7 @@
         "ppg_half": 13.5,
         "ppg_ppr": 14.9,
         "ppg_std": 12.1,
-        "dynasty_val": 2561,
+        "dynasty_val": 2535,
         "dynasty_rank": 64,
         "stats": [
           {
@@ -4193,7 +4193,7 @@
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
         "dynasty_val": 0,
-        "dynasty_rank": 1069,
+        "dynasty_rank": 408,
         "stats": [
           {
             "year": 2026,
@@ -4253,8 +4253,8 @@
         "ppg_half": 13.5,
         "ppg_ppr": 16.6,
         "ppg_std": 10.5,
-        "dynasty_val": 3520,
-        "dynasty_rank": 39,
+        "dynasty_val": 3655,
+        "dynasty_rank": 38,
         "stats": [
           {
             "year": 2026,
@@ -4314,8 +4314,8 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 12,
-        "dynasty_rank": 399,
+        "dynasty_val": 0,
+        "dynasty_rank": 346,
         "stats": [
           {
             "year": 2026,
@@ -4375,8 +4375,8 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 17,
-        "dynasty_rank": 359,
+        "dynasty_val": 0,
+        "dynasty_rank": 325,
         "stats": [
           {
             "year": 2026,
@@ -4436,8 +4436,8 @@
         "ppg_half": 13.4,
         "ppg_ppr": 13.9,
         "ppg_std": 12.8,
-        "dynasty_val": 2140,
-        "dynasty_rank": 76,
+        "dynasty_val": 2292,
+        "dynasty_rank": 78,
         "stats": [
           {
             "year": 2026,
@@ -4497,8 +4497,8 @@
         "ppg_half": 13.4,
         "ppg_ppr": 16.1,
         "ppg_std": 10.7,
-        "dynasty_val": 2861,
-        "dynasty_rank": 55,
+        "dynasty_val": 3113,
+        "dynasty_rank": 51,
         "stats": [
           {
             "year": 2026,
@@ -4549,25 +4549,25 @@
       },
       {
         "rank": 76,
-        "sleeper_id": "12500",
-        "name": "Quinn Ewers",
+        "sleeper_id": "11557",
+        "name": "Joe Milton",
         "position": "QB",
-        "team": "MIA",
-        "age": 23.4,
+        "team": "DAL",
+        "age": 26.5,
         "ppg": 13.4,
         "ppg_half": 13.4,
         "ppg_ppr": 13.4,
         "ppg_std": 13.4,
-        "dynasty_val": 59,
-        "dynasty_rank": 287,
+        "dynasty_val": 138,
+        "dynasty_rank": 268,
         "stats": [
           {
             "year": 2026,
-            "games": 6,
-            "pass_yd": 1350,
-            "pass_td": 8,
-            "int": 5,
-            "rush_yd": 45,
+            "games": 2,
+            "pass_yd": 380,
+            "pass_td": 2,
+            "int": 2,
+            "rush_yd": 75,
             "rush_td": 0,
             "rec": 0,
             "rec_yd": 0,
@@ -4578,26 +4578,11 @@
           },
           {
             "year": 2027,
-            "games": 15,
-            "pass_yd": 3650,
-            "pass_td": 22,
-            "int": 12,
-            "rush_yd": 110,
-            "rush_td": 1,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 15.1,
-            "ppg_half": 15.1,
-            "ppg_ppr": 15.1
-          },
-          {
-            "year": 2028,
-            "games": 17,
-            "pass_yd": 4100,
-            "pass_td": 28,
-            "int": 11,
-            "rush_yd": 135,
+            "games": 5,
+            "pass_yd": 950,
+            "pass_td": 6,
+            "int": 5,
+            "rush_yd": 180,
             "rush_td": 2,
             "rec": 0,
             "rec_yd": 0,
@@ -4605,6 +4590,21 @@
             "ppg_std": 16.4,
             "ppg_half": 16.4,
             "ppg_ppr": 16.4
+          },
+          {
+            "year": 2028,
+            "games": 3,
+            "pass_yd": 620,
+            "pass_td": 4,
+            "int": 3,
+            "rush_yd": 110,
+            "rush_td": 1,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 17.3,
+            "ppg_half": 17.3,
+            "ppg_ppr": 17.3
           }
         ]
       },
@@ -4619,8 +4619,8 @@
         "ppg_half": 13.4,
         "ppg_ppr": 13.4,
         "ppg_std": 13.4,
-        "dynasty_val": 162,
-        "dynasty_rank": 208,
+        "dynasty_val": 345,
+        "dynasty_rank": 181,
         "stats": [
           {
             "year": 2026,
@@ -4680,8 +4680,8 @@
         "ppg_half": 13.4,
         "ppg_ppr": 13.4,
         "ppg_std": 13.4,
-        "dynasty_val": 137,
-        "dynasty_rank": 216,
+        "dynasty_val": 152,
+        "dynasty_rank": 258,
         "stats": [
           {
             "year": 2026,
@@ -4732,6 +4732,52 @@
       },
       {
         "rank": 79,
+        "sleeper_id": "96",
+        "name": "Aaron Rodgers",
+        "position": "QB",
+        "team": "PIT",
+        "age": 42.7,
+        "ppg": 13.2,
+        "ppg_half": 13.2,
+        "ppg_ppr": 13.2,
+        "ppg_std": 13.2,
+        "dynasty_val": 189,
+        "dynasty_rank": 229,
+        "stats": [
+          {
+            "year": 2026,
+            "games": 15,
+            "pass_yd": 3150,
+            "pass_td": 22,
+            "int": 10,
+            "rush_yd": 35,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 13.2,
+            "ppg_half": 13.2,
+            "ppg_ppr": 13.2
+          },
+          {
+            "year": 2027,
+            "games": 4,
+            "pass_yd": 800,
+            "pass_td": 5,
+            "int": 3,
+            "rush_yd": 5,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 11.6,
+            "ppg_half": 11.6,
+            "ppg_ppr": 11.6
+          }
+        ]
+      },
+      {
+        "rank": 80,
         "sleeper_id": "8137",
         "name": "George Pickens",
         "position": "WR",
@@ -4741,8 +4787,8 @@
         "ppg_half": 13.2,
         "ppg_ppr": 15.8,
         "ppg_std": 10.6,
-        "dynasty_val": 4146,
-        "dynasty_rank": 30,
+        "dynasty_val": 4516,
+        "dynasty_rank": 29,
         "stats": [
           {
             "year": 2026,
@@ -4792,7 +4838,7 @@
         ]
       },
       {
-        "rank": 80,
+        "rank": 81,
         "sleeper_id": "8130",
         "name": "Trey McBride",
         "position": "TE",
@@ -4802,8 +4848,8 @@
         "ppg_half": 13.1,
         "ppg_ppr": 16.5,
         "ppg_std": 9.8,
-        "dynasty_val": 5356,
-        "dynasty_rank": 22,
+        "dynasty_val": 5664,
+        "dynasty_rank": 21,
         "stats": [
           {
             "year": 2026,
@@ -4853,7 +4899,7 @@
         ]
       },
       {
-        "rank": 81,
+        "rank": 82,
         "sleeper_id": "12522",
         "name": "Cam Ward",
         "position": "QB",
@@ -4863,8 +4909,8 @@
         "ppg_half": 13.1,
         "ppg_ppr": 13.1,
         "ppg_std": 13.1,
-        "dynasty_val": 2754,
-        "dynasty_rank": 56,
+        "dynasty_val": 2785,
+        "dynasty_rank": 59,
         "stats": [
           {
             "year": 2026,
@@ -4914,7 +4960,7 @@
         ]
       },
       {
-        "rank": 82,
+        "rank": 83,
         "sleeper_id": "5850",
         "name": "Josh Jacobs",
         "position": "RB",
@@ -4924,8 +4970,8 @@
         "ppg_half": 13,
         "ppg_ppr": 14.1,
         "ppg_std": 11.9,
-        "dynasty_val": 1835,
-        "dynasty_rank": 85,
+        "dynasty_val": 2052,
+        "dynasty_rank": 84,
         "stats": [
           {
             "year": 2026,
@@ -4975,7 +5021,7 @@
         ]
       },
       {
-        "rank": 83,
+        "rank": 84,
         "sleeper_id": "6801",
         "name": "Tee Higgins",
         "position": "WR",
@@ -4985,8 +5031,8 @@
         "ppg_half": 13,
         "ppg_ppr": 15.6,
         "ppg_std": 10.5,
-        "dynasty_val": 2614,
-        "dynasty_rank": 62,
+        "dynasty_val": 2711,
+        "dynasty_rank": 61,
         "stats": [
           {
             "year": 2026,
@@ -5036,7 +5082,7 @@
         ]
       },
       {
-        "rank": 84,
+        "rank": 85,
         "sleeper_id": "8112",
         "name": "Drake London",
         "position": "WR",
@@ -5046,8 +5092,8 @@
         "ppg_half": 13,
         "ppg_ppr": 16,
         "ppg_std": 10.1,
-        "dynasty_val": 4754,
-        "dynasty_rank": 25,
+        "dynasty_val": 5351,
+        "dynasty_rank": 23,
         "stats": [
           {
             "year": 2026,
@@ -5097,7 +5143,7 @@
         ]
       },
       {
-        "rank": 85,
+        "rank": 86,
         "sleeper_id": "12529",
         "name": "TreVeyon Henderson",
         "position": "RB",
@@ -5107,8 +5153,8 @@
         "ppg_half": 13,
         "ppg_ppr": 14.3,
         "ppg_std": 11.7,
-        "dynasty_val": 2869,
-        "dynasty_rank": 53,
+        "dynasty_val": 3033,
+        "dynasty_rank": 52,
         "stats": [
           {
             "year": 2026,
@@ -5158,7 +5204,7 @@
         ]
       },
       {
-        "rank": 86,
+        "rank": 87,
         "sleeper_id": "827",
         "name": "Tyrod Taylor",
         "position": "QB",
@@ -5168,8 +5214,8 @@
         "ppg_half": 12.9,
         "ppg_ppr": 12.9,
         "ppg_std": 12.9,
-        "dynasty_val": 12,
-        "dynasty_rank": 404,
+        "dynasty_val": 0,
+        "dynasty_rank": 1456,
         "stats": [
           {
             "year": 2026,
@@ -5204,67 +5250,6 @@
         ]
       },
       {
-        "rank": 87,
-        "sleeper_id": "7527",
-        "name": "Mac Jones",
-        "position": "QB",
-        "team": "SF",
-        "age": 28,
-        "ppg": 12.9,
-        "ppg_half": 12.9,
-        "ppg_ppr": 12.9,
-        "ppg_std": 12.9,
-        "dynasty_val": 87,
-        "dynasty_rank": 246,
-        "stats": [
-          {
-            "year": 2026,
-            "games": 3,
-            "pass_yd": 620,
-            "pass_td": 4,
-            "int": 2,
-            "rush_yd": 18,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 12.9,
-            "ppg_half": 12.9,
-            "ppg_ppr": 12.9
-          },
-          {
-            "year": 2027,
-            "games": 4,
-            "pass_yd": 850,
-            "pass_td": 5,
-            "int": 4,
-            "rush_yd": 22,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 12.1,
-            "ppg_half": 12.1,
-            "ppg_ppr": 12.1
-          },
-          {
-            "year": 2028,
-            "games": 2,
-            "pass_yd": 410,
-            "pass_td": 2,
-            "int": 2,
-            "rush_yd": 10,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 10.7,
-            "ppg_half": 10.7,
-            "ppg_ppr": 10.7
-          }
-        ]
-      },
-      {
         "rank": 88,
         "sleeper_id": "12481",
         "name": "Cam Skattebo",
@@ -5275,8 +5260,8 @@
         "ppg_half": 12.9,
         "ppg_ppr": 14.4,
         "ppg_std": 11.4,
-        "dynasty_val": 2648,
-        "dynasty_rank": 61,
+        "dynasty_val": 2337,
+        "dynasty_rank": 75,
         "stats": [
           {
             "year": 2026,
@@ -5336,8 +5321,8 @@
         "ppg_half": 12.9,
         "ppg_ppr": 13.9,
         "ppg_std": 11.8,
-        "dynasty_val": 2902,
-        "dynasty_rank": 52,
+        "dynasty_val": 2994,
+        "dynasty_rank": 54,
         "stats": [
           {
             "year": 2026,
@@ -5397,8 +5382,8 @@
         "ppg_half": 12.9,
         "ppg_ppr": 12.9,
         "ppg_std": 12.9,
-        "dynasty_val": 804,
-        "dynasty_rank": 120,
+        "dynasty_val": 1133,
+        "dynasty_rank": 114,
         "stats": [
           {
             "year": 2026,
@@ -5459,7 +5444,7 @@
         "ppg_ppr": 12.8,
         "ppg_std": 12.8,
         "dynasty_val": 0,
-        "dynasty_rank": 3075,
+        "dynasty_rank": 3072,
         "stats": [
           {
             "year": 2026,
@@ -5495,113 +5480,6 @@
       },
       {
         "rank": 92,
-        "sleeper_id": "1166",
-        "name": "Kirk Cousins",
-        "position": "QB",
-        "team": "LV",
-        "age": 38,
-        "ppg": 12.8,
-        "ppg_half": 12.8,
-        "ppg_ppr": 12.8,
-        "ppg_std": 12.8,
-        "dynasty_val": 68,
-        "dynasty_rank": 272,
-        "stats": [
-          {
-            "year": 2026,
-            "games": 6,
-            "pass_yd": 1350,
-            "pass_td": 8,
-            "int": 5,
-            "rush_yd": 5,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 12.8,
-            "ppg_half": 12.8,
-            "ppg_ppr": 12.8
-          },
-          {
-            "year": 2027,
-            "games": 2,
-            "pass_yd": 410,
-            "pass_td": 2,
-            "int": 2,
-            "rush_yd": 0,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 10.2,
-            "ppg_half": 10.2,
-            "ppg_ppr": 10.2
-          }
-        ]
-      },
-      {
-        "rank": 93,
-        "sleeper_id": "4017",
-        "name": "Deshaun Watson",
-        "position": "QB",
-        "team": "CLE",
-        "age": 30.9,
-        "ppg": 12.8,
-        "ppg_half": 12.8,
-        "ppg_ppr": 12.8,
-        "ppg_std": 12.8,
-        "dynasty_val": 87,
-        "dynasty_rank": 245,
-        "stats": [
-          {
-            "year": 2026,
-            "games": 8,
-            "pass_yd": 1550,
-            "pass_td": 8,
-            "int": 7,
-            "rush_yd": 165,
-            "rush_td": 1,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 12.8,
-            "ppg_half": 12.8,
-            "ppg_ppr": 12.8
-          },
-          {
-            "year": 2027,
-            "games": 4,
-            "pass_yd": 750,
-            "pass_td": 4,
-            "int": 4,
-            "rush_yd": 55,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 10.9,
-            "ppg_half": 10.9,
-            "ppg_ppr": 10.9
-          },
-          {
-            "year": 2028,
-            "games": 2,
-            "pass_yd": 320,
-            "pass_td": 1,
-            "int": 3,
-            "rush_yd": 20,
-            "rush_td": 0,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 6.4,
-            "ppg_half": 6.4,
-            "ppg_ppr": 6.4
-          }
-        ]
-      },
-      {
-        "rank": 94,
         "sleeper_id": "7543",
         "name": "Travis Etienne",
         "position": "RB",
@@ -5611,8 +5489,8 @@
         "ppg_half": 12.8,
         "ppg_ppr": 14.2,
         "ppg_std": 11.4,
-        "dynasty_val": 1957,
-        "dynasty_rank": 82,
+        "dynasty_val": 2053,
+        "dynasty_rank": 83,
         "stats": [
           {
             "year": 2026,
@@ -5662,7 +5540,68 @@
         ]
       },
       {
-        "rank": 95,
+        "rank": 93,
+        "sleeper_id": "12500",
+        "name": "Quinn Ewers",
+        "position": "QB",
+        "team": "MIA",
+        "age": 23.4,
+        "ppg": 12.8,
+        "ppg_half": 12.8,
+        "ppg_ppr": 12.8,
+        "ppg_std": 12.8,
+        "dynasty_val": 117,
+        "dynasty_rank": 284,
+        "stats": [
+          {
+            "year": 2026,
+            "games": 6,
+            "pass_yd": 1250,
+            "pass_td": 8,
+            "int": 5,
+            "rush_yd": 45,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 12.8,
+            "ppg_half": 12.8,
+            "ppg_ppr": 12.8
+          },
+          {
+            "year": 2027,
+            "games": 15,
+            "pass_yd": 3650,
+            "pass_td": 22,
+            "int": 13,
+            "rush_yd": 110,
+            "rush_td": 1,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 15,
+            "ppg_half": 15,
+            "ppg_ppr": 15
+          },
+          {
+            "year": 2028,
+            "games": 17,
+            "pass_yd": 4150,
+            "pass_td": 27,
+            "int": 14,
+            "rush_yd": 135,
+            "rush_td": 2,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 16,
+            "ppg_half": 16,
+            "ppg_ppr": 16
+          }
+        ]
+      },
+      {
+        "rank": 94,
         "sleeper_id": "12526",
         "name": "Tetairoa McMillan",
         "position": "WR",
@@ -5672,8 +5611,8 @@
         "ppg_half": 12.8,
         "ppg_ppr": 15.4,
         "ppg_std": 10.3,
-        "dynasty_val": 3870,
-        "dynasty_rank": 34,
+        "dynasty_val": 4273,
+        "dynasty_rank": 31,
         "stats": [
           {
             "year": 2026,
@@ -5723,7 +5662,7 @@
         ]
       },
       {
-        "rank": 96,
+        "rank": 95,
         "sleeper_id": "19",
         "name": "Joe Flacco",
         "position": "QB",
@@ -5733,8 +5672,8 @@
         "ppg_half": 12.7,
         "ppg_ppr": 12.7,
         "ppg_std": 12.7,
-        "dynasty_val": 12,
-        "dynasty_rank": 402,
+        "dynasty_val": 0,
+        "dynasty_rank": 330,
         "stats": [
           {
             "year": 2026,
@@ -5769,6 +5708,67 @@
         ]
       },
       {
+        "rank": 96,
+        "sleeper_id": "7527",
+        "name": "Mac Jones",
+        "position": "QB",
+        "team": "SF",
+        "age": 28,
+        "ppg": 12.6,
+        "ppg_half": 12.6,
+        "ppg_ppr": 12.6,
+        "ppg_std": 12.6,
+        "dynasty_val": 174,
+        "dynasty_rank": 237,
+        "stats": [
+          {
+            "year": 2026,
+            "games": 4,
+            "pass_yd": 850,
+            "pass_td": 5,
+            "int": 3,
+            "rush_yd": 25,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 12.6,
+            "ppg_half": 12.6,
+            "ppg_ppr": 12.6
+          },
+          {
+            "year": 2027,
+            "games": 6,
+            "pass_yd": 1300,
+            "pass_td": 8,
+            "int": 5,
+            "rush_yd": 40,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 13,
+            "ppg_half": 13,
+            "ppg_ppr": 13
+          },
+          {
+            "year": 2028,
+            "games": 3,
+            "pass_yd": 650,
+            "pass_td": 3,
+            "int": 3,
+            "rush_yd": 15,
+            "rush_td": 0,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 11.2,
+            "ppg_half": 11.2,
+            "ppg_ppr": 11.2
+          }
+        ]
+      },
+      {
         "rank": 97,
         "sleeper_id": "13289",
         "name": "Drew Allar",
@@ -5779,8 +5779,8 @@
         "ppg_half": 12.6,
         "ppg_ppr": 12.6,
         "ppg_std": 12.6,
-        "dynasty_val": 154,
-        "dynasty_rank": 210,
+        "dynasty_val": 302,
+        "dynasty_rank": 189,
         "stats": [
           {
             "year": 2026,
@@ -5841,7 +5841,7 @@
         "ppg_ppr": 12.5,
         "ppg_std": 12.5,
         "dynasty_val": 0,
-        "dynasty_rank": 1039,
+        "dynasty_rank": 1034,
         "stats": [
           {
             "year": 2026,
@@ -5901,8 +5901,8 @@
         "ppg_half": 12.4,
         "ppg_ppr": 15.5,
         "ppg_std": 9.3,
-        "dynasty_val": 2996,
-        "dynasty_rank": 50,
+        "dynasty_val": 3562,
+        "dynasty_rank": 40,
         "stats": [
           {
             "year": 2026,
@@ -5963,7 +5963,7 @@
         "ppg_ppr": 12.3,
         "ppg_std": 12.3,
         "dynasty_val": 0,
-        "dynasty_rank": 3022,
+        "dynasty_rank": 3019,
         "stats": [
           {
             "year": 2026,
