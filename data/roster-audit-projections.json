@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T20:29:44.478Z",
+  "generatedAt": "2026-08-28T21:11:06.570Z",
   "data": {
     "rankings": [
       {
@@ -1960,7 +1960,7 @@
         "name": "Shedeur Sanders",
         "position": "QB",
         "team": "CLE",
-        "age": 24.5,
+        "age": 24.6,
         "ppg": 16.1,
         "ppg_half": 16.1,
         "ppg_ppr": 16.1,
@@ -2021,7 +2021,7 @@
         "name": "Matthew Stafford",
         "position": "QB",
         "team": "LAR",
-        "age": 38.5,
+        "age": 38.6,
         "ppg": 16,
         "ppg_half": 16,
         "ppg_ppr": 16,
@@ -2387,7 +2387,7 @@
         "name": "Daniel Jones",
         "position": "QB",
         "team": "IND",
-        "age": 29.2,
+        "age": 29.3,
         "ppg": 15.5,
         "ppg_half": 15.5,
         "ppg_ppr": 15.5,
@@ -2753,7 +2753,7 @@
         "name": "Kenneth Walker",
         "position": "RB",
         "team": "KC",
-        "age": 25.8,
+        "age": 25.9,
         "ppg": 14.8,
         "ppg_half": 14.8,
         "ppg_ppr": 16.3,
@@ -3185,7 +3185,7 @@
         "ppg_half": 14.2,
         "ppg_ppr": 14.2,
         "ppg_std": 14.2,
-        "dynasty_val": 6,
+        "dynasty_val": 0,
         "dynasty_rank": 447,
         "stats": [
           {
@@ -3668,7 +3668,7 @@
         "name": "Deshaun Watson",
         "position": "QB",
         "team": "CLE",
-        "age": 30.9,
+        "age": 31,
         "ppg": 14,
         "ppg_half": 14,
         "ppg_ppr": 14,
@@ -4314,7 +4314,7 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 40,
+        "dynasty_val": 0,
         "dynasty_rank": 359,
         "stats": [
           {
@@ -4375,7 +4375,7 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 16,
+        "dynasty_val": 0,
         "dynasty_rank": 389,
         "stats": [
           {
@@ -4497,7 +4497,7 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 27,
+        "dynasty_val": 0,
         "dynasty_rank": 373,
         "stats": [
           {
@@ -4558,7 +4558,7 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 51,
+        "dynasty_val": 0,
         "dynasty_rank": 350,
         "stats": [
           {
@@ -5606,12 +5606,12 @@
         "name": "Quinn Ewers",
         "position": "QB",
         "team": "MIA",
-        "age": 23.4,
+        "age": 23.5,
         "ppg": 12.8,
         "ppg_half": 12.8,
         "ppg_ppr": 12.8,
         "ppg_std": 12.8,
-        "dynasty_val": 83,
+        "dynasty_val": 0,
         "dynasty_rank": 327,
         "stats": [
           {
@@ -5672,7 +5672,7 @@
         "ppg_half": 12.7,
         "ppg_ppr": 12.7,
         "ppg_std": 12.7,
-        "dynasty_val": 93,
+        "dynasty_val": 0,
         "dynasty_rank": 322,
         "stats": [
           {
