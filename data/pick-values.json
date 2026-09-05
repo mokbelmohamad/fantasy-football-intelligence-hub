@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T14:21:24.908Z",
+  "generatedAt": "2026-09-05T13:27:24.881Z",
   "data": {
     "picks": [
       {
@@ -17,8 +17,8 @@
         "pick_season": 2027,
         "pick_round": 1,
         "pick_slot": "mid",
-        "val_sf": 2918,
-        "val_1qb": 2918,
+        "val_sf": 2830,
+        "val_1qb": 2830,
         "label": "2027 Mid 1st",
         "sort_order": 2
       },
@@ -167,7 +167,7 @@
         "pick_season": 2028,
         "pick_round": 1,
         "pick_slot": "mid",
-        "val_sf": 1873,
+        "val_sf": 1867,
         "val_1qb": 1623,
         "label": "2028 Mid 1st",
         "sort_order": 17
@@ -197,7 +197,7 @@
         "pick_season": 2028,
         "pick_round": 2,
         "pick_slot": "mid",
-        "val_sf": 486,
+        "val_sf": 474,
         "val_1qb": 428,
         "label": "2028 Mid 2nd",
         "sort_order": 20
@@ -317,8 +317,8 @@
         "pick_season": 2029,
         "pick_round": 1,
         "pick_slot": "mid",
-        "val_sf": 1527,
-        "val_1qb": 1337,
+        "val_sf": 1537,
+        "val_1qb": 1323,
         "label": "2029 Mid 1st",
         "sort_order": 32
       },
@@ -348,7 +348,7 @@
         "pick_round": 2,
         "pick_slot": "mid",
         "val_sf": 399,
-        "val_1qb": 351,
+        "val_1qb": 349,
         "label": "2029 Mid 2nd",
         "sort_order": 35
       },
@@ -458,10 +458,10 @@
       "2": 4518,
       "3": 3875,
       "4": 3231,
-      "5": 2804,
-      "6": 2529,
-      "7": 2254,
-      "8": 1981,
+      "5": 2732,
+      "6": 2457,
+      "7": 2181,
+      "8": 1909,
       "9": 1677,
       "10": 1497,
       "11": 1312,
@@ -520,10 +520,10 @@
       "2": 4518,
       "3": 3875,
       "4": 3231,
-      "5": 2804,
-      "6": 2529,
-      "7": 2254,
-      "8": 1981,
+      "5": 2732,
+      "6": 2457,
+      "7": 2181,
+      "8": 1909,
       "9": 1677,
       "10": 1497,
       "11": 1312,
