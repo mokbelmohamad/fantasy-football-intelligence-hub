@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-02T16:16:02.156Z",
+  "generatedAt": "2026-10-03T14:43:21.488Z",
   "data": {
     "rankings": [
       {
@@ -13,8 +13,8 @@
         "ppg_half": 22.7,
         "ppg_ppr": 22.7,
         "ppg_std": 22.7,
-        "dynasty_val": 9540,
-        "dynasty_rank": 2,
+        "dynasty_val": 9541,
+        "dynasty_rank": 3,
         "stats": [
           {
             "year": 2026,
@@ -74,7 +74,7 @@
         "ppg_half": 21,
         "ppg_ppr": 21,
         "ppg_std": 21,
-        "dynasty_val": 6335,
+        "dynasty_val": 6468,
         "dynasty_rank": 8,
         "stats": [
           {
@@ -135,7 +135,7 @@
         "ppg_half": 20.9,
         "ppg_ppr": 20.9,
         "ppg_std": 20.9,
-        "dynasty_val": 4175,
+        "dynasty_val": 4194,
         "dynasty_rank": 28,
         "stats": [
           {
@@ -196,8 +196,8 @@
         "ppg_half": 20.4,
         "ppg_ppr": 20.4,
         "ppg_std": 20.4,
-        "dynasty_val": 5831,
-        "dynasty_rank": 13,
+        "dynasty_val": 5814,
+        "dynasty_rank": 14,
         "stats": [
           {
             "year": 2026,
@@ -257,7 +257,7 @@
         "ppg_half": 20.1,
         "ppg_ppr": 20.1,
         "ppg_std": 20.1,
-        "dynasty_val": 4525,
+        "dynasty_val": 4519,
         "dynasty_rank": 25,
         "stats": [
           {
@@ -318,7 +318,7 @@
         "ppg_half": 19.8,
         "ppg_ppr": 19.8,
         "ppg_std": 19.8,
-        "dynasty_val": 4608,
+        "dynasty_val": 4636,
         "dynasty_rank": 24,
         "stats": [
           {
@@ -379,8 +379,8 @@
         "ppg_half": 19.7,
         "ppg_ppr": 19.7,
         "ppg_std": 19.7,
-        "dynasty_val": 5717,
-        "dynasty_rank": 16,
+        "dynasty_val": 5660,
+        "dynasty_rank": 17,
         "stats": [
           {
             "year": 2026,
@@ -501,8 +501,8 @@
         "ppg_half": 19.6,
         "ppg_ppr": 21.8,
         "ppg_std": 17.4,
-        "dynasty_val": 9510,
-        "dynasty_rank": 3,
+        "dynasty_val": 9556,
+        "dynasty_rank": 2,
         "stats": [
           {
             "year": 2026,
@@ -562,8 +562,8 @@
         "ppg_half": 19.4,
         "ppg_ppr": 19.4,
         "ppg_std": 19.4,
-        "dynasty_val": 169,
-        "dynasty_rank": 253,
+        "dynasty_val": 154,
+        "dynasty_rank": 248,
         "stats": [
           {
             "year": 2026,
@@ -623,8 +623,8 @@
         "ppg_half": 19.1,
         "ppg_ppr": 21.7,
         "ppg_std": 16.5,
-        "dynasty_val": 3626,
-        "dynasty_rank": 33,
+        "dynasty_val": 3720,
+        "dynasty_rank": 32,
         "stats": [
           {
             "year": 2026,
@@ -684,8 +684,8 @@
         "ppg_half": 18.6,
         "ppg_ppr": 18.6,
         "ppg_std": 18.6,
-        "dynasty_val": 1665,
-        "dynasty_rank": 92,
+        "dynasty_val": 1648,
+        "dynasty_rank": 93,
         "stats": [
           {
             "year": 2026,
@@ -745,7 +745,7 @@
         "ppg_half": 18.6,
         "ppg_ppr": 18.6,
         "ppg_std": 18.6,
-        "dynasty_val": 4478,
+        "dynasty_val": 4465,
         "dynasty_rank": 26,
         "stats": [
           {
@@ -806,8 +806,8 @@
         "ppg_half": 18.6,
         "ppg_ppr": 18.6,
         "ppg_std": 18.6,
-        "dynasty_val": 5039,
-        "dynasty_rank": 19,
+        "dynasty_val": 5015,
+        "dynasty_rank": 20,
         "stats": [
           {
             "year": 2026,
@@ -867,7 +867,7 @@
         "ppg_half": 18.6,
         "ppg_ppr": 18.6,
         "ppg_std": 18.6,
-        "dynasty_val": 3202,
+        "dynasty_val": 3241,
         "dynasty_rank": 41,
         "stats": [
           {
@@ -928,8 +928,8 @@
         "ppg_half": 18.4,
         "ppg_ppr": 18.4,
         "ppg_std": 18.4,
-        "dynasty_val": 4902,
-        "dynasty_rank": 22,
+        "dynasty_val": 5137,
+        "dynasty_rank": 19,
         "stats": [
           {
             "year": 2026,
@@ -989,8 +989,8 @@
         "ppg_half": 18.1,
         "ppg_ppr": 18.1,
         "ppg_std": 18.1,
-        "dynasty_val": 2966,
-        "dynasty_rank": 43,
+        "dynasty_val": 2954,
+        "dynasty_rank": 45,
         "stats": [
           {
             "year": 2026,
@@ -1050,7 +1050,7 @@
         "ppg_half": 18,
         "ppg_ppr": 19.3,
         "ppg_std": 16.8,
-        "dynasty_val": 5335,
+        "dynasty_val": 5345,
         "dynasty_rank": 18,
         "stats": [
           {
@@ -1102,67 +1102,6 @@
       },
       {
         "rank": 19,
-        "sleeper_id": "9229",
-        "name": "Anthony Richardson",
-        "position": "QB",
-        "team": "IND",
-        "age": 24.4,
-        "ppg": 17.8,
-        "ppg_half": 17.8,
-        "ppg_ppr": 17.8,
-        "ppg_std": 17.8,
-        "dynasty_val": 197,
-        "dynasty_rank": 231,
-        "stats": [
-          {
-            "year": 2026,
-            "games": 6,
-            "pass_yd": 1100,
-            "pass_td": 6,
-            "int": 7,
-            "rush_yd": 350,
-            "rush_td": 3,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 17.8,
-            "ppg_half": 17.8,
-            "ppg_ppr": 17.8
-          },
-          {
-            "year": 2027,
-            "games": 14,
-            "pass_yd": 2750,
-            "pass_td": 16,
-            "int": 14,
-            "rush_yd": 840,
-            "rush_td": 9,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 20.3,
-            "ppg_half": 20.3,
-            "ppg_ppr": 20.3
-          },
-          {
-            "year": 2028,
-            "games": 12,
-            "pass_yd": 2400,
-            "pass_td": 13,
-            "int": 12,
-            "rush_yd": 680,
-            "rush_td": 6,
-            "rec": 0,
-            "rec_yd": 0,
-            "rec_td": 0,
-            "ppg_std": 19,
-            "ppg_half": 19,
-            "ppg_ppr": 19
-          }
-        ]
-      },
-      {
-        "rank": 20,
         "sleeper_id": "9488",
         "name": "Jaxon Smith-Njigba",
         "position": "WR",
@@ -1172,7 +1111,7 @@
         "ppg_half": 17.5,
         "ppg_ppr": 21,
         "ppg_std": 14,
-        "dynasty_val": 9298,
+        "dynasty_val": 9333,
         "dynasty_rank": 4,
         "stats": [
           {
@@ -1223,7 +1162,7 @@
         ]
       },
       {
-        "rank": 21,
+        "rank": 20,
         "sleeper_id": "3163",
         "name": "Jared Goff",
         "position": "QB",
@@ -1233,8 +1172,8 @@
         "ppg_half": 17.4,
         "ppg_ppr": 17.4,
         "ppg_std": 17.4,
-        "dynasty_val": 2686,
-        "dynasty_rank": 54,
+        "dynasty_val": 2865,
+        "dynasty_rank": 46,
         "stats": [
           {
             "year": 2026,
@@ -1284,7 +1223,7 @@
         ]
       },
       {
-        "rank": 22,
+        "rank": 21,
         "sleeper_id": "8161",
         "name": "Malik Willis",
         "position": "QB",
@@ -1294,8 +1233,8 @@
         "ppg_half": 17.2,
         "ppg_ppr": 17.2,
         "ppg_std": 17.2,
-        "dynasty_val": 1427,
-        "dynasty_rank": 101,
+        "dynasty_val": 1407,
+        "dynasty_rank": 102,
         "stats": [
           {
             "year": 2026,
@@ -1345,17 +1284,17 @@
         ]
       },
       {
-        "rank": 23,
+        "rank": 22,
         "sleeper_id": "8151",
         "name": "Kenneth Walker",
         "position": "RB",
         "team": "KC",
-        "age": 25.9,
+        "age": 26,
         "ppg": 17.1,
         "ppg_half": 17.1,
         "ppg_ppr": 18.7,
         "ppg_std": 15.5,
-        "dynasty_val": 5869,
+        "dynasty_val": 5865,
         "dynasty_rank": 12,
         "stats": [
           {
@@ -1406,7 +1345,7 @@
         ]
       },
       {
-        "rank": 24,
+        "rank": 23,
         "sleeper_id": "11563",
         "name": "Bo Nix",
         "position": "QB",
@@ -1416,8 +1355,8 @@
         "ppg_half": 17.1,
         "ppg_ppr": 17.1,
         "ppg_std": 17.1,
-        "dynasty_val": 3385,
-        "dynasty_rank": 37,
+        "dynasty_val": 3470,
+        "dynasty_rank": 35,
         "stats": [
           {
             "year": 2026,
@@ -1467,7 +1406,7 @@
         ]
       },
       {
-        "rank": 25,
+        "rank": 24,
         "sleeper_id": "9226",
         "name": "De'Von Achane",
         "position": "RB",
@@ -1477,7 +1416,7 @@
         "ppg_half": 16.9,
         "ppg_ppr": 19.1,
         "ppg_std": 14.6,
-        "dynasty_val": 3376,
+        "dynasty_val": 3345,
         "dynasty_rank": 38,
         "stats": [
           {
@@ -1528,7 +1467,7 @@
         ]
       },
       {
-        "rank": 26,
+        "rank": 25,
         "sleeper_id": "12527",
         "name": "Ashton Jeanty",
         "position": "RB",
@@ -1538,8 +1477,8 @@
         "ppg_half": 16.9,
         "ppg_ppr": 18.7,
         "ppg_std": 15.1,
-        "dynasty_val": 5918,
-        "dynasty_rank": 10,
+        "dynasty_val": 5921,
+        "dynasty_rank": 11,
         "stats": [
           {
             "year": 2026,
@@ -1589,7 +1528,7 @@
         ]
       },
       {
-        "rank": 27,
+        "rank": 26,
         "sleeper_id": "7564",
         "name": "Ja'Marr Chase",
         "position": "WR",
@@ -1599,7 +1538,7 @@
         "ppg_half": 16.8,
         "ppg_ppr": 20.2,
         "ppg_std": 13.5,
-        "dynasty_val": 8753,
+        "dynasty_val": 8818,
         "dynasty_rank": 5,
         "stats": [
           {
@@ -1650,7 +1589,7 @@
         ]
       },
       {
-        "rank": 28,
+        "rank": 27,
         "sleeper_id": "6794",
         "name": "Justin Jefferson",
         "position": "WR",
@@ -1660,8 +1599,8 @@
         "ppg_half": 16.5,
         "ppg_ppr": 19.8,
         "ppg_std": 13.1,
-        "dynasty_val": 5917,
-        "dynasty_rank": 11,
+        "dynasty_val": 5928,
+        "dynasty_rank": 10,
         "stats": [
           {
             "year": 2026,
@@ -1711,7 +1650,7 @@
         ]
       },
       {
-        "rank": 29,
+        "rank": 28,
         "sleeper_id": "4892",
         "name": "Baker Mayfield",
         "position": "QB",
@@ -1721,8 +1660,8 @@
         "ppg_half": 16.4,
         "ppg_ppr": 16.4,
         "ppg_std": 16.4,
-        "dynasty_val": 1786,
-        "dynasty_rank": 87,
+        "dynasty_val": 1790,
+        "dynasty_rank": 88,
         "stats": [
           {
             "year": 2026,
@@ -1772,7 +1711,7 @@
         ]
       },
       {
-        "rank": 30,
+        "rank": 29,
         "sleeper_id": "8155",
         "name": "Breece Hall",
         "position": "RB",
@@ -1782,8 +1721,8 @@
         "ppg_half": 16.4,
         "ppg_ppr": 18.3,
         "ppg_std": 14.5,
-        "dynasty_val": 3044,
-        "dynasty_rank": 42,
+        "dynasty_val": 2993,
+        "dynasty_rank": 43,
         "stats": [
           {
             "year": 2026,
@@ -1833,7 +1772,7 @@
         ]
       },
       {
-        "rank": 31,
+        "rank": 30,
         "sleeper_id": "12545",
         "name": "Tyler Shough",
         "position": "QB",
@@ -1843,7 +1782,7 @@
         "ppg_half": 16.4,
         "ppg_ppr": 16.4,
         "ppg_std": 16.4,
-        "dynasty_val": 3710,
+        "dynasty_val": 3731,
         "dynasty_rank": 31,
         "stats": [
           {
@@ -1894,6 +1833,67 @@
         ]
       },
       {
+        "rank": 31,
+        "sleeper_id": "9229",
+        "name": "Anthony Richardson",
+        "position": "QB",
+        "team": "IND",
+        "age": 24.4,
+        "ppg": 16.2,
+        "ppg_half": 16.2,
+        "ppg_ppr": 16.2,
+        "ppg_std": 16.2,
+        "dynasty_val": 181,
+        "dynasty_rank": 236,
+        "stats": [
+          {
+            "year": 2026,
+            "games": 9,
+            "pass_yd": 1450,
+            "pass_td": 7,
+            "int": 9,
+            "rush_yd": 480,
+            "rush_td": 5,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 16.2,
+            "ppg_half": 16.2,
+            "ppg_ppr": 16.2
+          },
+          {
+            "year": 2027,
+            "games": 13,
+            "pass_yd": 2200,
+            "pass_td": 14,
+            "int": 13,
+            "rush_yd": 650,
+            "rush_td": 8,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 17.8,
+            "ppg_half": 17.8,
+            "ppg_ppr": 17.8
+          },
+          {
+            "year": 2028,
+            "games": 15,
+            "pass_yd": 2850,
+            "pass_td": 18,
+            "int": 12,
+            "rush_yd": 780,
+            "rush_td": 10,
+            "rec": 0,
+            "rec_yd": 0,
+            "rec_td": 0,
+            "ppg_std": 20,
+            "ppg_half": 20,
+            "ppg_ppr": 20
+          }
+        ]
+      },
+      {
         "rank": 32,
         "sleeper_id": "11559",
         "name": "Michael Penix",
@@ -1904,8 +1904,8 @@
         "ppg_half": 16.1,
         "ppg_ppr": 16.1,
         "ppg_std": 16.1,
-        "dynasty_val": 1138,
-        "dynasty_rank": 108,
+        "dynasty_val": 1282,
+        "dynasty_rank": 105,
         "stats": [
           {
             "year": 2026,
@@ -1965,8 +1965,8 @@
         "ppg_half": 16,
         "ppg_ppr": 19.5,
         "ppg_std": 12.5,
-        "dynasty_val": 5815,
-        "dynasty_rank": 14,
+        "dynasty_val": 5827,
+        "dynasty_rank": 13,
         "stats": [
           {
             "year": 2026,
@@ -2026,8 +2026,8 @@
         "ppg_half": 15.8,
         "ppg_ppr": 15.8,
         "ppg_std": 15.8,
-        "dynasty_val": 2674,
-        "dynasty_rank": 56,
+        "dynasty_val": 2603,
+        "dynasty_rank": 57,
         "stats": [
           {
             "year": 2026,
@@ -2087,7 +2087,7 @@
         "ppg_half": 15.7,
         "ppg_ppr": 18.9,
         "ppg_std": 12.6,
-        "dynasty_val": 3311,
+        "dynasty_val": 3326,
         "dynasty_rank": 39,
         "stats": [
           {
@@ -2148,8 +2148,8 @@
         "ppg_half": 15.7,
         "ppg_ppr": 15.7,
         "ppg_std": 15.7,
-        "dynasty_val": 2326,
-        "dynasty_rank": 64,
+        "dynasty_val": 2348,
+        "dynasty_rank": 63,
         "stats": [
           {
             "year": 2026,
@@ -2209,8 +2209,8 @@
         "ppg_half": 15.7,
         "ppg_ppr": 15.7,
         "ppg_std": 15.7,
-        "dynasty_val": 1823,
-        "dynasty_rank": 85,
+        "dynasty_val": 1798,
+        "dynasty_rank": 87,
         "stats": [
           {
             "year": 2026,
@@ -2270,8 +2270,8 @@
         "ppg_half": 15.6,
         "ppg_ppr": 15.6,
         "ppg_std": 15.6,
-        "dynasty_val": 1662,
-        "dynasty_rank": 93,
+        "dynasty_val": 1675,
+        "dynasty_rank": 91,
         "stats": [
           {
             "year": 2026,
@@ -2331,7 +2331,7 @@
         "ppg_half": 15.6,
         "ppg_ppr": 15.6,
         "ppg_std": 15.6,
-        "dynasty_val": 3551,
+        "dynasty_val": 3519,
         "dynasty_rank": 34,
         "stats": [
           {
@@ -2392,8 +2392,8 @@
         "ppg_half": 15.6,
         "ppg_ppr": 16.9,
         "ppg_std": 14.3,
-        "dynasty_val": 2725,
-        "dynasty_rank": 53,
+        "dynasty_val": 2747,
+        "dynasty_rank": 52,
         "stats": [
           {
             "year": 2026,
@@ -2453,8 +2453,8 @@
         "ppg_half": 15.5,
         "ppg_ppr": 17,
         "ppg_std": 14,
-        "dynasty_val": 4954,
-        "dynasty_rank": 20,
+        "dynasty_val": 4906,
+        "dynasty_rank": 22,
         "stats": [
           {
             "year": 2026,
@@ -2514,8 +2514,8 @@
         "ppg_half": 15.5,
         "ppg_ppr": 15.5,
         "ppg_std": 15.5,
-        "dynasty_val": 180,
-        "dynasty_rank": 246,
+        "dynasty_val": 140,
+        "dynasty_rank": 258,
         "stats": [
           {
             "year": 2026,
@@ -2575,8 +2575,8 @@
         "ppg_half": 15.4,
         "ppg_ppr": 16.1,
         "ppg_std": 14.7,
-        "dynasty_val": 2745,
-        "dynasty_rank": 52,
+        "dynasty_val": 2730,
+        "dynasty_rank": 54,
         "stats": [
           {
             "year": 2026,
@@ -2636,8 +2636,8 @@
         "ppg_half": 15.3,
         "ppg_ppr": 15.3,
         "ppg_std": 15.3,
-        "dynasty_val": 78,
-        "dynasty_rank": 302,
+        "dynasty_val": 72,
+        "dynasty_rank": 306,
         "stats": [
           {
             "year": 2026,
@@ -2697,8 +2697,8 @@
         "ppg_half": 15.3,
         "ppg_ppr": 16.9,
         "ppg_std": 13.7,
-        "dynasty_val": 2673,
-        "dynasty_rank": 57,
+        "dynasty_val": 2670,
+        "dynasty_rank": 56,
         "stats": [
           {
             "year": 2026,
@@ -2758,7 +2758,7 @@
         "ppg_half": 15.3,
         "ppg_ppr": 18.6,
         "ppg_std": 12,
-        "dynasty_val": 6967,
+        "dynasty_val": 7053,
         "dynasty_rank": 7,
         "stats": [
           {
@@ -2819,7 +2819,7 @@
         "ppg_half": 15.2,
         "ppg_ppr": 18.6,
         "ppg_std": 11.8,
-        "dynasty_val": 7035,
+        "dynasty_val": 7130,
         "dynasty_rank": 6,
         "stats": [
           {
@@ -2880,8 +2880,8 @@
         "ppg_half": 15.2,
         "ppg_ppr": 15.2,
         "ppg_std": 15.2,
-        "dynasty_val": 2935,
-        "dynasty_rank": 44,
+        "dynasty_val": 3130,
+        "dynasty_rank": 42,
         "stats": [
           {
             "year": 2026,
@@ -2941,8 +2941,8 @@
         "ppg_half": 15.2,
         "ppg_ppr": 15.2,
         "ppg_std": 15.2,
-        "dynasty_val": 259,
-        "dynasty_rank": 196,
+        "dynasty_val": 251,
+        "dynasty_rank": 193,
         "stats": [
           {
             "year": 2026,
@@ -2997,13 +2997,13 @@
         "name": "Omarion Hampton",
         "position": "RB",
         "team": "LAC",
-        "age": 23.5,
+        "age": 23.6,
         "ppg": 15.2,
         "ppg_half": 15.2,
         "ppg_ppr": 16.6,
         "ppg_std": 13.8,
-        "dynasty_val": 3739,
-        "dynasty_rank": 29,
+        "dynasty_val": 3736,
+        "dynasty_rank": 30,
         "stats": [
           {
             "year": 2026,
@@ -3063,8 +3063,8 @@
         "ppg_half": 15.1,
         "ppg_ppr": 16.5,
         "ppg_std": 13.8,
-        "dynasty_val": 2818,
-        "dynasty_rank": 47,
+        "dynasty_val": 2831,
+        "dynasty_rank": 48,
         "stats": [
           {
             "year": 2026,
@@ -3180,13 +3180,13 @@
         "name": "Deshaun Watson",
         "position": "QB",
         "team": "CLE",
-        "age": 31,
+        "age": 31.1,
         "ppg": 14.4,
         "ppg_half": 14.4,
         "ppg_ppr": 14.4,
         "ppg_std": 14.4,
-        "dynasty_val": 275,
-        "dynasty_rank": 181,
+        "dynasty_val": 255,
+        "dynasty_rank": 190,
         "stats": [
           {
             "year": 2026,
@@ -3231,8 +3231,8 @@
         "ppg_half": 14.4,
         "ppg_ppr": 14.4,
         "ppg_std": 14.4,
-        "dynasty_val": 2776,
-        "dynasty_rank": 49,
+        "dynasty_val": 2835,
+        "dynasty_rank": 47,
         "stats": [
           {
             "year": 2026,
@@ -3292,7 +3292,7 @@
         "ppg_half": 14.3,
         "ppg_ppr": 14.3,
         "ppg_std": 14.3,
-        "dynasty_val": 1996,
+        "dynasty_val": 2047,
         "dynasty_rank": 78,
         "stats": [
           {
@@ -3354,7 +3354,7 @@
         "ppg_ppr": 14.2,
         "ppg_std": 14.2,
         "dynasty_val": 6,
-        "dynasty_rank": 453,
+        "dynasty_rank": 445,
         "stats": [
           {
             "year": 2026,
@@ -3414,7 +3414,7 @@
         "ppg_half": 14.2,
         "ppg_ppr": 15.8,
         "ppg_std": 12.6,
-        "dynasty_val": 2468,
+        "dynasty_val": 2479,
         "dynasty_rank": 58,
         "stats": [
           {
@@ -3475,7 +3475,7 @@
         "ppg_half": 14.2,
         "ppg_ppr": 17.3,
         "ppg_std": 11,
-        "dynasty_val": 4907,
+        "dynasty_val": 4948,
         "dynasty_rank": 21,
         "stats": [
           {
@@ -3536,8 +3536,8 @@
         "ppg_half": 14.2,
         "ppg_ppr": 15.7,
         "ppg_std": 12.7,
-        "dynasty_val": 5780,
-        "dynasty_rank": 15,
+        "dynasty_val": 5672,
+        "dynasty_rank": 16,
         "stats": [
           {
             "year": 2026,
@@ -3597,7 +3597,7 @@
         "ppg_half": 14.1,
         "ppg_ppr": 17.2,
         "ppg_std": 10.9,
-        "dynasty_val": 4407,
+        "dynasty_val": 4434,
         "dynasty_rank": 27,
         "stats": [
           {
@@ -3658,7 +3658,7 @@
         "ppg_half": 14.1,
         "ppg_ppr": 16,
         "ppg_std": 12.1,
-        "dynasty_val": 3258,
+        "dynasty_val": 3255,
         "dynasty_rank": 40,
         "stats": [
           {
@@ -3719,7 +3719,7 @@
         "ppg_half": 14,
         "ppg_ppr": 16.4,
         "ppg_std": 11.6,
-        "dynasty_val": 2437,
+        "dynasty_val": 2466,
         "dynasty_rank": 59,
         "stats": [
           {
@@ -3780,7 +3780,7 @@
         "ppg_half": 14,
         "ppg_ppr": 17.3,
         "ppg_std": 10.7,
-        "dynasty_val": 6082,
+        "dynasty_val": 6036,
         "dynasty_rank": 9,
         "stats": [
           {
@@ -3841,8 +3841,8 @@
         "ppg_half": 13.8,
         "ppg_ppr": 13.8,
         "ppg_std": 13.8,
-        "dynasty_val": 149,
-        "dynasty_rank": 260,
+        "dynasty_val": 132,
+        "dynasty_rank": 261,
         "stats": [
           {
             "year": 2026,
@@ -3873,7 +3873,7 @@
         "ppg_ppr": 13.8,
         "ppg_std": 13.8,
         "dynasty_val": 0,
-        "dynasty_rank": 3449,
+        "dynasty_rank": 3448,
         "stats": [
           {
             "year": 2026,
@@ -3933,8 +3933,8 @@
         "ppg_half": 13.8,
         "ppg_ppr": 13.8,
         "ppg_std": 13.8,
-        "dynasty_val": 186,
-        "dynasty_rank": 239,
+        "dynasty_val": 151,
+        "dynasty_rank": 251,
         "stats": [
           {
             "year": 2026,
@@ -3995,7 +3995,7 @@
         "ppg_ppr": 13.7,
         "ppg_std": 13.7,
         "dynasty_val": 0,
-        "dynasty_rank": 3006,
+        "dynasty_rank": 3005,
         "stats": [
           {
             "year": 2026,
@@ -4040,8 +4040,8 @@
         "ppg_half": 13.6,
         "ppg_ppr": 13.6,
         "ppg_std": 13.6,
-        "dynasty_val": 311,
-        "dynasty_rank": 166,
+        "dynasty_val": 300,
+        "dynasty_rank": 161,
         "stats": [
           {
             "year": 2026,
@@ -4086,8 +4086,8 @@
         "ppg_half": 13.6,
         "ppg_ppr": 16.3,
         "ppg_std": 10.9,
-        "dynasty_val": 2336,
-        "dynasty_rank": 63,
+        "dynasty_val": 2359,
+        "dynasty_rank": 62,
         "stats": [
           {
             "year": 2026,
@@ -4147,8 +4147,8 @@
         "ppg_half": 13.6,
         "ppg_ppr": 13.6,
         "ppg_std": 13.6,
-        "dynasty_val": 194,
-        "dynasty_rank": 235,
+        "dynasty_val": 121,
+        "dynasty_rank": 267,
         "stats": [
           {
             "year": 2026,
@@ -4209,7 +4209,7 @@
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
         "dynasty_val": 0,
-        "dynasty_rank": 1431,
+        "dynasty_rank": 1428,
         "stats": [
           {
             "year": 2026,
@@ -4270,7 +4270,7 @@
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
         "dynasty_val": 7,
-        "dynasty_rank": 437,
+        "dynasty_rank": 433,
         "stats": [
           {
             "year": 2026,
@@ -4331,7 +4331,7 @@
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
         "dynasty_val": 9,
-        "dynasty_rank": 414,
+        "dynasty_rank": 406,
         "stats": [
           {
             "year": 2026,
@@ -4391,8 +4391,8 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 17,
-        "dynasty_rank": 350,
+        "dynasty_val": 16,
+        "dynasty_rank": 352,
         "stats": [
           {
             "year": 2026,
@@ -4452,8 +4452,8 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 277,
-        "dynasty_rank": 180,
+        "dynasty_val": 258,
+        "dynasty_rank": 185,
         "stats": [
           {
             "year": 2026,
@@ -4513,8 +4513,8 @@
         "ppg_half": 13.4,
         "ppg_ppr": 14.7,
         "ppg_std": 12.1,
-        "dynasty_val": 2247,
-        "dynasty_rank": 69,
+        "dynasty_val": 2238,
+        "dynasty_rank": 72,
         "stats": [
           {
             "year": 2026,
@@ -4574,8 +4574,8 @@
         "ppg_half": 13.3,
         "ppg_ppr": 16,
         "ppg_std": 10.6,
-        "dynasty_val": 3473,
-        "dynasty_rank": 35,
+        "dynasty_val": 3448,
+        "dynasty_rank": 36,
         "stats": [
           {
             "year": 2026,
@@ -4635,8 +4635,8 @@
         "ppg_half": 13.2,
         "ppg_ppr": 16.1,
         "ppg_std": 10.3,
-        "dynasty_val": 2806,
-        "dynasty_rank": 48,
+        "dynasty_val": 2828,
+        "dynasty_rank": 49,
         "stats": [
           {
             "year": 2026,
@@ -4696,7 +4696,7 @@
         "ppg_half": 13.2,
         "ppg_ppr": 14.4,
         "ppg_std": 11.9,
-        "dynasty_val": 2120,
+        "dynasty_val": 2142,
         "dynasty_rank": 75,
         "stats": [
           {
@@ -4752,13 +4752,13 @@
         "name": "Shedeur Sanders",
         "position": "QB",
         "team": "CLE",
-        "age": 24.6,
+        "age": 24.7,
         "ppg": 13.2,
         "ppg_half": 13.2,
         "ppg_ppr": 13.2,
         "ppg_std": 13.2,
-        "dynasty_val": 248,
-        "dynasty_rank": 202,
+        "dynasty_val": 255,
+        "dynasty_rank": 191,
         "stats": [
           {
             "year": 2026,
@@ -4818,8 +4818,8 @@
         "ppg_half": 13.1,
         "ppg_ppr": 13.1,
         "ppg_std": 13.1,
-        "dynasty_val": 294,
-        "dynasty_rank": 171,
+        "dynasty_val": 275,
+        "dynasty_rank": 176,
         "stats": [
           {
             "year": 2026,
@@ -4864,8 +4864,8 @@
         "ppg_half": 13,
         "ppg_ppr": 14.1,
         "ppg_std": 11.9,
-        "dynasty_val": 1065,
-        "dynasty_rank": 110,
+        "dynasty_val": 1026,
+        "dynasty_rank": 111,
         "stats": [
           {
             "year": 2026,
@@ -4925,8 +4925,8 @@
         "ppg_half": 13,
         "ppg_ppr": 15.7,
         "ppg_std": 10.3,
-        "dynasty_val": 2250,
-        "dynasty_rank": 68,
+        "dynasty_val": 2233,
+        "dynasty_rank": 73,
         "stats": [
           {
             "year": 2026,
@@ -4986,8 +4986,8 @@
         "ppg_half": 13,
         "ppg_ppr": 13,
         "ppg_std": 13,
-        "dynasty_val": 153,
-        "dynasty_rank": 258,
+        "dynasty_val": 151,
+        "dynasty_rank": 252,
         "stats": [
           {
             "year": 2026,
@@ -5047,8 +5047,8 @@
         "ppg_half": 13,
         "ppg_ppr": 16,
         "ppg_std": 10.1,
-        "dynasty_val": 2307,
-        "dynasty_rank": 65,
+        "dynasty_val": 2308,
+        "dynasty_rank": 66,
         "stats": [
           {
             "year": 2026,
@@ -5108,8 +5108,8 @@
         "ppg_half": 13,
         "ppg_ppr": 14.5,
         "ppg_std": 11.5,
-        "dynasty_val": 2305,
-        "dynasty_rank": 66,
+        "dynasty_val": 2286,
+        "dynasty_rank": 68,
         "stats": [
           {
             "year": 2026,
@@ -5169,8 +5169,8 @@
         "ppg_half": 12.9,
         "ppg_ppr": 12.9,
         "ppg_std": 12.9,
-        "dynasty_val": 6,
-        "dynasty_rank": 447,
+        "dynasty_val": 0,
+        "dynasty_rank": 1472,
         "stats": [
           {
             "year": 2026,
@@ -5215,8 +5215,8 @@
         "ppg_half": 12.9,
         "ppg_ppr": 15.6,
         "ppg_std": 10.1,
-        "dynasty_val": 1936,
-        "dynasty_rank": 80,
+        "dynasty_val": 1802,
+        "dynasty_rank": 85,
         "stats": [
           {
             "year": 2026,
@@ -5276,7 +5276,7 @@
         "ppg_half": 12.9,
         "ppg_ppr": 15.8,
         "ppg_std": 10,
-        "dynasty_val": 4636,
+        "dynasty_val": 4721,
         "dynasty_rank": 23,
         "stats": [
           {
@@ -5338,7 +5338,7 @@
         "ppg_ppr": 12.8,
         "ppg_std": 12.8,
         "dynasty_val": 0,
-        "dynasty_rank": 3096,
+        "dynasty_rank": 3095,
         "stats": [
           {
             "year": 2026,
@@ -5383,8 +5383,8 @@
         "ppg_half": 12.7,
         "ppg_ppr": 15.4,
         "ppg_std": 9.9,
-        "dynasty_val": 2767,
-        "dynasty_rank": 50,
+        "dynasty_val": 2771,
+        "dynasty_rank": 51,
         "stats": [
           {
             "year": 2026,
@@ -5444,8 +5444,8 @@
         "ppg_half": 12.6,
         "ppg_ppr": 14,
         "ppg_std": 11.2,
-        "dynasty_val": 2238,
-        "dynasty_rank": 70,
+        "dynasty_val": 2256,
+        "dynasty_rank": 71,
         "stats": [
           {
             "year": 2026,
@@ -5505,8 +5505,8 @@
         "ppg_half": 12.6,
         "ppg_ppr": 15.3,
         "ppg_std": 9.8,
-        "dynasty_val": 3712,
-        "dynasty_rank": 30,
+        "dynasty_val": 3872,
+        "dynasty_rank": 29,
         "stats": [
           {
             "year": 2026,
@@ -5566,8 +5566,8 @@
         "ppg_half": 12.6,
         "ppg_ppr": 12.6,
         "ppg_std": 12.6,
-        "dynasty_val": 97,
-        "dynasty_rank": 290,
+        "dynasty_val": 83,
+        "dynasty_rank": 299,
         "stats": [
           {
             "year": 2026,
@@ -5628,7 +5628,7 @@
         "ppg_ppr": 12.5,
         "ppg_std": 12.5,
         "dynasty_val": 6,
-        "dynasty_rank": 445,
+        "dynasty_rank": 440,
         "stats": [
           {
             "year": 2026,
@@ -5688,8 +5688,8 @@
         "ppg_half": 12.4,
         "ppg_ppr": 12.4,
         "ppg_std": 12.4,
-        "dynasty_val": 223,
-        "dynasty_rank": 217,
+        "dynasty_val": 173,
+        "dynasty_rank": 238,
         "stats": [
           {
             "year": 2026,
@@ -5729,13 +5729,13 @@
         "name": "Daniel Jones",
         "position": "QB",
         "team": "IND",
-        "age": 29.3,
+        "age": 29.4,
         "ppg": 12.4,
         "ppg_half": 12.4,
         "ppg_ppr": 12.4,
         "ppg_std": 12.4,
-        "dynasty_val": 1232,
-        "dynasty_rank": 106,
+        "dynasty_val": 1234,
+        "dynasty_rank": 107,
         "stats": [
           {
             "year": 2026,
@@ -5795,8 +5795,8 @@
         "ppg_half": 12.4,
         "ppg_ppr": 14,
         "ppg_std": 10.8,
-        "dynasty_val": 1631,
-        "dynasty_rank": 95,
+        "dynasty_val": 1592,
+        "dynasty_rank": 96,
         "stats": [
           {
             "year": 2026,
@@ -5856,8 +5856,8 @@
         "ppg_half": 12.4,
         "ppg_ppr": 15.6,
         "ppg_std": 9.2,
-        "dynasty_val": 5639,
-        "dynasty_rank": 17,
+        "dynasty_val": 5752,
+        "dynasty_rank": 15,
         "stats": [
           {
             "year": 2026,
@@ -5917,8 +5917,8 @@
         "ppg_half": 12.4,
         "ppg_ppr": 15,
         "ppg_std": 9.8,
-        "dynasty_val": 3397,
-        "dynasty_rank": 36,
+        "dynasty_val": 3396,
+        "dynasty_rank": 37,
         "stats": [
           {
             "year": 2026,
