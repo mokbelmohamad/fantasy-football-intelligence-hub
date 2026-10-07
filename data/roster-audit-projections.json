@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T16:48:32.797Z",
+  "generatedAt": "2026-10-07T17:25:24.229Z",
   "data": {
     "rankings": [
       {
@@ -13,7 +13,7 @@
         "ppg_half": 22.7,
         "ppg_ppr": 22.7,
         "ppg_std": 22.7,
-        "dynasty_val": 9628,
+        "dynasty_val": 9763,
         "dynasty_rank": 3,
         "stats": [
           {
@@ -74,7 +74,7 @@
         "ppg_half": 21,
         "ppg_ppr": 21,
         "ppg_std": 21,
-        "dynasty_val": 6222,
+        "dynasty_val": 6380,
         "dynasty_rank": 9,
         "stats": [
           {
@@ -135,8 +135,8 @@
         "ppg_half": 20.9,
         "ppg_ppr": 20.9,
         "ppg_std": 20.9,
-        "dynasty_val": 4209,
-        "dynasty_rank": 28,
+        "dynasty_val": 4312,
+        "dynasty_rank": 27,
         "stats": [
           {
             "year": 2026,
@@ -196,8 +196,8 @@
         "ppg_half": 20.4,
         "ppg_ppr": 20.4,
         "ppg_std": 20.4,
-        "dynasty_val": 5691,
-        "dynasty_rank": 16,
+        "dynasty_val": 5952,
+        "dynasty_rank": 13,
         "stats": [
           {
             "year": 2026,
@@ -257,8 +257,8 @@
         "ppg_half": 20.1,
         "ppg_ppr": 20.1,
         "ppg_std": 20.1,
-        "dynasty_val": 4230,
-        "dynasty_rank": 27,
+        "dynasty_val": 3986,
+        "dynasty_rank": 29,
         "stats": [
           {
             "year": 2026,
@@ -318,8 +318,8 @@
         "ppg_half": 19.8,
         "ppg_ppr": 19.8,
         "ppg_std": 19.8,
-        "dynasty_val": 4778,
-        "dynasty_rank": 24,
+        "dynasty_val": 4990,
+        "dynasty_rank": 20,
         "stats": [
           {
             "year": 2026,
@@ -379,7 +379,7 @@
         "ppg_half": 19.7,
         "ppg_ppr": 19.7,
         "ppg_std": 19.7,
-        "dynasty_val": 5625,
+        "dynasty_val": 5696,
         "dynasty_rank": 17,
         "stats": [
           {
@@ -440,7 +440,7 @@
         "ppg_half": 19.6,
         "ppg_ppr": 21.8,
         "ppg_std": 17.4,
-        "dynasty_val": 9798,
+        "dynasty_val": 9857,
         "dynasty_rank": 2,
         "stats": [
           {
@@ -496,7 +496,7 @@
         "name": "Jahmyr Gibbs",
         "position": "RB",
         "team": "DET",
-        "age": 24.5,
+        "age": 24.6,
         "ppg": 19.6,
         "ppg_half": 19.6,
         "ppg_ppr": 21.8,
@@ -562,8 +562,8 @@
         "ppg_half": 19.4,
         "ppg_ppr": 19.4,
         "ppg_std": 19.4,
-        "dynasty_val": 169,
-        "dynasty_rank": 234,
+        "dynasty_val": 173,
+        "dynasty_rank": 235,
         "stats": [
           {
             "year": 2026,
@@ -623,7 +623,7 @@
         "ppg_half": 19.1,
         "ppg_ppr": 21.7,
         "ppg_std": 16.5,
-        "dynasty_val": 3588,
+        "dynasty_val": 3604,
         "dynasty_rank": 32,
         "stats": [
           {
@@ -684,7 +684,7 @@
         "ppg_half": 18.6,
         "ppg_ppr": 18.6,
         "ppg_std": 18.6,
-        "dynasty_val": 4564,
+        "dynasty_val": 4622,
         "dynasty_rank": 26,
         "stats": [
           {
@@ -745,8 +745,8 @@
         "ppg_half": 18.6,
         "ppg_ppr": 18.6,
         "ppg_std": 18.6,
-        "dynasty_val": 1720,
-        "dynasty_rank": 89,
+        "dynasty_val": 1521,
+        "dynasty_rank": 95,
         "stats": [
           {
             "year": 2026,
@@ -806,8 +806,8 @@
         "ppg_half": 18.6,
         "ppg_ppr": 18.6,
         "ppg_std": 18.6,
-        "dynasty_val": 3200,
-        "dynasty_rank": 41,
+        "dynasty_val": 3137,
+        "dynasty_rank": 42,
         "stats": [
           {
             "year": 2026,
@@ -867,8 +867,8 @@
         "ppg_half": 18.6,
         "ppg_ppr": 18.6,
         "ppg_std": 18.6,
-        "dynasty_val": 4846,
-        "dynasty_rank": 21,
+        "dynasty_val": 4919,
+        "dynasty_rank": 24,
         "stats": [
           {
             "year": 2026,
@@ -928,7 +928,7 @@
         "ppg_half": 18.4,
         "ppg_ppr": 18.4,
         "ppg_std": 18.4,
-        "dynasty_val": 5033,
+        "dynasty_val": 5017,
         "dynasty_rank": 19,
         "stats": [
           {
@@ -989,8 +989,8 @@
         "ppg_half": 18.1,
         "ppg_ppr": 18.1,
         "ppg_std": 18.1,
-        "dynasty_val": 2896,
-        "dynasty_rank": 46,
+        "dynasty_val": 2817,
+        "dynasty_rank": 48,
         "stats": [
           {
             "year": 2026,
@@ -1050,7 +1050,7 @@
         "ppg_half": 18,
         "ppg_ppr": 19.3,
         "ppg_std": 16.8,
-        "dynasty_val": 5502,
+        "dynasty_val": 5554,
         "dynasty_rank": 18,
         "stats": [
           {
@@ -1111,7 +1111,7 @@
         "ppg_half": 17.5,
         "ppg_ppr": 21,
         "ppg_std": 14,
-        "dynasty_val": 9477,
+        "dynasty_val": 9413,
         "dynasty_rank": 4,
         "stats": [
           {
@@ -1172,7 +1172,7 @@
         "ppg_half": 17.4,
         "ppg_ppr": 17.4,
         "ppg_std": 17.4,
-        "dynasty_val": 2663,
+        "dynasty_val": 2661,
         "dynasty_rank": 54,
         "stats": [
           {
@@ -1233,8 +1233,8 @@
         "ppg_half": 17.2,
         "ppg_ppr": 17.2,
         "ppg_std": 17.2,
-        "dynasty_val": 889,
-        "dynasty_rank": 111,
+        "dynasty_val": 958,
+        "dynasty_rank": 107,
         "stats": [
           {
             "year": 2026,
@@ -1294,8 +1294,8 @@
         "ppg_half": 17.1,
         "ppg_ppr": 18.7,
         "ppg_std": 15.5,
-        "dynasty_val": 5855,
-        "dynasty_rank": 13,
+        "dynasty_val": 5912,
+        "dynasty_rank": 14,
         "stats": [
           {
             "year": 2026,
@@ -1355,8 +1355,8 @@
         "ppg_half": 17.1,
         "ppg_ppr": 17.1,
         "ppg_std": 17.1,
-        "dynasty_val": 3402,
-        "dynasty_rank": 36,
+        "dynasty_val": 3421,
+        "dynasty_rank": 37,
         "stats": [
           {
             "year": 2026,
@@ -1416,8 +1416,8 @@
         "ppg_half": 16.9,
         "ppg_ppr": 19.1,
         "ppg_std": 14.6,
-        "dynasty_val": 3225,
-        "dynasty_rank": 40,
+        "dynasty_val": 3248,
+        "dynasty_rank": 39,
         "stats": [
           {
             "year": 2026,
@@ -1477,7 +1477,7 @@
         "ppg_half": 16.9,
         "ppg_ppr": 18.7,
         "ppg_std": 15.1,
-        "dynasty_val": 6107,
+        "dynasty_val": 6290,
         "dynasty_rank": 10,
         "stats": [
           {
@@ -1538,7 +1538,7 @@
         "ppg_half": 16.8,
         "ppg_ppr": 20.2,
         "ppg_std": 13.5,
-        "dynasty_val": 8680,
+        "dynasty_val": 8776,
         "dynasty_rank": 5,
         "stats": [
           {
@@ -1599,8 +1599,8 @@
         "ppg_half": 16.5,
         "ppg_ppr": 19.8,
         "ppg_std": 13.1,
-        "dynasty_val": 5830,
-        "dynasty_rank": 14,
+        "dynasty_val": 5793,
+        "dynasty_rank": 15,
         "stats": [
           {
             "year": 2026,
@@ -1655,13 +1655,13 @@
         "name": "Breece Hall",
         "position": "RB",
         "team": "NYJ",
-        "age": 25.3,
+        "age": 25.4,
         "ppg": 16.4,
         "ppg_half": 16.4,
         "ppg_ppr": 18.3,
         "ppg_std": 14.5,
-        "dynasty_val": 3021,
-        "dynasty_rank": 42,
+        "dynasty_val": 3006,
+        "dynasty_rank": 43,
         "stats": [
           {
             "year": 2026,
@@ -1721,7 +1721,7 @@
         "ppg_half": 16.4,
         "ppg_ppr": 16.4,
         "ppg_std": 16.4,
-        "dynasty_val": 1662,
+        "dynasty_val": 1642,
         "dynasty_rank": 93,
         "stats": [
           {
@@ -1782,8 +1782,8 @@
         "ppg_half": 16.4,
         "ppg_ppr": 16.4,
         "ppg_std": 16.4,
-        "dynasty_val": 4057,
-        "dynasty_rank": 29,
+        "dynasty_val": 4213,
+        "dynasty_rank": 28,
         "stats": [
           {
             "year": 2026,
@@ -1843,8 +1843,8 @@
         "ppg_half": 16.2,
         "ppg_ppr": 16.2,
         "ppg_std": 16.2,
-        "dynasty_val": 161,
-        "dynasty_rank": 243,
+        "dynasty_val": 200,
+        "dynasty_rank": 222,
         "stats": [
           {
             "year": 2026,
@@ -1904,8 +1904,8 @@
         "ppg_half": 16.1,
         "ppg_ppr": 16.1,
         "ppg_std": 16.1,
-        "dynasty_val": 706,
-        "dynasty_rank": 119,
+        "dynasty_val": 944,
+        "dynasty_rank": 109,
         "stats": [
           {
             "year": 2026,
@@ -1965,7 +1965,7 @@
         "ppg_half": 16,
         "ppg_ppr": 19.5,
         "ppg_std": 12.5,
-        "dynasty_val": 5986,
+        "dynasty_val": 6043,
         "dynasty_rank": 11,
         "stats": [
           {
@@ -2026,7 +2026,7 @@
         "ppg_half": 15.8,
         "ppg_ppr": 15.8,
         "ppg_std": 15.8,
-        "dynasty_val": 2667,
+        "dynasty_val": 2730,
         "dynasty_rank": 53,
         "stats": [
           {
@@ -2087,8 +2087,8 @@
         "ppg_half": 15.7,
         "ppg_ppr": 15.7,
         "ppg_std": 15.7,
-        "dynasty_val": 2317,
-        "dynasty_rank": 66,
+        "dynasty_val": 2376,
+        "dynasty_rank": 65,
         "stats": [
           {
             "year": 2026,
@@ -2148,7 +2148,7 @@
         "ppg_half": 15.7,
         "ppg_ppr": 18.9,
         "ppg_std": 12.6,
-        "dynasty_val": 3407,
+        "dynasty_val": 3461,
         "dynasty_rank": 35,
         "stats": [
           {
@@ -2209,8 +2209,8 @@
         "ppg_half": 15.7,
         "ppg_ppr": 15.7,
         "ppg_std": 15.7,
-        "dynasty_val": 1813,
-        "dynasty_rank": 85,
+        "dynasty_val": 1772,
+        "dynasty_rank": 88,
         "stats": [
           {
             "year": 2026,
@@ -2270,8 +2270,8 @@
         "ppg_half": 15.6,
         "ppg_ppr": 16.9,
         "ppg_std": 14.3,
-        "dynasty_val": 2798,
-        "dynasty_rank": 50,
+        "dynasty_val": 3206,
+        "dynasty_rank": 41,
         "stats": [
           {
             "year": 2026,
@@ -2331,8 +2331,8 @@
         "ppg_half": 15.6,
         "ppg_ppr": 15.6,
         "ppg_std": 15.6,
-        "dynasty_val": 3247,
-        "dynasty_rank": 38,
+        "dynasty_val": 3221,
+        "dynasty_rank": 40,
         "stats": [
           {
             "year": 2026,
@@ -2392,8 +2392,8 @@
         "ppg_half": 15.6,
         "ppg_ppr": 15.6,
         "ppg_std": 15.6,
-        "dynasty_val": 1707,
-        "dynasty_rank": 90,
+        "dynasty_val": 1667,
+        "dynasty_rank": 91,
         "stats": [
           {
             "year": 2026,
@@ -2453,8 +2453,8 @@
         "ppg_half": 15.5,
         "ppg_ppr": 17,
         "ppg_std": 14,
-        "dynasty_val": 4841,
-        "dynasty_rank": 22,
+        "dynasty_val": 4962,
+        "dynasty_rank": 21,
         "stats": [
           {
             "year": 2026,
@@ -2514,8 +2514,8 @@
         "ppg_half": 15.5,
         "ppg_ppr": 15.5,
         "ppg_std": 15.5,
-        "dynasty_val": 98,
-        "dynasty_rank": 283,
+        "dynasty_val": 99,
+        "dynasty_rank": 289,
         "stats": [
           {
             "year": 2026,
@@ -2575,7 +2575,7 @@
         "ppg_half": 15.4,
         "ppg_ppr": 16.1,
         "ppg_std": 14.7,
-        "dynasty_val": 2830,
+        "dynasty_val": 2794,
         "dynasty_rank": 49,
         "stats": [
           {
@@ -2636,8 +2636,8 @@
         "ppg_half": 15.3,
         "ppg_ppr": 18.6,
         "ppg_std": 12,
-        "dynasty_val": 7061,
-        "dynasty_rank": 8,
+        "dynasty_val": 7221,
+        "dynasty_rank": 7,
         "stats": [
           {
             "year": 2026,
@@ -2692,13 +2692,13 @@
         "name": "Javonte Williams",
         "position": "RB",
         "team": "DAL",
-        "age": 26.4,
+        "age": 26.5,
         "ppg": 15.3,
         "ppg_half": 15.3,
         "ppg_ppr": 16.9,
         "ppg_std": 13.7,
-        "dynasty_val": 2687,
-        "dynasty_rank": 52,
+        "dynasty_val": 2767,
+        "dynasty_rank": 50,
         "stats": [
           {
             "year": 2026,
@@ -2758,8 +2758,8 @@
         "ppg_half": 15.3,
         "ppg_ppr": 15.3,
         "ppg_std": 15.3,
-        "dynasty_val": 152,
-        "dynasty_rank": 249,
+        "dynasty_val": 192,
+        "dynasty_rank": 224,
         "stats": [
           {
             "year": 2026,
@@ -2819,8 +2819,8 @@
         "ppg_half": 15.2,
         "ppg_ppr": 15.2,
         "ppg_std": 15.2,
-        "dynasty_val": 2950,
-        "dynasty_rank": 44,
+        "dynasty_val": 2763,
+        "dynasty_rank": 51,
         "stats": [
           {
             "year": 2026,
@@ -2880,7 +2880,7 @@
         "ppg_half": 15.2,
         "ppg_ppr": 18.6,
         "ppg_std": 11.8,
-        "dynasty_val": 7403,
+        "dynasty_val": 7372,
         "dynasty_rank": 6,
         "stats": [
           {
@@ -2941,8 +2941,8 @@
         "ppg_half": 15.2,
         "ppg_ppr": 16.6,
         "ppg_std": 13.8,
-        "dynasty_val": 3531,
-        "dynasty_rank": 33,
+        "dynasty_val": 3465,
+        "dynasty_rank": 34,
         "stats": [
           {
             "year": 2026,
@@ -3002,8 +3002,8 @@
         "ppg_half": 15.2,
         "ppg_ppr": 15.2,
         "ppg_std": 15.2,
-        "dynasty_val": 232,
-        "dynasty_rank": 195,
+        "dynasty_val": 242,
+        "dynasty_rank": 198,
         "stats": [
           {
             "year": 2026,
@@ -3063,8 +3063,8 @@
         "ppg_half": 15.1,
         "ppg_ppr": 16.5,
         "ppg_std": 13.8,
-        "dynasty_val": 2712,
-        "dynasty_rank": 51,
+        "dynasty_val": 2613,
+        "dynasty_rank": 57,
         "stats": [
           {
             "year": 2026,
@@ -3125,7 +3125,7 @@
         "ppg_ppr": 15,
         "ppg_std": 15,
         "dynasty_val": 12,
-        "dynasty_rank": 379,
+        "dynasty_rank": 382,
         "stats": [
           {
             "year": 2026,
@@ -3185,8 +3185,8 @@
         "ppg_half": 14.4,
         "ppg_ppr": 14.4,
         "ppg_std": 14.4,
-        "dynasty_val": 286,
-        "dynasty_rank": 169,
+        "dynasty_val": 376,
+        "dynasty_rank": 142,
         "stats": [
           {
             "year": 2026,
@@ -3231,8 +3231,8 @@
         "ppg_half": 14.4,
         "ppg_ppr": 14.4,
         "ppg_std": 14.4,
-        "dynasty_val": 2832,
-        "dynasty_rank": 48,
+        "dynasty_val": 2874,
+        "dynasty_rank": 45,
         "stats": [
           {
             "year": 2026,
@@ -3292,8 +3292,8 @@
         "ppg_half": 14.3,
         "ppg_ppr": 14.3,
         "ppg_std": 14.3,
-        "dynasty_val": 2076,
-        "dynasty_rank": 76,
+        "dynasty_val": 2073,
+        "dynasty_rank": 77,
         "stats": [
           {
             "year": 2026,
@@ -3353,8 +3353,8 @@
         "ppg_half": 14.2,
         "ppg_ppr": 14.2,
         "ppg_std": 14.2,
-        "dynasty_val": 6,
-        "dynasty_rank": 446,
+        "dynasty_val": 5,
+        "dynasty_rank": 462,
         "stats": [
           {
             "year": 2026,
@@ -3409,13 +3409,13 @@
         "name": "Jeremiyah Love",
         "position": "RB",
         "team": "ARI",
-        "age": 21.3,
+        "age": 21.4,
         "ppg": 14.2,
         "ppg_half": 14.2,
         "ppg_ppr": 15.7,
         "ppg_std": 12.7,
-        "dynasty_val": 5771,
-        "dynasty_rank": 15,
+        "dynasty_val": 5711,
+        "dynasty_rank": 16,
         "stats": [
           {
             "year": 2026,
@@ -3475,8 +3475,8 @@
         "ppg_half": 14.2,
         "ppg_ppr": 17.3,
         "ppg_std": 11,
-        "dynasty_val": 4821,
-        "dynasty_rank": 23,
+        "dynasty_val": 4948,
+        "dynasty_rank": 22,
         "stats": [
           {
             "year": 2026,
@@ -3536,8 +3536,8 @@
         "ppg_half": 14.2,
         "ppg_ppr": 15.8,
         "ppg_std": 12.6,
-        "dynasty_val": 2517,
-        "dynasty_rank": 59,
+        "dynasty_val": 2466,
+        "dynasty_rank": 61,
         "stats": [
           {
             "year": 2026,
@@ -3597,8 +3597,8 @@
         "ppg_half": 14.1,
         "ppg_ppr": 16,
         "ppg_std": 12.1,
-        "dynasty_val": 3345,
-        "dynasty_rank": 37,
+        "dynasty_val": 3458,
+        "dynasty_rank": 36,
         "stats": [
           {
             "year": 2026,
@@ -3658,7 +3658,7 @@
         "ppg_half": 14.1,
         "ppg_ppr": 17.2,
         "ppg_std": 10.9,
-        "dynasty_val": 4701,
+        "dynasty_val": 4691,
         "dynasty_rank": 25,
         "stats": [
           {
@@ -3719,8 +3719,8 @@
         "ppg_half": 14,
         "ppg_ppr": 16.4,
         "ppg_std": 11.6,
-        "dynasty_val": 2553,
-        "dynasty_rank": 58,
+        "dynasty_val": 2546,
+        "dynasty_rank": 59,
         "stats": [
           {
             "year": 2026,
@@ -3780,8 +3780,8 @@
         "ppg_half": 14,
         "ppg_ppr": 17.3,
         "ppg_std": 10.7,
-        "dynasty_val": 7216,
-        "dynasty_rank": 7,
+        "dynasty_val": 6785,
+        "dynasty_rank": 8,
         "stats": [
           {
             "year": 2026,
@@ -3836,13 +3836,13 @@
         "name": "Jameis Winston",
         "position": "QB",
         "team": "NYG",
-        "age": 32.7,
+        "age": 32.8,
         "ppg": 13.8,
         "ppg_half": 13.8,
         "ppg_ppr": 13.8,
         "ppg_std": 13.8,
-        "dynasty_val": 182,
-        "dynasty_rank": 224,
+        "dynasty_val": 205,
+        "dynasty_rank": 220,
         "stats": [
           {
             "year": 2026,
@@ -3903,7 +3903,7 @@
         "ppg_ppr": 13.8,
         "ppg_std": 13.8,
         "dynasty_val": 0,
-        "dynasty_rank": 3451,
+        "dynasty_rank": 3452,
         "stats": [
           {
             "year": 2026,
@@ -3963,8 +3963,8 @@
         "ppg_half": 13.8,
         "ppg_ppr": 13.8,
         "ppg_std": 13.8,
-        "dynasty_val": 123,
-        "dynasty_rank": 268,
+        "dynasty_val": 139,
+        "dynasty_rank": 258,
         "stats": [
           {
             "year": 2026,
@@ -3995,7 +3995,7 @@
         "ppg_ppr": 13.7,
         "ppg_std": 13.7,
         "dynasty_val": 0,
-        "dynasty_rank": 3006,
+        "dynasty_rank": 3008,
         "stats": [
           {
             "year": 2026,
@@ -4040,8 +4040,8 @@
         "ppg_half": 13.6,
         "ppg_ppr": 16.3,
         "ppg_std": 10.9,
-        "dynasty_val": 2429,
-        "dynasty_rank": 62,
+        "dynasty_val": 2509,
+        "dynasty_rank": 60,
         "stats": [
           {
             "year": 2026,
@@ -4101,8 +4101,8 @@
         "ppg_half": 13.6,
         "ppg_ppr": 13.6,
         "ppg_std": 13.6,
-        "dynasty_val": 255,
-        "dynasty_rank": 184,
+        "dynasty_val": 296,
+        "dynasty_rank": 176,
         "stats": [
           {
             "year": 2026,
@@ -4147,8 +4147,8 @@
         "ppg_half": 13.6,
         "ppg_ppr": 13.6,
         "ppg_std": 13.6,
-        "dynasty_val": 149,
-        "dynasty_rank": 253,
+        "dynasty_val": 156,
+        "dynasty_rank": 249,
         "stats": [
           {
             "year": 2026,
@@ -4209,7 +4209,7 @@
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
         "dynasty_val": 14,
-        "dynasty_rank": 357,
+        "dynasty_rank": 354,
         "stats": [
           {
             "year": 2026,
@@ -4270,7 +4270,7 @@
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
         "dynasty_val": 0,
-        "dynasty_rank": 1427,
+        "dynasty_rank": 1431,
         "stats": [
           {
             "year": 2026,
@@ -4330,8 +4330,8 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 283,
-        "dynasty_rank": 173,
+        "dynasty_val": 411,
+        "dynasty_rank": 137,
         "stats": [
           {
             "year": 2026,
@@ -4391,8 +4391,8 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 13,
-        "dynasty_rank": 368,
+        "dynasty_val": 14,
+        "dynasty_rank": 355,
         "stats": [
           {
             "year": 2026,
@@ -4452,8 +4452,8 @@
         "ppg_half": 13.5,
         "ppg_ppr": 13.5,
         "ppg_std": 13.5,
-        "dynasty_val": 7,
-        "dynasty_rank": 435,
+        "dynasty_val": 8,
+        "dynasty_rank": 438,
         "stats": [
           {
             "year": 2026,
@@ -4513,7 +4513,7 @@
         "ppg_half": 13.4,
         "ppg_ppr": 14.7,
         "ppg_std": 12.1,
-        "dynasty_val": 2221,
+        "dynasty_val": 2233,
         "dynasty_rank": 72,
         "stats": [
           {
@@ -4574,8 +4574,8 @@
         "ppg_half": 13.3,
         "ppg_ppr": 16,
         "ppg_std": 10.6,
-        "dynasty_val": 3423,
-        "dynasty_rank": 34,
+        "dynasty_val": 3504,
+        "dynasty_rank": 33,
         "stats": [
           {
             "year": 2026,
@@ -4635,8 +4635,8 @@
         "ppg_half": 13.2,
         "ppg_ppr": 16.1,
         "ppg_std": 10.3,
-        "dynasty_val": 2861,
-        "dynasty_rank": 47,
+        "dynasty_val": 2870,
+        "dynasty_rank": 46,
         "stats": [
           {
             "year": 2026,
@@ -4696,8 +4696,8 @@
         "ppg_half": 13.2,
         "ppg_ppr": 13.2,
         "ppg_std": 13.2,
-        "dynasty_val": 270,
-        "dynasty_rank": 180,
+        "dynasty_val": 251,
+        "dynasty_rank": 194,
         "stats": [
           {
             "year": 2026,
@@ -4757,7 +4757,7 @@
         "ppg_half": 13.2,
         "ppg_ppr": 14.4,
         "ppg_std": 11.9,
-        "dynasty_val": 2222,
+        "dynasty_val": 2254,
         "dynasty_rank": 71,
         "stats": [
           {
@@ -4818,8 +4818,8 @@
         "ppg_half": 13.1,
         "ppg_ppr": 13.1,
         "ppg_std": 13.1,
-        "dynasty_val": 263,
-        "dynasty_rank": 182,
+        "dynasty_val": 380,
+        "dynasty_rank": 141,
         "stats": [
           {
             "year": 2026,
@@ -4864,8 +4864,8 @@
         "ppg_half": 13,
         "ppg_ppr": 13,
         "ppg_std": 13,
-        "dynasty_val": 183,
-        "dynasty_rank": 222,
+        "dynasty_val": 197,
+        "dynasty_rank": 223,
         "stats": [
           {
             "year": 2026,
@@ -4925,8 +4925,8 @@
         "ppg_half": 13,
         "ppg_ppr": 15.7,
         "ppg_std": 10.3,
-        "dynasty_val": 2259,
-        "dynasty_rank": 69,
+        "dynasty_val": 2289,
+        "dynasty_rank": 68,
         "stats": [
           {
             "year": 2026,
@@ -4981,12 +4981,12 @@
         "name": "Josh Jacobs",
         "position": "RB",
         "team": "GB",
-        "age": 28.6,
+        "age": 28.7,
         "ppg": 13,
         "ppg_half": 13,
         "ppg_ppr": 14.1,
         "ppg_std": 11.9,
-        "dynasty_val": 977,
+        "dynasty_val": 952,
         "dynasty_rank": 108,
         "stats": [
           {
@@ -5047,8 +5047,8 @@
         "ppg_half": 13,
         "ppg_ppr": 14.5,
         "ppg_std": 11.5,
-        "dynasty_val": 2269,
-        "dynasty_rank": 68,
+        "dynasty_val": 2382,
+        "dynasty_rank": 64,
         "stats": [
           {
             "year": 2026,
@@ -5108,8 +5108,8 @@
         "ppg_half": 13,
         "ppg_ppr": 16,
         "ppg_std": 10.1,
-        "dynasty_val": 2398,
-        "dynasty_rank": 64,
+        "dynasty_val": 2374,
+        "dynasty_rank": 66,
         "stats": [
           {
             "year": 2026,
@@ -5169,8 +5169,8 @@
         "ppg_half": 12.9,
         "ppg_ppr": 12.9,
         "ppg_std": 12.9,
-        "dynasty_val": 0,
-        "dynasty_rank": 1471,
+        "dynasty_val": 12,
+        "dynasty_rank": 384,
         "stats": [
           {
             "year": 2026,
@@ -5215,8 +5215,8 @@
         "ppg_half": 12.9,
         "ppg_ppr": 15.8,
         "ppg_std": 10,
-        "dynasty_val": 4899,
-        "dynasty_rank": 20,
+        "dynasty_val": 4921,
+        "dynasty_rank": 23,
         "stats": [
           {
             "year": 2026,
@@ -5276,8 +5276,8 @@
         "ppg_half": 12.9,
         "ppg_ppr": 15.6,
         "ppg_std": 10.1,
-        "dynasty_val": 1896,
-        "dynasty_rank": 82,
+        "dynasty_val": 1922,
+        "dynasty_rank": 83,
         "stats": [
           {
             "year": 2026,
@@ -5338,7 +5338,7 @@
         "ppg_ppr": 12.8,
         "ppg_std": 12.8,
         "dynasty_val": 0,
-        "dynasty_rank": 3097,
+        "dynasty_rank": 3098,
         "stats": [
           {
             "year": 2026,
@@ -5383,8 +5383,8 @@
         "ppg_half": 12.7,
         "ppg_ppr": 15.4,
         "ppg_std": 9.9,
-        "dynasty_val": 2649,
-        "dynasty_rank": 55,
+        "dynasty_val": 2615,
+        "dynasty_rank": 56,
         "stats": [
           {
             "year": 2026,
@@ -5444,7 +5444,7 @@
         "ppg_half": 12.6,
         "ppg_ppr": 15.3,
         "ppg_std": 9.8,
-        "dynasty_val": 3990,
+        "dynasty_val": 3829,
         "dynasty_rank": 30,
         "stats": [
           {
@@ -5505,8 +5505,8 @@
         "ppg_half": 12.6,
         "ppg_ppr": 14,
         "ppg_std": 11.2,
-        "dynasty_val": 2233,
-        "dynasty_rank": 70,
+        "dynasty_val": 2214,
+        "dynasty_rank": 74,
         "stats": [
           {
             "year": 2026,
@@ -5566,8 +5566,8 @@
         "ppg_half": 12.6,
         "ppg_ppr": 12.6,
         "ppg_std": 12.6,
-        "dynasty_val": 91,
-        "dynasty_rank": 286,
+        "dynasty_val": 90,
+        "dynasty_rank": 294,
         "stats": [
           {
             "year": 2026,
@@ -5628,7 +5628,7 @@
         "ppg_ppr": 12.5,
         "ppg_std": 12.5,
         "dynasty_val": 6,
-        "dynasty_rank": 439,
+        "dynasty_rank": 450,
         "stats": [
           {
             "year": 2026,
@@ -5688,8 +5688,8 @@
         "ppg_half": 12.4,
         "ppg_ppr": 15,
         "ppg_std": 9.8,
-        "dynasty_val": 2914,
-        "dynasty_rank": 45,
+        "dynasty_val": 2882,
+        "dynasty_rank": 44,
         "stats": [
           {
             "year": 2026,
@@ -5749,8 +5749,8 @@
         "ppg_half": 12.4,
         "ppg_ppr": 12.4,
         "ppg_std": 12.4,
-        "dynasty_val": 52,
-        "dynasty_rank": 311,
+        "dynasty_val": 53,
+        "dynasty_rank": 312,
         "stats": [
           {
             "year": 2026,
@@ -5810,8 +5810,8 @@
         "ppg_half": 12.4,
         "ppg_ppr": 15,
         "ppg_std": 9.8,
-        "dynasty_val": 3228,
-        "dynasty_rank": 39,
+        "dynasty_val": 3268,
+        "dynasty_rank": 38,
         "stats": [
           {
             "year": 2026,
@@ -5871,7 +5871,7 @@
         "ppg_half": 12.4,
         "ppg_ppr": 15.6,
         "ppg_std": 9.2,
-        "dynasty_val": 5908,
+        "dynasty_val": 5981,
         "dynasty_rank": 12,
         "stats": [
           {
@@ -5932,8 +5932,8 @@
         "ppg_half": 12.4,
         "ppg_ppr": 14,
         "ppg_std": 10.8,
-        "dynasty_val": 1476,
-        "dynasty_rank": 98,
+        "dynasty_val": 1458,
+        "dynasty_rank": 99,
         "stats": [
           {
             "year": 2026,
